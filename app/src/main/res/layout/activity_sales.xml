@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    android:background="@color/bg_screen">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:background="@color/green_primary" android:paddingHorizontal="16dp" android:paddingVertical="14dp">
+        <TextView android:id="@+id/btnBackSales" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="←" android:textSize="22sp"
+            android:textColor="#FFFFFF" android:paddingEnd="12dp" android:clickable="true" android:focusable="true"/>
+        <TextView android:id="@+id/tvSalesTitle" android:layout_width="0dp"
+            android:layout_height="wrap_content" android:layout_weight="1"
+            android:text="@string/sales_title" android:textSize="18sp"
+            android:textColor="#FFFFFF" android:textStyle="bold"/>
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView android:id="@+id/recyclerSales"
+        android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1"
+        android:paddingHorizontal="12dp" android:paddingTop="8dp" android:clipToPadding="false"/>
+
+    <LinearLayout android:id="@+id/emptySales" android:layout_width="match_parent"
+        android:layout_height="0dp" android:layout_weight="1"
+        android:orientation="vertical" android:gravity="center" android:visibility="gone">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="💰" android:textSize="56sp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="@string/empty_sales" android:textSize="18sp"
+            android:textColor="@color/text_primary" android:textStyle="bold" android:layout_marginTop="12dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="@string/empty_sales_hint" android:textSize="14sp"
+            android:textColor="@color/text_secondary" android:layout_marginTop="6dp"/>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_screen"
+    android:fitsSystemWindows="true">
+
+    <!-- Шапка -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:background="@color/green_primary"
+        android:paddingHorizontal="16dp" android:paddingVertical="14dp"
+        android:fitsSystemWindows="true">
+        <TextView android:id="@+id/btnBackEditListing"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="←" android:textSize="22sp" android:textColor="#FFFFFF"
+            android:paddingEnd="12dp" android:clickable="true" android:focusable="true"/>
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="@string/edit_listing_title"
+            android:textSize="18sp" android:textColor="#FFFFFF" android:textStyle="bold"/>
+        <TextView android:id="@+id/btnSaveListing"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="@string/action_save" android:textSize="14sp"
+            android:textColor="@color/orange_accent" android:textStyle="bold"
+            android:clickable="true" android:focusable="true"/>
+    </LinearLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="0dp"
+        android:layout_weight="1">
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:padding="16dp">
+
+            <!-- Категория -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/listing_category" android:textSize="13sp"
+                android:textColor="@color/text_secondary" android:textStyle="bold"/>
+            <FrameLayout android:layout_width="match_parent" android:layout_height="52dp"
+                android:background="@drawable/bg_input" android:layout_marginTop="6dp">
+                <Spinner android:id="@+id/spinnerEditCategory"
+                    android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:paddingHorizontal="12dp" android:background="@null"/>
+            </FrameLayout>
+
+            <!-- Название -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/listing_title_label" android:textSize="13sp"
+                android:textColor="@color/text_secondary" android:textStyle="bold"
+                android:layout_marginTop="14dp"/>
+            <EditText android:id="@+id/etEditTitle"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:paddingHorizontal="16dp" android:background="@drawable/bg_input"
+                android:textSize="15sp" android:layout_marginTop="6dp"
+                android:inputType="textCapSentences"/>
+
+            <!-- Описание -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/listing_description" android:textSize="13sp"
+                android:textColor="@color/text_secondary" android:textStyle="bold"
+                android:layout_marginTop="14dp"/>
+            <EditText android:id="@+id/etEditDescription"
+                android:layout_width="match_parent" android:layout_height="100dp"
+                android:paddingHorizontal="16dp" android:background="@drawable/bg_input"
+                android:textSize="14sp" android:gravity="top|start"
+                android:inputType="textMultiLine" android:layout_marginTop="6dp"/>
+
+            <!-- Цена -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/listing_price" android:textSize="13sp"
+                android:textColor="@color/text_secondary" android:textStyle="bold"
+                android:layout_marginTop="14dp"/>
+            <EditText android:id="@+id/etEditPrice"
+                android:layout_width="match_parent" android:layout_height="52dp"
+                android:paddingHorizontal="16dp" android:background="@drawable/bg_input"
+                android:textSize="15sp" android:inputType="numberDecimal"
+                android:layout_marginTop="6dp"/>
+
+            <!-- Регион -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/listing_region" android:textSize="13sp"
+                android:textColor="@color/text_secondary" android:textStyle="bold"
+                android:layout_marginTop="14dp"/>
+            <FrameLayout android:layout_width="match_parent" android:layout_height="52dp"
+                android:background="@drawable/bg_input" android:layout_marginTop="6dp">
+                <Spinner android:id="@+id/spinnerEditRegion"
+                    android:layout_width="match_parent" android:layout_height="match_parent"
+                    android:paddingHorizontal="12dp" android:background="@null"/>
+            </FrameLayout>
+
+            <!-- ПАСПОРТ ЖИВОТНОГО -->
+            <LinearLayout android:id="@+id/passportSection"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:visibility="gone"
+                android:layout_marginTop="16dp">
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/passport_animal_title" android:textSize="15sp"
+                    android:textColor="@color/text_primary" android:textStyle="bold"
+                    android:paddingVertical="8dp"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/passport_species" android:textSize="13sp"
+                    android:textColor="@color/text_secondary" android:textStyle="bold"/>
+                <EditText android:id="@+id/etEditSpecies"
+                    android:layout_width="match_parent" android:layout_height="52dp"
+                    android:paddingHorizontal="16dp" android:background="@drawable/bg_input"
+                    android:textSize="15sp" android:layout_marginTop="4dp"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/passport_breed" android:textSize="13sp"
+                    android:textColor="@color/text_secondary" android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+                <EditText android:id="@+id/etEditBreed"
+                    android:layout_width="match_parent" android:layout_height="52dp"
+                    android:paddingHorizontal="16dp" android:background="@drawable/bg_input"
+                    android:textSize="15sp" android:layout_marginTop="4dp"/>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:layout_marginTop="12dp">
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical"
+                        android:layout_marginEnd="8dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/passport_age_years" android:textSize="13sp"
+                            android:textColor="@color/text_secondary" android:textStyle="bold"/>
+                        <EditText android:id="@+id/etEditAge"
+                            android:layout_width="match_parent" android:layout_height="52dp"
+                            android:paddingHorizontal="16dp" android:background="@drawable/bg_input"
+                            android:textSize="15sp" android:inputType="number"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/passport_count_label" android:textSize="13sp"
+                            android:textColor="@color/text_secondary" android:textStyle="bold"/>
+                        <EditText android:id="@+id/etEditCount"
+                            android:layout_width="match_parent" android:layout_height="52dp"
+                            android:paddingHorizontal="16dp" android:background="@drawable/bg_input"
+                            android:textSize="15sp" android:inputType="number"
+                            android:layout_marginTop="4dp"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/passport_sex" android:textSize="13sp"
+                    android:textColor="@color/text_secondary" android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+                <FrameLayout android:layout_width="match_parent" android:layout_height="52dp"
+                    android:background="@drawable/bg_input" android:layout_marginTop="4dp">
+                    <Spinner android:id="@+id/spinnerEditSex"
+                        android:layout_width="match_parent" android:layout_height="match_parent"
+                        android:paddingHorizontal="12dp" android:background="@null"/>
+                </FrameLayout>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/passport_vet_cert_no_label" android:textSize="13sp"
+                    android:textColor="@color/text_secondary" android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+                <EditText android:id="@+id/etEditVetCertNo"
+                    android:layout_width="match_parent" android:layout_height="52dp"
+                    android:paddingHorizontal="16dp" android:background="@drawable/bg_input"
+                    android:textSize="15sp" android:layout_marginTop="4dp"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/passport_vet_date_label" android:textSize="13sp"
+                    android:textColor="@color/text_secondary" android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+                <EditText android:id="@+id/etEditVetDate"
+                    android:layout_width="match_parent" android:layout_height="52dp"
+                    android:paddingHorizontal="16dp" android:background="@drawable/bg_input"
+                    android:textSize="15sp" android:layout_marginTop="4dp"/>
+            </LinearLayout>
+
+            <!-- Предупреждение -->
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/warning_remoderation"
+                android:textSize="13sp" android:textColor="@color/orange_accent"
+                android:layout_marginTop="16dp" android:gravity="center"/>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

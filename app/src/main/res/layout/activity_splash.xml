@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="#2D6A4F">
+
+    <!-- Лого -->
+    <LinearLayout
+        android:id="@+id/tvSplashLogo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:gravity="center"
+        android:background="#3D7A5F"
+        android:layout_marginBottom="24dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🌾"
+            android:textSize="52sp"/>
+    </LinearLayout>
+
+    <!-- Название -->
+    <TextView
+        android:id="@+id/tvSplashAppName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Farme"
+        android:textSize="40sp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:letterSpacing="0.05"
+        android:layout_marginBottom="8dp"/>
+
+    <!-- Подзаголовок -->
+    <TextView
+        android:id="@+id/tvSplashTagline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_tagline"
+        android:textSize="16sp"
+        android:textColor="#B4DEC0"
+        android:layout_marginBottom="60dp"/>
+
+    <!-- Индикатор загрузки -->
+    <ProgressBar
+        android:id="@+id/splashProgress"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:indeterminateTint="#B4DEC0"/>
+
+</LinearLayout>

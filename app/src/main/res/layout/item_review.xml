@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="1dp">
+
+    <LinearLayout android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="14dp">
+
+        <!-- Автор + дата -->
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+
+            <!-- Инициал -->
+            <TextView android:id="@+id/tvReviewInitial"
+                android:layout_width="36dp" android:layout_height="36dp"
+                android:text="А" android:textSize="15sp"
+                android:textColor="#FFFFFF" android:textStyle="bold"
+                android:gravity="center" android:background="#2D6A4F"
+                android:layout_marginEnd="10dp"/>
+
+            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:orientation="vertical">
+                <TextView android:id="@+id/tvReviewAuthor"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="14sp" android:textColor="#0A1F14"
+                    android:textStyle="bold"/>
+                <TextView android:id="@+id/tvReviewDate"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="11sp" android:textColor="#7A8F7E"
+                    android:layout_marginTop="1dp"/>
+            </LinearLayout>
+
+            <!-- Звёзды -->
+            <TextView android:id="@+id/tvReviewRating"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="★★★★★" android:textSize="14sp"
+                android:textColor="#F4A261"/>
+        </LinearLayout>
+
+        <!-- Текст отзыва -->
+        <TextView android:id="@+id/tvReviewText"
+            android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:textSize="13sp" android:textColor="#1C2620"
+            android:layout_marginTop="10dp"
+            android:lineSpacingMultiplier="1.4"/>
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

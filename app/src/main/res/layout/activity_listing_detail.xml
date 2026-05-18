@@ -1,0 +1,427 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_screen">
+
+    <!-- Loading -->
+    <ProgressBar android:id="@+id/progressBar"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="center" android:indeterminateTint="@color/green_primary"
+        android:visibility="visible"/>
+
+    <!-- Контент -->
+    <ScrollView android:id="@+id/contentScroll"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:scrollbars="none" android:visibility="gone">
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="100dp">
+
+            <!-- Фото с шапкой -->
+            <FrameLayout android:layout_width="match_parent" android:layout_height="280dp">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/vpPhotos"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/divider"/>
+
+                <!-- Градиент снизу -->
+                <View android:layout_width="match_parent" android:layout_height="80dp"
+                    android:layout_gravity="bottom"
+                    android:background="@drawable/gradient_bottom"/>
+
+                <!-- Кнопка назад -->
+                <LinearLayout android:layout_width="40dp" android:layout_height="40dp"
+                    android:layout_margin="12dp" android:layout_gravity="top|start"
+                    android:gravity="center" android:background="#CC000000">
+                    <TextView android:id="@+id/btnBack"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="‹" android:textSize="24sp" android:textColor="#FFFFFF"
+                        android:clickable="true" android:focusable="true"/>
+                </LinearLayout>
+
+                <!-- Кнопки поделиться + избранное + жалоба -->
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_gravity="top|end" android:layout_margin="12dp"
+                    android:orientation="horizontal">
+                    <LinearLayout android:layout_width="40dp" android:layout_height="40dp"
+                        android:gravity="center" android:background="#CC000000"
+                        android:layout_marginEnd="8dp">
+                        <TextView android:id="@+id/btnReport"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="⚠" android:textSize="16sp" android:textColor="#FFCA28"
+                            android:clickable="true" android:focusable="true"
+                            android:visibility="gone"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="40dp" android:layout_height="40dp"
+                        android:gravity="center" android:background="#CC000000"
+                        android:layout_marginEnd="8dp">
+                        <TextView android:id="@+id/btnShare"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="↗" android:textSize="18sp" android:textColor="#FFFFFF"
+                            android:clickable="true" android:focusable="true"/>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="40dp" android:layout_height="40dp"
+                        android:gravity="center" android:background="#CC000000">
+                        <TextView android:id="@+id/btnFavorite"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="🤍" android:textSize="18sp"
+                            android:clickable="true" android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- Точки -->
+                <TextView android:id="@+id/tvDotsIndicator"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|center_horizontal"
+                    android:layout_marginBottom="8dp"
+                    android:text="●○○" android:textSize="10sp" android:textColor="#FFFFFF"
+                    android:letterSpacing="0.3" android:visibility="gone"/>
+            </FrameLayout>
+
+            <!-- Основная инфо -->
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/bg_card"
+                android:padding="16dp">
+
+                <!-- Статус "ПРОДАНО" (виден всем) -->
+                <TextView android:id="@+id/tvSoldBadge"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/sold_badge"
+                    android:textSize="12sp" android:textColor="#FFFFFF"
+                    android:textStyle="bold"
+                    android:background="@color/green_dark"
+                    android:paddingHorizontal="12dp" android:paddingVertical="4dp"
+                    android:layout_marginBottom="10dp"
+                    android:visibility="gone"/>
+
+                <!-- Категория -->
+                <TextView android:id="@+id/tvCategory"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="12sp" android:textColor="@color/green_primary"
+                    android:background="@color/green_surface"
+                    android:paddingHorizontal="10dp" android:paddingVertical="4dp"
+                    android:layout_marginBottom="10dp"/>
+
+                <!-- Название -->
+                <TextView android:id="@+id/tvTitle"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textSize="20sp" android:textColor="@color/text_primary"
+                    android:textStyle="bold" android:layout_marginBottom="10dp"
+                    android:lineSpacingMultiplier="1.2"/>
+
+                <!-- Цена + торг -->
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+                    <TextView android:id="@+id/tvPrice"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:textSize="24sp"
+                        android:textColor="@color/green_primary" android:textStyle="bold"/>
+                    <TextView android:id="@+id/tvNegotiable"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/negotiable_short" android:textSize="12sp"
+                        android:textColor="@color/orange_accent"
+                        android:background="@color/orange_surface"
+                        android:paddingHorizontal="8dp" android:paddingVertical="3dp"
+                        android:visibility="gone"/>
+                </LinearLayout>
+
+                <!-- Регион + дата -->
+                <TextView android:id="@+id/tvRegion"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="13sp" android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="4dp"/>
+                <TextView android:id="@+id/tvCreatedAt"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="12sp" android:textColor="@color/text_hint"/>
+
+                <!-- Кнопка "Отметить как продано" — только для владельца -->
+                <LinearLayout android:id="@+id/btnMarkSold"
+                    android:layout_width="match_parent" android:layout_height="44dp"
+                    android:orientation="horizontal" android:gravity="center"
+                    android:background="@drawable/bg_btn_outline_green"
+                    android:layout_marginTop="14dp"
+                    android:clickable="true" android:focusable="true"
+                    android:visibility="gone">
+                    <TextView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/mark_sold_btn_label"
+                        android:textSize="14sp"
+                        android:textColor="@color/green_primary"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="8dp"
+                android:background="@color/bg_screen"/>
+
+            <!-- Описание -->
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/bg_card" android:padding="16dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/listing_description" android:textSize="15sp"
+                    android:textColor="@color/text_primary" android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+                <TextView android:id="@+id/tvDescription"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:textSize="14sp" android:textColor="@color/text_secondary"
+                    android:lineSpacingMultiplier="1.5"/>
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="8dp"
+                android:background="@color/bg_screen"/>
+
+            <!-- Паспорт животного -->
+            <LinearLayout android:id="@+id/passportCard"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:background="@color/bg_card"
+                android:padding="16dp" android:visibility="gone">
+
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="12dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/passport_title"
+                        android:textSize="15sp" android:textColor="@color/text_primary"
+                        android:textStyle="bold"/>
+                    <TextView android:id="@+id/tvPassportStatus"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:textSize="11sp"/>
+                </LinearLayout>
+
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:layout_marginBottom="6dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/passport_species"
+                        android:textSize="12sp" android:textColor="@color/text_hint"/>
+                    <TextView android:id="@+id/tvPassportSpecies"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:textSize="13sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:layout_marginBottom="6dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/passport_breed"
+                        android:textSize="12sp" android:textColor="@color/text_hint"/>
+                    <TextView android:id="@+id/tvPassportBreed"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:textSize="13sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:layout_marginBottom="6dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/passport_age"
+                        android:textSize="12sp" android:textColor="@color/text_hint"/>
+                    <TextView android:id="@+id/tvPassportAge"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:textSize="13sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:layout_marginBottom="6dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/passport_sex"
+                        android:textSize="12sp" android:textColor="@color/text_hint"/>
+                    <TextView android:id="@+id/tvPassportSex"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:textSize="13sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:layout_marginBottom="6dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/passport_count"
+                        android:textSize="12sp" android:textColor="@color/text_hint"/>
+                    <TextView android:id="@+id/tvPassportCount"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:textSize="13sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:layout_marginBottom="6dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/passport_vet_cert"
+                        android:textSize="12sp" android:textColor="@color/text_hint"/>
+                    <TextView android:id="@+id/tvPassportVetNo"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:textSize="13sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:layout_marginBottom="12dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/passport_vet_date"
+                        android:textSize="12sp" android:textColor="@color/text_hint"/>
+                    <TextView android:id="@+id/tvPassportVetDate"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:textSize="13sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"/>
+                </LinearLayout>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/passport_vaccines" android:textSize="12sp"
+                    android:textColor="@color/text_hint" android:layout_marginBottom="4dp"/>
+                <LinearLayout android:id="@+id/vaccineContainer"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical"/>
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="8dp"
+                android:background="@color/bg_screen"/>
+
+            <!-- Карта расположения -->
+            <LinearLayout android:id="@+id/mapSection"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:background="@color/bg_card"
+                android:padding="16dp" android:visibility="gone">
+                <TextView
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/location_label" android:textSize="15sp"
+                    android:textColor="@color/text_primary" android:textStyle="bold"
+                    android:layout_marginBottom="10dp"/>
+                <FrameLayout android:id="@+id/mapContainer"
+                    android:layout_width="match_parent" android:layout_height="180dp"
+                    android:background="@color/divider"/>
+            </LinearLayout>
+
+            <View android:layout_width="match_parent" android:layout_height="8dp"
+                android:background="@color/bg_screen"/>
+
+            <!-- Карточка продавца + отзыв -->
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/bg_card">
+
+                <!-- Строка продавца -->
+                <LinearLayout android:id="@+id/sellerCard"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:padding="16dp"
+                    android:clickable="true" android:focusable="true">
+
+                    <TextView android:id="@+id/tvSellerAvatar"
+                        android:layout_width="48dp" android:layout_height="48dp"
+                        android:text="А" android:textSize="20sp" android:textColor="#FFFFFF"
+                        android:textStyle="bold" android:gravity="center"
+                        android:background="@color/green_primary"
+                        android:layout_marginEnd="12dp"/>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical">
+                        <TextView android:id="@+id/tvSellerName"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="15sp" android:textColor="@color/text_primary"
+                            android:textStyle="bold"/>
+                        <TextView android:id="@+id/tvSellerRegion"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="12sp" android:textColor="@color/text_secondary"
+                            android:layout_marginTop="2dp"/>
+                        <TextView android:id="@+id/tvSellerRating"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="12sp" android:textColor="@color/orange_accent"
+                            android:layout_marginTop="2dp"/>
+                    </LinearLayout>
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="›" android:textSize="22sp" android:textColor="@color/text_hint"/>
+                </LinearLayout>
+
+                <!-- Разделитель -->
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="@color/divider"
+                    android:layout_marginHorizontal="16dp"/>
+
+                <!-- Кнопка "Оставить отзыв" — скрыта для владельца и если нет отзыва -->
+                <LinearLayout android:id="@+id/btnLeaveReview"
+                    android:layout_width="match_parent" android:layout_height="52dp"
+                    android:orientation="horizontal" android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:clickable="true" android:focusable="true"
+                    android:background="?attr/selectableItemBackground"
+                    android:visibility="gone">
+                    <TextView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="⭐"
+                        android:textSize="18sp"
+                        android:layout_marginEnd="8dp"/>
+                    <TextView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/btn_leave_review"
+                        android:textSize="14sp"
+                        android:textColor="@color/green_primary"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <!-- Отзыв уже оставлен -->
+                <LinearLayout android:id="@+id/reviewDoneRow"
+                    android:layout_width="match_parent" android:layout_height="52dp"
+                    android:orientation="horizontal" android:gravity="center"
+                    android:paddingHorizontal="16dp"
+                    android:visibility="gone">
+                    <TextView
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/review_already_left"
+                        android:textSize="13sp"
+                        android:textColor="@color/text_hint"/>
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Кнопки внизу -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:orientation="horizontal"
+        android:background="@color/bg_card"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp"
+        android:elevation="8dp">
+
+        <LinearLayout android:id="@+id/btnCall"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:gravity="center"
+            android:background="@drawable/bg_chip_default"
+            android:layout_marginEnd="10dp"
+            android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/btn_call_seller" android:textSize="15sp"
+                android:textColor="@color/green_primary" android:textStyle="bold"/>
+        </LinearLayout>
+
+        <LinearLayout android:id="@+id/btnMessage"
+            android:layout_width="0dp" android:layout_height="52dp"
+            android:layout_weight="1" android:gravity="center"
+            android:background="@color/green_primary"
+            android:clickable="true" android:focusable="true">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/btn_write_seller" android:textSize="15sp"
+                android:textColor="#FFFFFF" android:textStyle="bold"/>
+        </LinearLayout>
+
+    </LinearLayout>
+</FrameLayout>

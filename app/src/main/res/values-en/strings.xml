@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Farme</string>
+    <string name="app_tagline">Digital Farmer</string>
+
+    <!-- Auth -->
+    <string name="login">Log In</string>
+    <string name="register">Register</string>
+    <string name="phone">Phone Number</string>
+    <string name="password">Password</string>
+    <string name="name_surname">First and Last Name</string>
+    <string name="select_region">Select Region</string>
+    <string name="create_account">Create Account</string>
+    <string name="error_empty_fields">Please fill in all fields</string>
+    <string name="error_invalid_phone">Invalid phone format (+996XXXXXXXXX)</string>
+    <string name="error_short_password">Password must be at least 6 characters</string>
+    <string name="error_passwords_match">Passwords do not match</string>
+    <string name="error_accept_terms">Please accept the terms of use</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Home</string>
+    <string name="nav_map">Map</string>
+    <string name="nav_create">Create</string>
+    <string name="nav_chats">Chats</string>
+    <string name="nav_profile">Profile</string>
+
+    <!-- Listings -->
+    <string name="listing_new">New Listings</string>
+    <string name="listing_history">Browsing History</string>
+    <string name="listing_create">Post Listing</string>
+    <string name="listing_price">Price (som)</string>
+    <string name="listing_negotiable">Price negotiable</string>
+    <string name="listing_category">Category</string>
+    <string name="listing_region">Region</string>
+    <string name="listing_description">Description</string>
+    <string name="listing_photos">Photos</string>
+    <string name="listing_verified">Passport Verified</string>
+
+    <!-- Categories -->
+    <string name="cat_livestock">Livestock</string>
+    <string name="cat_grain">Grain</string>
+    <string name="cat_vegetables">Vegetables</string>
+    <string name="cat_fruits">Fruits</string>
+    <string name="cat_dairy">Dairy</string>
+    <string name="cat_poultry">Poultry</string>
+    <string name="cat_feed">Feed</string>
+    <string name="cat_equipment">Equipment</string>
+    <string name="cat_services">Services</string>
+
+    <!-- Regions -->
+    <string-array name="regions">
+        <item>All Regions</item>
+        <item>Chui Region</item>
+        <item>Issyk-Kul Region</item>
+        <item>Osh Region</item>
+        <item>Jalal-Abad Region</item>
+        <item>Naryn Region</item>
+        <item>Batken Region</item>
+        <item>Talas Region</item>
+        <item>Bishkek city</item>
+        <item>Osh city</item>
+    </string-array>
+
+    <!-- Status -->
+    <string name="status_pending">Under Review</string>
+    <string name="status_active">Active</string>
+    <string name="status_rejected">Rejected</string>
+    <string name="status_archived">Archived</string>
+
+    <!-- Actions -->
+    <string name="action_call">Call</string>
+    <string name="action_message">Message</string>
+    <string name="action_edit">Edit</string>
+    <string name="action_archive">Archive</string>
+    <string name="action_share">Share</string>
+    <string name="action_report">Report</string>
+    <string name="action_logout">Log Out</string>
+    <string name="action_save">Save</string>
+    <string name="action_cancel">Cancel</string>
+    <string name="action_apply">Apply</string>
+    <string name="action_reset">Reset</string>
+
+    <!-- Empty states -->
+    <string name="empty_listings">No listings yet</string>
+    <string name="empty_chats">No conversations</string>
+    <string name="empty_favorites">No favorites</string>
+    <string name="empty_notifications">No notifications</string>
+    <string name="empty_history">Browsing history is empty</string>
+
+    <!-- Errors -->
+    <string name="error_loading">Loading error</string>
+    <string name="error_network">Check your internet connection</string>
+    <string name="error_try_again">Try again</string>
+
+    <!-- Home screen -->
+    <string name="history_cleared">History cleared</string>
+    <string name="search_hint">Livestock, harvest, equipment…</string>
+    <string name="action_filter">Filter</string>
+    <string name="action_clear">Clear</string>
+    <string name="section_history">🕐 Browsing History</string>
+    <string name="empty_listings_not_found">No listings found</string>
+    <string name="hint_change_filters">Try changing the filters</string>
+
+    <!-- Navigation bar -->
+    <string name="nav_map_label">Map</string>
+
+    <!-- Common UI -->
+    <string name="btn_skip">Skip</string>
+    <string name="btn_next">Next</string>
+    <string name="btn_continue">Continue</string>
+    <string name="btn_confirm">Confirm</string>
+    <string name="btn_send_link">Send link</string>
+    <string name="loading">Loading…</string>
+    <string name="unknown">Unknown</string>
+    <string name="no_messages">No messages</string>
+    <string name="action_send">Send</string>
+    <string name="share_dialog_title">Share</string>
+
+    <!-- Auth -->
+    <string name="welcome">Welcome</string>
+    <string name="login_subtitle">Sign in to your account</string>
+    <string name="btn_get_code">Get code</string>
+    <string name="create_account_title">Create account</string>
+    <string name="verify_phone_subtitle">Verify your phone number</string>
+    <string name="register_email_subtitle">Enter email to register</string>
+    <string name="phone_verification_hint">🔒 We\'ll send you an SMS with a verification code</string>
+    <string name="email_verification_hint">📧 A verification email will be sent to you</string>
+    <string name="error_enter_phone">Enter phone number</string>
+    <string name="error_invalid_phone_number">Invalid phone format</string>
+    <string name="error_enter_email">Enter email</string>
+    <string name="error_invalid_email">Invalid email format</string>
+    <string name="error_wrong_credentials">Wrong email or password</string>
+    <string name="error_account_banned">Account banned. Contact support.</string>
+    <string name="select_country">Select country</string>
+    <string name="method_phone">Phone</string>
+    <string name="forgot_password_short">Forgot?</string>
+    <string name="remember_me">Remember me</string>
+    <string name="forgot_password_title">Password Recovery</string>
+    <string name="forgot_password_subtitle">Enter your email — we\'ll send a reset link</string>
+    <string name="email_sent">Email sent!</string>
+    <string name="email_sent_hint">Check your inbox and follow the reset link</string>
+
+    <!-- OTP -->
+    <string name="otp_title">Phone Verification</string>
+    <string name="otp_subtitle">We sent an SMS code to</string>
+    <string name="btn_change_number">Change number</string>
+    <string name="btn_resend_code">Resend code</string>
+    <string name="otp_not_received_hint">Didn\'t receive SMS? Check your number or try later</string>
+
+    <!-- Complete Profile -->
+    <string name="complete_registration_title">Complete registration</string>
+    <string name="complete_registration_subtitle">Tell us a bit about yourself</string>
+    <string name="field_name">First name</string>
+    <string name="field_last_name">Last name</string>
+    <string name="field_region">Region</string>
+    <string name="field_password">Password (min. 6 characters)</string>
+    <string name="field_confirm_password">Confirm password</string>
+    <string name="terms_accept">I agree to the terms of use and privacy policy</string>
+    <string name="phone_cannot_change">Phone number cannot be changed</string>
+
+    <!-- Profile -->
+    <string name="user_no_name">No name</string>
+    <string name="reviews_count_format">(%d reviews)</string>
+    <string name="stat_listings_label">Listings</string>
+    <string name="stat_sold_label">Sold</string>
+    <string name="stat_reviews_label">Reviews</string>
+    <string name="stat_listings_short">Listings</string>
+    <string name="stat_rating_label">Rating</string>
+    <string name="btn_edit_profile">Edit profile</string>
+    <string name="btn_logout_account">Log out</string>
+    <string name="app_footer">Farme · Digital Farmer</string>
+    <string name="menu_my_listings">My listings</string>
+    <string name="menu_favorites">Favorites</string>
+    <string name="menu_reviews_about_me">Reviews about me</string>
+    <string name="menu_my_reviews">My reviews</string>
+    <string name="menu_notifications">Notifications</string>
+    <string name="menu_settings">Settings</string>
+    <string name="menu_support">Support</string>
+    <string name="menu_help_support">Help &amp; Support</string>
+    <string name="menu_about">About</string>
+    <string name="menu_admin_panel">Admin panel</string>
+    <string name="menu_admin_panel_subtitle">User requests</string>
+    <string name="logout_title">Log Out</string>
+    <string name="logout_message">Are you sure you want to log out?</string>
+    <string name="about_title">About Farme</string>
+    <string name="about_message">🌾 Farme · Digital Farmer\n\nVersion: 1.0.0\nAgricultural marketplace of Kyrgyzstan\n\nBuy and sell livestock, grain, vegetables and farming equipment.\n\n© 2025 Farme</string>
+
+    <!-- Edit Profile -->
+    <string name="edit_profile_title">Edit Profile</string>
+    <string name="error_enter_name">Enter name</string>
+    <string name="profile_saved">Profile saved ✓</string>
+    <string name="error_save">Save error</string>
+    <string name="photo_updated">Photo updated ✓</string>
+    <string name="error_photo_load">Photo load error</string>
+
+    <!-- Chats -->
+    <string name="search_chats_hint">Search chats…</string>
+    <string name="empty_chats_hint">Message a seller from a listing card</string>
+    <string name="chat_message_hint">Write a message…</string>
+
+    <!-- My Listings -->
+    <string name="tab_active">Active</string>
+    <string name="tab_moderation">Under Review</string>
+    <string name="tab_archive">Archive</string>
+    <string name="empty_my_listings">No listings</string>
+    <string name="empty_my_listings_hint">Tap "+ Add" to create your first listing</string>
+
+    <!-- Favorites -->
+    <string name="empty_favorites_hint">Tap 🤍 on a listing to add it here</string>
+
+    <!-- Notifications -->
+    <string name="btn_mark_all_read">Mark all read</string>
+
+    <!-- Admin Support -->
+    <string name="admin_support_title">User Requests</string>
+    <string name="tab_open">Open</string>
+    <string name="tab_answered">Answered</string>
+    <string name="empty_support_tickets">No open requests</string>
+
+    <!-- Blocklist -->
+    <string name="blocklist_title">Blocklist</string>
+    <string name="empty_blocklist">Blocklist is empty</string>
+    <string name="empty_blocklist_hint">Blocked users will appear here</string>
+
+    <!-- Support -->
+    <string name="support_title">Support</string>
+    <string name="support_faq">FAQ</string>
+    <string name="ticket_title">Request</string>
+
+    <!-- Listing Detail -->
+    <string name="added_date_format">Added: %s</string>
+    <string name="passport_verified">✅ Verified by admin</string>
+    <string name="passport_pending">⏳ Pending verification</string>
+    <string name="confirm_mark_sold_title">Mark as sold?</string>
+    <string name="confirm_mark_sold_message">The listing will be marked as sold and hidden from active.</string>
+    <string name="btn_mark_sold">Sold</string>
+    <string name="marked_as_sold">✅ Marked as sold</string>
+    <string name="confirm_archive_message">The listing will be hidden from the feed. Continue?</string>
+    <string name="moved_to_archive">Listing moved to archive</string>
+    <string name="review_published">✅ Review published</string>
+    <string name="phone_not_specified">Phone not specified</string>
+    <string name="added_to_favorites">Added to favorites</string>
+    <string name="removed_from_favorites">Removed from favorites</string>
+    <string name="report_title">Report listing</string>
+    <string name="report_reason_label">Reason:</string>
+    <string name="report_details_hint">Additional details (optional)</string>
+    <string name="report_sent">Report sent. Thank you!</string>
+    <string name="error_send">Send error</string>
+    <string name="negotiable_short">Negotiable</string>
+    <string name="passport_species">Species</string>
+    <string name="passport_breed">Breed</string>
+    <string name="passport_age">Age</string>
+    <string name="passport_sex">Sex</string>
+    <string name="passport_count">Heads</string>
+    <string name="passport_vet_cert">Vet certificate</string>
+    <string name="passport_vet_date">Inspection date</string>
+    <string name="passport_vaccines">Vaccines:</string>
+    <string name="btn_leave_review">Leave a review</string>
+
+    <!-- Seller Profile -->
+    <string name="seller_profile_title">Seller Profile</string>
+    <string name="empty_seller_listings">No listings</string>
+
+    <!-- Create / Edit Listing -->
+    <string name="step_photos">Photos</string>
+    <string name="step_about">About item</string>
+    <string name="step_confirmation">Review</string>
+    <string name="btn_publish">Publish</string>
+    <string name="sending">Sending…</string>
+    <string name="listing_submitted">✓ Listing sent for review</string>
+    <string name="edit_listing_title">Edit Listing</string>
+    <string name="listing_title_label">Title</string>
+    <string name="error_add_photo">Add at least one photo</string>
+    <string name="error_select_category">Select a category</string>
+    <string name="error_select_subcategory">Select a subcategory</string>
+    <string name="error_enter_quantity">Enter number of heads</string>
+    <string name="error_gender_count_format">Males + females must equal %d</string>
+    <string name="error_arashan_chip_required">Arashan — chip required (15 digits)</string>
+    <string name="error_chip_format">Chip — exactly 15 digits</string>
+    <string name="error_enter_poultry_count">Enter poultry count</string>
+    <string name="error_enter_weight">Enter volume/weight</string>
+    <string name="error_enter_milk_volume">Enter volume in liters</string>
+    <string name="error_title_too_short">Title must be at least 3 characters</string>
+    <string name="error_invalid_price">Enter a valid price</string>
+    <string name="detecting_location">Detecting…</string>
+    <string name="error_location_failed">Could not detect location</string>
+    <string name="error_gps_disabled">Enable GPS and try again</string>
+    <string name="error_gps">GPS error</string>
+    <string name="error_max_photos">Maximum 5 photos</string>
+    <string name="btn_hide_details">— Hide details</string>
+    <string name="btn_show_details">+ More details (optional)</string>
+    <string name="price_negotiable_label">Negotiable</string>
+    <string name="badge_main_photo">Main</string>
+    <string name="unit_heads">head</string>
+    <string name="unit_photos">photos</string>
+    <string name="vaccinated">vaccinated</string>
+    <string name="passport_age_years">Age (years)</string>
+    <string name="passport_count_label">No. of heads</string>
+
+    <!-- Sales -->
+    <string name="sales_title">Sales</string>
+    <string name="empty_sales">No sales yet</string>
+    <string name="empty_sales_hint">Mark a listing as sold</string>
+
+    <!-- Reviews -->
+    <string name="reviews_title">Reviews</string>
+    <string name="empty_reviews">No reviews yet</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Settings</string>
+    <string name="settings_section_appearance">APPEARANCE</string>
+    <string name="settings_dark_theme">Dark theme</string>
+    <string name="settings_section_region">REGION</string>
+    <string name="settings_currency">Currency</string>
+    <string name="settings_section_notifications">NOTIFICATIONS</string>
+    <string name="settings_new_messages">New messages</string>
+    <string name="settings_price_changes">Price changes in favorites</string>
+    <string name="settings_section_privacy">PRIVACY</string>
+    <string name="settings_blacklist">Blocklist</string>
+
+    <!-- Extra strings for Java code -->
+    <string name="action_delete">Delete</string>
+    <string name="notif_all_read">All marked as read</string>
+    <string name="error_enter_message">Write a message</string>
+    <string name="ticket_sent">Request sent! We\'ll reply within 24 hours.</string>
+    <string name="ticket_status_answered">Answered</string>
+    <string name="ticket_status_pending">Awaiting reply</string>
+    <string name="support_admin_reply">🛡 Support reply</string>
+    <string name="error_enter_last_name">Enter last name</string>
+    <string name="account_created">Account created!</string>
+    <string name="account_created_email">Account created! Check your email for verification</string>
+    <string name="error_session_lost">Session expired. Try again</string>
+    <string name="error_registration">Registration error</string>
+    <string name="error_email_in_use">This email is already in use</string>
+    <string name="error_email_not_found">No user found with this email</string>
+    <string name="error_network_short">Network error</string>
+    <string name="select_currency">Select currency</string>
+    <string name="action_unblock">Unblock</string>
+    <string name="user_unblocked">User unblocked</string>
+    <string name="user_blocked">User blocked</string>
+    <string name="block_user_title">Block user?</string>
+    <string name="block_user_message">You won\'t see their listings or messages.</string>
+    <string name="action_block">Block</string>
+    <string name="report_user_title">Report user</string>
+    <string name="error_login_required">Please log in</string>
+    <string name="error_own_review">You can\'t review yourself</string>
+    <string name="error_select_rating">Select a rating</string>
+    <string name="error_select_reason">Select a reason</string>
+    <string name="admin_reply_sent">Reply sent</string>
+    <string name="code_resent">Code resent</string>
+    <string name="clear_favorites_title">Clear favorites</string>
+    <string name="clear_favorites_message">Delete all saved listings?</string>
+    <string name="admin_reply_btn">Send reply</string>
+    <string name="btn_close">Close</string>
+    <string name="feature_coming_soon">Promotion coming soon!</string>
+    <string name="error_access_denied">Access denied</string>
+    <string name="error_enter_title">Enter title</string>
+    <string name="listing_updated">✅ Listing updated and sent for review</string>
+    <string name="error_already_reviewed">You have already reviewed this seller</string>
+    <string name="review_sent">✅ Review submitted!</string>
+
+    <!-- Titles & placeholders -->
+    <string name="messages_title">Messages</string>
+    <string name="status_online">Online</string>
+
+    <!-- Seller Profile buttons/tabs -->
+    <string name="btn_write_seller">💬 Message</string>
+    <string name="btn_call_seller">📞 Call</string>
+    <string name="btn_block_seller">🚫 Block</string>
+    <string name="btn_report_seller">⚠️ Report</string>
+    <string name="tab_seller_listings">📋 Listings</string>
+    <string name="tab_seller_reviews">⭐ Reviews</string>
+
+    <!-- Support screen -->
+    <string name="support_write_title">💬  Contact support</string>
+    <string name="support_form_hint">Didn\'t find an answer? Describe your issue — we\'ll reply within 24 hours</string>
+    <string name="support_topic_label">Topic</string>
+    <string name="support_message_hint">Describe your issue in detail...</string>
+    <string name="support_send_btn">Send request</string>
+    <string name="support_my_tickets">My requests</string>
+
+    <!-- My Listings -->
+    <string name="btn_add_listing">+ Add</string>
+
+    <!-- Settings extra -->
+    <string name="settings_push_notifications">Push notifications</string>
+
+    <!-- Edit Profile -->
+    <string name="btn_change_photo">📷 Change photo</string>
+
+    <!-- Auth / OTP / Complete Profile -->
+    <string name="step_2_of_2">Step 2 of 2</string>
+    <string name="hint_create_password">Create a password</string>
+    <string name="hint_repeat_password">Repeat password</string>
+    <string name="email_address_label">Email address</string>
+    <string name="hint_enter_password">Enter password</string>
+    <string name="security_badge">🔒 Secured by Firebase Authentication</string>
+    <string name="otp_resend_prefix">Get new code in </string>
+
+    <!-- Listing Detail -->
+    <string name="sold_badge">✅ SOLD</string>
+    <string name="mark_sold_btn_label">✅  Mark as sold</string>
+    <string name="passport_title">🛡️ Digital passport</string>
+    <string name="location_label">📍 Location</string>
+    <string name="review_already_left">✅  You already left a review</string>
+
+    <!-- Edit Listing extra -->
+    <string name="passport_animal_title">📋 Animal passport</string>
+    <string name="passport_vet_cert_no_label">Vet. cert. number</string>
+    <string name="passport_vet_date_label">Vet. exam date</string>
+    <string name="warning_remoderation">⚠️ After saving, the listing will be sent for re-moderation</string>
+
+    <!-- Dialog Review -->
+    <string name="dialog_leave_review_title">Leave a review</string>
+    <string name="dialog_rate_seller">Rate the seller</string>
+    <string name="dialog_tap_star">Tap a star</string>
+    <string name="dialog_comment_label">Comment</string>
+    <string name="dialog_review_hint">Tell us about your experience with this seller...</string>
+    <string name="btn_cancel">Cancel</string>
+    <string name="btn_send">Submit</string>
+
+    <!-- Dialog Reject -->
+    <string name="dialog_reject_title">❌ Rejection reason</string>
+    <string name="dialog_reject_prompt">Select a reason:</string>
+    <string name="reason_invalid_docs">📄  Invalid documents</string>
+    <string name="reason_fake_info">⚠️  False information</string>
+    <string name="reason_no_vet_cert">🏥  No vet certificate</string>
+    <string name="reason_other">✏️  Other reason</string>
+    <string name="dialog_reject_hint">Describe the reason...</string>
+    <string name="btn_reject">Reject</string>
+
+    <!-- Search Fragment -->
+    <string name="nav_search">Search</string>
+    <string name="empty_nothing_found">Nothing found</string>
+    <string name="hint_try_other_query">Try a different query or category</string>
+
+    <!-- Favorites Fragment -->
+    <string name="btn_browse_listings">Browse listings</string>
+
+    <!-- Empty State View -->
+    <string name="empty_state_hint">Try changing filters or your search query</string>
+    <string name="btn_add_listing_full">Add listing</string>
+
+    <!-- Admin item_report -->
+    <string name="btn_open_item">👁 Open</string>
+    <string name="btn_dismiss">Dismiss</string>
+    <string name="btn_delete">Delete</string>
+    <string name="btn_ban">🚫 Ban</string>
+
+    <!-- Admin item_pending -->
+    <string name="badge_new">New</string>
+    <string name="btn_view_item">👁 View</string>
+    <string name="btn_approve">✓ Approve</string>
+
+    <!-- Profile Activity -->
+    <string name="stat_listings_count_label">listings</string>
+    <string name="stat_reviews_count_label">reviews</string>
+    <string name="banner_promote_title">Promote listing</string>
+    <string name="banner_promote_subtitle">More views • from 99 som/week</string>
+    <string name="menu_my_reviews">My reviews</string>
+    <string name="menu_verify_profile">Profile verification</string>
+    <string name="menu_verify_hint">More trust • +30% views</string>
+    <string name="menu_help">Help &amp; support</string>
+
+    <!-- Filter Bottom Sheet -->
+    <string name="filter_title">Filters and sorting</string>
+    <string name="filter_reset">Reset</string>
+    <string name="sort_label">Sorting</string>
+    <string name="sort_newest">Newest first</string>
+    <string name="sort_oldest">Oldest first</string>
+    <string name="sort_price_asc">Price ↑</string>
+    <string name="sort_price_desc">Price ↓</string>
+    <string name="price_range_label">Price range</string>
+    <string name="hint_from">From</string>
+    <string name="hint_to">To</string>
+    <string name="filter_extras_label">Additional</string>
+    <string name="filter_passport_only">With passport only</string>
+    <string name="filter_passport_only_hint">Passport verified by admin</string>
+    <string name="filter_negotiable">Negotiable</string>
+    <string name="filter_negotiable_hint">Seller open to negotiation</string>
+    <string name="btn_apply_filters">Apply filters</string>
+
+    <!-- Create Listing -->
+    <string name="step1_title">Add photos</string>
+    <string name="step1_subtitle">1 to 5 photos. The first will be the cover</string>
+    <string name="btn_select_photos">Select photos</string>
+    <string name="tip_quality_photos">Quality photos increase your sales chance by 3x</string>
+    <string name="step2_title">About the item</string>
+    <string name="step2_subtitle">Select a category and fill in the details</string>
+    <string name="label_category_required">Category *</string>
+    <string name="label_subcategory_required">Subcategory *</string>
+    <string name="hint_arash_chip_required">⚠️  Arashen breed — chip number required</string>
+    <string name="label_count_required">Number of heads *</string>
+    <string name="label_weight_kg">Weight (kg)</string>
+    <string name="label_color">Color / coat</string>
+    <string name="label_herd_composition">Herd composition</string>
+    <string name="label_males">♂ Males</string>
+    <string name="label_females">♀ Females</string>
+    <string name="error_gender_count">⚠️  Sum of males and females must equal total count</string>
+    <string name="label_vaccinations">Vaccinations</string>
+    <string name="option_yes">Yes</string>
+    <string name="option_no">No</string>
+    <string name="label_chip_number">Chip number</string>
+    <string name="hint_chip_required_for_arash">Required for Arashen</string>
+    <string name="error_chip_length">⚠️  Chip number must be exactly 15 digits</string>
+    <string name="label_vet_cert_no_full">Vet. certificate No.</string>
+    <string name="label_vet_exam_date">Veterinary exam date</string>
+    <string name="hint_group_no_docs">Chip and vet passport are listed per animal — not required when selling as a group</string>
+    <string name="label_poultry_count">Count (heads) *</string>
+    <string name="label_age_months">Age (mo.)</string>
+    <string name="label_volume_weight">Volume / weight (kg) *</string>
+    <string name="label_sort_type">Grade / type</string>
+    <string name="label_harvest_year">Harvest year</string>
+    <string name="label_volume_liters">Volume (liters) *</string>
+    <string name="label_fat_pct">Fat content (%)</string>
+    <string name="label_brand_model">Brand / model</string>
+    <string name="label_year_made">Year made</string>
+    <string name="label_experience_years">Work experience (years)</string>
+    <string name="label_listing_title_required">Listing title *</string>
+    <string name="label_price_required">Price *</string>
+    <string name="label_negotiable_checkbox">Negotiable</string>
+    <string name="label_region_required">Region *</string>
+    <string name="label_exact_location">Exact location</string>
+    <string name="hint_location_visible">Buyers will see your location on the map</string>
+    <string name="btn_detect_location">Detect location</string>
+    <string name="step3_title">All done!</string>
+    <string name="step3_subtitle">Check the details and publish</string>
+    <string name="preview_label">📋 Preview</string>
+    <string name="hint_moderation_wait">The listing will appear after admin approval (1–2 hours)</string>
+    <string name="btn_prev_nav">‹ Back</string>
+    <string name="label_age">Age</string>
+    <string name="map_listings_title">Listings Map</string>
+    <string name="btn_show_all">All →</string>
+</resources>

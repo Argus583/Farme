@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp" app:cardCornerRadius="11dp" app:cardElevation="1dp">
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="11dp">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView android:id="@+id/tvRepTitle" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:textSize="13sp" android:textColor="#0A0F0D" android:textStyle="bold"/>
+            <TextView android:id="@+id/tvRepTime" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textSize="10sp"
+                android:textColor="#7A8F7E"/>
+        </LinearLayout>
+
+        <TextView android:id="@+id/tvRepReason" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="12sp"
+            android:textColor="#1C2620" android:layout_marginTop="4dp"
+            android:fontFamily="serif" android:textStyle="italic"/>
+
+        <TextView android:id="@+id/tvRepReporter" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:textSize="11sp"
+            android:textColor="#7A8F7E" android:layout_marginTop="4dp"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginTop="8dp">
+            <TextView android:id="@+id/btnRepView"
+                android:layout_width="0dp" android:layout_height="30dp" android:layout_weight="1"
+                android:text="@string/btn_open_item" android:gravity="center" android:textSize="10sp"
+                android:textColor="#2563EB" android:background="#DBEAFE"
+                android:layout_marginEnd="4dp" android:clickable="true" android:focusable="true"/>
+            <TextView android:id="@+id/btnRepDismiss"
+                android:layout_width="0dp" android:layout_height="30dp" android:layout_weight="1"
+                android:text="@string/btn_dismiss" android:gravity="center" android:textSize="10sp"
+                android:textColor="#7A8F7E" android:background="#F2F5F2"
+                android:layout_marginEnd="4dp" android:clickable="true" android:focusable="true"/>
+            <TextView android:id="@+id/btnRepDelete"
+                android:layout_width="0dp" android:layout_height="30dp" android:layout_weight="1"
+                android:text="@string/btn_delete" android:gravity="center" android:textSize="10sp"
+                android:textColor="#DC2626" android:background="#FEE2E2"
+                android:layout_marginEnd="4dp" android:clickable="true" android:focusable="true"/>
+            <TextView android:id="@+id/btnRepBan"
+                android:layout_width="0dp" android:layout_height="30dp" android:layout_weight="1"
+                android:text="@string/btn_ban" android:gravity="center" android:textSize="10sp"
+                android:textColor="#FFFFFF" android:background="#DC2626"
+                android:clickable="true" android:focusable="true"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

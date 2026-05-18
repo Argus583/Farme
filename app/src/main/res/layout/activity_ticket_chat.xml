@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_screen">
+
+    <!-- Шапка -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:background="@color/green_primary"
+        android:paddingHorizontal="16dp" android:paddingVertical="14dp"
+        android:fitsSystemWindows="true">
+        <TextView android:id="@+id/btnBack"
+            android:layout_width="40dp" android:layout_height="40dp"
+            android:text="‹" android:textSize="28sp" android:textColor="#FFFFFF"
+            android:gravity="center" android:clickable="true" android:focusable="true"/>
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical"
+            android:layout_marginStart="4dp">
+            <TextView android:id="@+id/tvTicketSubject"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/ticket_title"
+                android:textSize="16sp" android:textColor="#FFFFFF" android:textStyle="bold"
+                android:maxLines="1" android:ellipsize="end"/>
+            <TextView android:id="@+id/tvTicketStatus"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textSize="12sp" android:textColor="@color/green_light"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- Сообщения -->
+    <ScrollView android:id="@+id/scrollChat"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        android:padding="12dp"
+        android:clipToPadding="false">
+        <LinearLayout android:id="@+id/chatContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="8dp"/>
+    </ScrollView>
+
+    <!-- Поле ввода -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="#FFFFFF"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="8dp"
+        android:elevation="4dp">
+
+        <EditText
+            android:id="@+id/etUserReply"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="@string/chat_message_hint"
+            android:textSize="14sp"
+            android:maxLines="4"
+            android:inputType="textMultiLine|textCapSentences"
+            android:background="@drawable/bg_input"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="10dp"/>
+
+        <LinearLayout
+            android:id="@+id/btnSendReply"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:layout_marginStart="8dp"
+            android:gravity="center"
+            android:background="@drawable/bg_btn_primary"
+            android:clickable="true"
+            android:focusable="true">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="➤"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

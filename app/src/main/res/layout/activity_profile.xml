@@ -1,0 +1,518 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#F2F5F2">
+
+    <!-- ══ ШАПКА зелёная ══════════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="#2D6A4F"
+        android:fitsSystemWindows="true">
+
+        <!-- Строка: Профиль + настройки -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/nav_profile"
+                android:textSize="18sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"/>
+            <TextView
+                android:id="@+id/btnSettings"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:text="⚙️"
+                android:textSize="22sp"
+                android:gravity="center"
+                android:clickable="true"
+                android:focusable="true"/>
+        </LinearLayout>
+
+        <!-- Аватар + имя -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="20dp">
+
+            <!-- Аватар круглый -->
+            <FrameLayout
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginEnd="14dp">
+                <TextView
+                    android:id="@+id/tvAvatarInitials"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:text="МК"
+                    android:textSize="22sp"
+                    android:textColor="#2D6A4F"
+                    android:textStyle="bold"
+                    android:gravity="center"
+                    android:background="#B4DEC0"/>
+                <ImageView
+                    android:id="@+id/ivAvatar"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:scaleType="centerCrop"
+                    android:visibility="gone"/>
+            </FrameLayout>
+
+            <!-- Имя + регион + дата -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView
+                        android:id="@+id/tvProfileName"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Имя пользователя"
+                        android:textSize="18sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text=" ✓"
+                        android:textSize="16sp"
+                        android:textColor="#B4DEC0"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginTop="4dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="📍 "
+                        android:textSize="12sp"/>
+                    <TextView
+                        android:id="@+id/tvProfileRegion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Бишкек • с 2024"
+                        android:textSize="12sp"
+                        android:textColor="#B4DEC0"/>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Статистика: объявления | сделки | рейтинг -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:orientation="horizontal"
+            android:background="#245A42">
+
+            <!-- Объявления -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tvListingsCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stat_listings_count_label"
+                    android:textSize="11sp"
+                    android:textColor="#B4DEC0"/>
+            </LinearLayout>
+
+            <!-- Разделитель -->
+            <View android:layout_width="1dp" android:layout_height="40dp"
+                android:background="#3D7A5F" android:layout_gravity="center_vertical"/>
+
+            <!-- Сделки -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tvReviewsCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stat_reviews_count_label"
+                    android:textSize="11sp"
+                    android:textColor="#B4DEC0"/>
+            </LinearLayout>
+
+            <!-- Разделитель -->
+            <View android:layout_width="1dp" android:layout_height="40dp"
+                android:background="#3D7A5F" android:layout_gravity="center_vertical"/>
+
+            <!-- Рейтинг -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical"
+                android:gravity="center">
+                <TextView
+                    android:id="@+id/tvRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="—"
+                    android:textSize="24sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/stat_rating_label"
+                    android:textSize="11sp"
+                    android:textColor="#B4DEC0"/>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ══ КОНТЕНТ ════════════════════════════════════════ -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Баннер "Продвинуть объявление" -->
+            <LinearLayout
+                android:id="@+id/bannerPromote"
+                android:layout_width="match_parent"
+                android:layout_height="64dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="#2D6A4F"
+                android:paddingHorizontal="16dp"
+                android:layout_marginBottom="16dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:layout_width="36dp"
+                    android:layout_height="36dp"
+                    android:text="⚡"
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:background="#3D7A5F"
+                    android:layout_marginEnd="12dp"/>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/banner_promote_title"
+                        android:textSize="14sp"
+                        android:textColor="#FFFFFF"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/banner_promote_subtitle"
+                        android:textSize="11sp"
+                        android:textColor="#B4DEC0"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="›"
+                    android:textSize="22sp"
+                    android:textColor="#B4DEC0"/>
+            </LinearLayout>
+
+            <!-- ── Меню пунктов ──────────────────────────── -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Мои объявления -->
+                    <LinearLayout
+                        android:id="@+id/menuMyListings"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView android:layout_width="32dp" android:layout_height="32dp"
+                            android:text="📋" android:textSize="18sp" android:gravity="center"
+                            android:background="#EFF8F1" android:layout_marginEnd="12dp"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="@string/menu_my_listings"
+                            android:textSize="15sp" android:textColor="#111827"/>
+                        <TextView android:id="@+id/tvMenuListingsCount"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="" android:textSize="13sp" android:textColor="#FFFFFF"
+                            android:textStyle="bold" android:gravity="center"
+                            android:minWidth="24dp" android:paddingHorizontal="6dp"
+                            android:background="#2D6A4F" android:visibility="gone"
+                            android:layout_marginEnd="8dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="›" android:textSize="20sp" android:textColor="#9CA3AF"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F3F4F6" android:layout_marginHorizontal="16dp"/>
+
+                    <!-- Избранное -->
+                    <LinearLayout
+                        android:id="@+id/menuFavorites"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView android:layout_width="32dp" android:layout_height="32dp"
+                            android:text="🤍" android:textSize="18sp" android:gravity="center"
+                            android:background="#EFF8F1" android:layout_marginEnd="12dp"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="@string/menu_favorites"
+                            android:textSize="15sp" android:textColor="#111827"/>
+                        <TextView android:id="@+id/tvMenuFavCount"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="" android:textSize="13sp" android:textColor="#FFFFFF"
+                            android:textStyle="bold" android:gravity="center"
+                            android:minWidth="24dp" android:paddingHorizontal="6dp"
+                            android:background="#2D6A4F" android:visibility="gone"
+                            android:layout_marginEnd="8dp"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="›" android:textSize="20sp" android:textColor="#9CA3AF"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F3F4F6" android:layout_marginHorizontal="16dp"/>
+
+                    <!-- Отзывы -->
+                    <LinearLayout
+                        android:id="@+id/menuReviews"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView android:layout_width="32dp" android:layout_height="32dp"
+                            android:text="⭐" android:textSize="18sp" android:gravity="center"
+                            android:background="#EFF8F1" android:layout_marginEnd="12dp"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="@string/menu_my_reviews"
+                            android:textSize="15sp" android:textColor="#111827"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="›" android:textSize="20sp" android:textColor="#9CA3AF"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F3F4F6" android:layout_marginHorizontal="16dp"/>
+
+                    <!-- Уведомления -->
+                    <LinearLayout
+                        android:id="@+id/menuNotifications"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView android:layout_width="32dp" android:layout_height="32dp"
+                            android:text="🔔" android:textSize="18sp" android:gravity="center"
+                            android:background="#EFF8F1" android:layout_marginEnd="12dp"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="@string/menu_notifications"
+                            android:textSize="15sp" android:textColor="#111827"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="›" android:textSize="20sp" android:textColor="#9CA3AF"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- ── Вторая карточка ────────────────────────── -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="12dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <!-- Редактировать профиль -->
+                    <LinearLayout
+                        android:id="@+id/menuEditProfile"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView android:layout_width="32dp" android:layout_height="32dp"
+                            android:text="✏️" android:textSize="18sp" android:gravity="center"
+                            android:background="#EFF8F1" android:layout_marginEnd="12dp"/>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/menu_verify_profile"
+                                android:textSize="15sp" android:textColor="#111827"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/menu_verify_hint"
+                                android:textSize="11sp" android:textColor="#9CA3AF"/>
+                        </LinearLayout>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="›" android:textSize="20sp" android:textColor="#9CA3AF"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F3F4F6" android:layout_marginHorizontal="16dp"/>
+
+                    <!-- Настройки -->
+                    <LinearLayout
+                        android:id="@+id/menuSettingsItem"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView android:layout_width="32dp" android:layout_height="32dp"
+                            android:text="⚙️" android:textSize="18sp" android:gravity="center"
+                            android:background="#EFF8F1" android:layout_marginEnd="12dp"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="@string/settings_title"
+                            android:textSize="15sp" android:textColor="#111827"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="›" android:textSize="20sp" android:textColor="#9CA3AF"/>
+                    </LinearLayout>
+
+                    <View android:layout_width="match_parent" android:layout_height="1dp"
+                        android:background="#F3F4F6" android:layout_marginHorizontal="16dp"/>
+
+                    <!-- Помощь -->
+                    <LinearLayout
+                        android:id="@+id/menuHelp"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="16dp"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:background="?attr/selectableItemBackground">
+                        <TextView android:layout_width="32dp" android:layout_height="32dp"
+                            android:text="❓" android:textSize="18sp" android:gravity="center"
+                            android:background="#EFF8F1" android:layout_marginEnd="12dp"/>
+                        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:text="@string/menu_help"
+                            android:textSize="15sp" android:textColor="#111827"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="›" android:textSize="20sp" android:textColor="#9CA3AF"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Кнопка выход -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="0dp"
+                app:cardBackgroundColor="#FFFFFF">
+
+                <LinearLayout
+                    android:id="@+id/menuLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="16dp"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:background="?attr/selectableItemBackground">
+                    <TextView android:layout_width="32dp" android:layout_height="32dp"
+                        android:text="🚪" android:textSize="18sp" android:gravity="center"
+                        android:background="#FEE2E2" android:layout_marginEnd="12dp"/>
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/btn_logout_account"
+                        android:textSize="15sp" android:textColor="#DC2626"/>
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

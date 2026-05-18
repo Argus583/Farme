@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF">
+
+    <!-- Skip -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="56dp"
+        android:orientation="horizontal" android:gravity="end|center_vertical"
+        android:paddingHorizontal="20dp" android:fitsSystemWindows="true">
+        <TextView android:id="@+id/btnSkip"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="@string/btn_skip" android:textSize="14sp" android:textColor="#9CA3AF"
+            android:clickable="true" android:focusable="true"/>
+    </LinearLayout>
+
+    <!-- ViewPager -->
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/onboardingPager"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"/>
+
+    <!-- Dots + button -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:gravity="center" android:paddingBottom="40dp"
+        android:paddingHorizontal="24dp">
+
+        <LinearLayout android:id="@+id/dotsContainer"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginBottom="28dp"/>
+
+        <LinearLayout android:id="@+id/btnNext"
+            android:layout_width="match_parent" android:layout_height="52dp"
+            android:gravity="center" android:background="#2D6A4F"
+            android:clickable="true" android:focusable="true">
+            <TextView android:id="@+id/tvNextLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/btn_next" android:textSize="16sp"
+                android:textColor="#FFFFFF" android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- dialog_review.xml — Диалог добавления отзыва -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="24dp"
+    android:background="@color/bg_card">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_leave_review_title"
+        android:textSize="18sp"
+        android:textColor="@color/text_primary"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_rate_seller"
+        android:textSize="13sp"
+        android:textColor="@color/text_secondary"
+        android:layout_marginTop="16dp"/>
+
+    <!-- Звёзды рейтинга -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginTop="8dp">
+
+        <TextView android:id="@+id/star1" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="☆"
+            android:textSize="36sp" android:textColor="@color/orange_accent"
+            android:paddingHorizontal="8dp" android:clickable="true" android:focusable="true"/>
+
+        <TextView android:id="@+id/star2" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="☆"
+            android:textSize="36sp" android:textColor="@color/orange_accent"
+            android:paddingHorizontal="8dp" android:clickable="true" android:focusable="true"/>
+
+        <TextView android:id="@+id/star3" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="☆"
+            android:textSize="36sp" android:textColor="@color/orange_accent"
+            android:paddingHorizontal="8dp" android:clickable="true" android:focusable="true"/>
+
+        <TextView android:id="@+id/star4" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="☆"
+            android:textSize="36sp" android:textColor="@color/orange_accent"
+            android:paddingHorizontal="8dp" android:clickable="true" android:focusable="true"/>
+
+        <TextView android:id="@+id/star5" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:text="☆"
+            android:textSize="36sp" android:textColor="@color/orange_accent"
+            android:paddingHorizontal="8dp" android:clickable="true" android:focusable="true"/>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvRatingLabel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_tap_star"
+        android:textSize="12sp"
+        android:textColor="@color/text_hint"
+        android:gravity="center"
+        android:layout_marginTop="4dp"/>
+
+    <!-- Текст отзыва -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/dialog_comment_label"
+        android:textSize="13sp"
+        android:textColor="@color/text_secondary"
+        android:layout_marginTop="16dp"/>
+
+    <EditText
+        android:id="@+id/etReviewText"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:hint="@string/dialog_review_hint"
+        android:inputType="textMultiLine"
+        android:gravity="top"
+        android:background="@drawable/bg_input"
+        android:padding="12dp"
+        android:textSize="14sp"
+        android:textColor="@color/text_primary"
+        android:textColorHint="@color/text_hint"
+        android:layout_marginTop="6dp"/>
+
+    <!-- Кнопки -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/btnCancelReview"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="@string/btn_cancel"
+            android:textSize="14sp"
+            android:textColor="@color/text_secondary"
+            android:background="@drawable/bg_chip_default"
+            android:layout_marginEnd="8dp"
+            android:stateListAnimator="@null"/>
+
+        <Button
+            android:id="@+id/btnSubmitReview"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:layout_weight="1"
+            android:text="@string/btn_send"
+            android:textSize="14sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:background="@drawable/bg_btn_primary"
+            android:stateListAnimator="@null"/>
+    </LinearLayout>
+
+</LinearLayout>

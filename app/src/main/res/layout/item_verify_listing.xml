@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_marginBottom="12dp" app:cardCornerRadius="12dp" app:cardElevation="2dp">
+
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="vertical" android:padding="16dp">
+
+        <TextView android:id="@+id/tvVerifyTitle" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="16sp"
+            android:textColor="@color/text_primary" android:textStyle="bold"/>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginTop="4dp">
+            <TextView android:id="@+id/tvVerifyPrice" android:layout_width="0dp"
+                android:layout_height="wrap_content" android:layout_weight="1"
+                android:textSize="15sp" android:textColor="@color/orange_accent" android:textStyle="bold"/>
+            <TextView android:id="@+id/tvVerifyRegion" android:layout_width="wrap_content"
+                android:layout_height="wrap_content" android:textSize="12sp"
+                android:textColor="@color/text_secondary"/>
+        </LinearLayout>
+
+        <TextView android:id="@+id/tvVerifySeller" android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:textSize="13sp"
+            android:textColor="@color/text_secondary" android:layout_marginTop="4dp"/>
+
+        <!-- Паспорт -->
+        <View android:layout_width="match_parent" android:layout_height="1dp"
+            android:background="@color/divider" android:layout_marginVertical="10dp"/>
+
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="📋 Данные паспорта" android:textSize="12sp"
+            android:textColor="@color/text_secondary" android:textStyle="bold"/>
+
+        <TextView android:id="@+id/tvVerifyPassport" android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:textSize="13sp"
+            android:textColor="@color/text_primary" android:layout_marginTop="6dp"
+            android:lineSpacingExtra="4dp"/>
+
+        <!-- Кнопки -->
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="horizontal" android:layout_marginTop="14dp">
+
+            <Button android:id="@+id/btnReject"
+                android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                android:text="❌ Отклонить" android:textSize="13sp"
+                android:textColor="@color/red_error" android:background="@drawable/bg_chip_default"
+                android:backgroundTint="@null" android:layout_marginEnd="8dp"
+                android:stateListAnimator="@null"/>
+
+            <Button android:id="@+id/btnApprove"
+                android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                android:text="✅ Подтвердить" android:textSize="13sp"
+                android:textColor="#FFFFFF" android:background="@drawable/bg_btn_primary"
+                android:backgroundTint="@null" android:stateListAnimator="@null"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

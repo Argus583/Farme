@@ -1,0 +1,963 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_screen">
+
+    <!-- ══ ШАПКА ══════════════════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/bg_card"
+        android:elevation="2dp"
+        android:fitsSystemWindows="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="12dp">
+            <TextView android:id="@+id/btnBack"
+                android:layout_width="40dp" android:layout_height="40dp"
+                android:text="&#8249;" android:textSize="28sp"
+                android:textColor="@color/text_primary"
+                android:gravity="center"
+                android:clickable="true" android:focusable="true"/>
+            <TextView android:id="@+id/tvStepTitle"
+                android:layout_width="0dp" android:layout_height="wrap_content"
+                android:layout_weight="1" android:text="Фотографии"
+                android:textSize="17sp" android:textColor="@color/text_primary"
+                android:textStyle="bold" android:layout_marginStart="8dp"/>
+            <TextView android:id="@+id/tvStepCounter"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="1 / 3" android:textSize="13sp"
+                android:textColor="@color/text_hint"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="8dp">
+            <View android:id="@+id/stepBar1"
+                android:layout_width="0dp" android:layout_height="3dp"
+                android:layout_weight="1" android:background="@color/green_primary"
+                android:layout_marginEnd="4dp"/>
+            <View android:id="@+id/stepBar2"
+                android:layout_width="0dp" android:layout_height="3dp"
+                android:layout_weight="1" android:background="@color/divider"
+                android:layout_marginEnd="4dp"/>
+            <View android:id="@+id/stepBar3"
+                android:layout_width="0dp" android:layout_height="3dp"
+                android:layout_weight="1" android:background="@color/divider"/>
+        </LinearLayout>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- ═══ ШАГ 1: ФОТО ═══════════════════════════ -->
+            <LinearLayout android:id="@+id/step1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="&#128247;" android:textSize="48sp"
+                    android:layout_gravity="center_horizontal" android:layout_marginBottom="8dp"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/step1_title" android:textSize="22sp"
+                    android:textColor="@color/text_primary" android:textStyle="bold"
+                    android:gravity="center" android:layout_marginBottom="6dp"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/step1_subtitle"
+                    android:textSize="13sp" android:textColor="@color/text_secondary"
+                    android:gravity="center" android:layout_marginBottom="24dp"/>
+                <androidx.gridlayout.widget.GridLayout
+                    android:id="@+id/gridPhotos"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    app:columnCount="3" android:layout_marginBottom="16dp"/>
+                <LinearLayout android:id="@+id/btnAddPhotos"
+                    android:layout_width="match_parent" android:layout_height="120dp"
+                    android:orientation="vertical" android:gravity="center"
+                    android:background="@drawable/bg_input"
+                    android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="+" android:textSize="36sp" android:textColor="@color/green_primary"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/btn_select_photos" android:textSize="14sp"
+                        android:textColor="@color/green_primary" android:textStyle="bold"
+                        android:layout_marginTop="4dp"/>
+                    <TextView android:id="@+id/tvPhotoCount"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="0 / 5 фото" android:textSize="11sp"
+                        android:textColor="@color/text_hint" android:layout_marginTop="4dp"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:background="@color/orange_surface"
+                    android:padding="12dp" android:layout_marginTop="16dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="&#128161;" android:textSize="16sp" android:layout_marginEnd="8dp"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="@string/tip_quality_photos"
+                        android:textSize="12sp" android:textColor="@color/orange_dark"
+                        android:lineSpacingMultiplier="1.3"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- ═══ ШАГ 2: О ТОВАРЕ ═══════════════════════ -->
+            <LinearLayout android:id="@+id/step2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:visibility="gone">
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/step2_title" android:textSize="22sp"
+                    android:textColor="@color/text_primary" android:textStyle="bold"
+                    android:layout_marginBottom="4dp"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/step2_subtitle"
+                    android:textSize="13sp" android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="20dp"/>
+
+                <!-- ── Категория ── -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/label_category_required" android:textSize="12sp"
+                    android:textColor="@color/text_primary" android:textStyle="bold"
+                    android:layout_marginBottom="10dp"/>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:layout_marginBottom="16dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="8dp">
+                        <LinearLayout android:id="@+id/catBtnLivestock"
+                            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+                            android:orientation="vertical" android:gravity="center"
+                            android:background="@drawable/bg_chip_category"
+                            android:clickable="true" android:focusable="true" android:layout_marginEnd="6dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="&#128004;" android:textSize="24sp"/>
+                            <TextView android:id="@+id/catLabelLivestock"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/cat_livestock" android:textSize="11sp"
+                                android:textColor="@color/text_secondary" android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                        <LinearLayout android:id="@+id/catBtnPoultry"
+                            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+                            android:orientation="vertical" android:gravity="center"
+                            android:background="@drawable/bg_chip_category"
+                            android:clickable="true" android:focusable="true" android:layout_marginEnd="6dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="&#128020;" android:textSize="24sp"/>
+                            <TextView android:id="@+id/catLabelPoultry"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/cat_poultry" android:textSize="11sp"
+                                android:textColor="@color/text_secondary" android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                        <LinearLayout android:id="@+id/catBtnGrain"
+                            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+                            android:orientation="vertical" android:gravity="center"
+                            android:background="@drawable/bg_chip_category"
+                            android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="&#127806;" android:textSize="24sp"/>
+                            <TextView android:id="@+id/catLabelGrain"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/cat_grain" android:textSize="11sp"
+                                android:textColor="@color/text_secondary" android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="8dp">
+                        <LinearLayout android:id="@+id/catBtnVeggies"
+                            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+                            android:orientation="vertical" android:gravity="center"
+                            android:background="@drawable/bg_chip_category"
+                            android:clickable="true" android:focusable="true" android:layout_marginEnd="6dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="&#129382;" android:textSize="24sp"/>
+                            <TextView android:id="@+id/catLabelVeggies"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/cat_vegetables" android:textSize="11sp"
+                                android:textColor="@color/text_secondary" android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                        <LinearLayout android:id="@+id/catBtnFruits"
+                            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+                            android:orientation="vertical" android:gravity="center"
+                            android:background="@drawable/bg_chip_category"
+                            android:clickable="true" android:focusable="true" android:layout_marginEnd="6dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="&#127822;" android:textSize="24sp"/>
+                            <TextView android:id="@+id/catLabelFruits"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/cat_fruits" android:textSize="11sp"
+                                android:textColor="@color/text_secondary" android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                        <LinearLayout android:id="@+id/catBtnMilk"
+                            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+                            android:orientation="vertical" android:gravity="center"
+                            android:background="@drawable/bg_chip_category"
+                            android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="&#129371;" android:textSize="24sp"/>
+                            <TextView android:id="@+id/catLabelMilk"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/cat_dairy" android:textSize="11sp"
+                                android:textColor="@color/text_secondary" android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+                        <LinearLayout android:id="@+id/catBtnFeed"
+                            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+                            android:orientation="vertical" android:gravity="center"
+                            android:background="@drawable/bg_chip_category"
+                            android:clickable="true" android:focusable="true" android:layout_marginEnd="6dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="&#127807;" android:textSize="24sp"/>
+                            <TextView android:id="@+id/catLabelFeed"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/cat_feed" android:textSize="11sp"
+                                android:textColor="@color/text_secondary" android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                        <LinearLayout android:id="@+id/catBtnTech"
+                            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+                            android:orientation="vertical" android:gravity="center"
+                            android:background="@drawable/bg_chip_category"
+                            android:clickable="true" android:focusable="true" android:layout_marginEnd="6dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="&#128668;" android:textSize="24sp"/>
+                            <TextView android:id="@+id/catLabelTech"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/cat_equipment" android:textSize="11sp"
+                                android:textColor="@color/text_secondary" android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                        <LinearLayout android:id="@+id/catBtnServices"
+                            android:layout_width="0dp" android:layout_height="72dp" android:layout_weight="1"
+                            android:orientation="vertical" android:gravity="center"
+                            android:background="@drawable/bg_chip_category"
+                            android:clickable="true" android:focusable="true">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="&#128295;" android:textSize="24sp"/>
+                            <TextView android:id="@+id/catLabelServices"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/cat_services" android:textSize="11sp"
+                                android:textColor="@color/text_secondary" android:layout_marginTop="4dp"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- ── Подкатегория ── -->
+                <LinearLayout android:id="@+id/groupSubcategory"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:visibility="gone" android:layout_marginBottom="4dp">
+                    <TextView android:id="@+id/tvSubcategoryLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/label_subcategory_required" android:textSize="12sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+                    <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:scrollbars="none" android:layout_marginBottom="16dp">
+                        <LinearLayout android:id="@+id/rowSubcategory"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="horizontal"/>
+                    </HorizontalScrollView>
+                </LinearLayout>
+
+                <!-- ══ БЛОК СКОТ ════════════════════════════ -->
+                <LinearLayout android:id="@+id/blockLivestock"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:visibility="gone">
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/passport_breed" android:textSize="12sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+                    <EditText android:id="@+id/etBreedInfo"
+                        android:layout_width="match_parent" android:layout_height="52dp"
+                        android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                        android:textSize="15sp" android:textColor="@color/text_primary"
+                        android:hint="Алатауская, Арашан..." android:textColorHint="@color/text_hint"
+                        android:inputType="textCapSentences" android:layout_marginBottom="4dp"/>
+                    <TextView android:id="@+id/tvArashanHint"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="@string/hint_arash_chip_required"
+                        android:textSize="11sp" android:textColor="@color/orange_accent"
+                        android:layout_marginBottom="12dp" android:visibility="gone"/>
+
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/label_count_required" android:textSize="12sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+                    <EditText android:id="@+id/etQuantity"
+                        android:layout_width="match_parent" android:layout_height="52dp"
+                        android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                        android:textSize="15sp" android:textColor="@color/text_primary"
+                        android:hint="1" android:textColorHint="@color/text_hint"
+                        android:inputType="number" android:layout_marginBottom="16dp"/>
+
+                    <!-- qty = 1: пол, возраст, вес, окрас -->
+                    <LinearLayout android:id="@+id/groupSingleAnimal"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical">
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:layout_marginBottom="16dp">
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:orientation="vertical"
+                                android:layout_marginEnd="8dp">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="@string/passport_sex" android:textSize="12sp"
+                                    android:textColor="@color/text_primary" android:textStyle="bold"
+                                    android:layout_marginBottom="8dp"/>
+                                <Spinner android:id="@+id/spinnerGender"
+                                    android:layout_width="match_parent" android:layout_height="52dp"
+                                    android:background="@drawable/bg_input" android:paddingHorizontal="10dp"/>
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="@string/label_age" android:textSize="12sp"
+                                    android:textColor="@color/text_primary" android:textStyle="bold"
+                                    android:layout_marginBottom="8dp"/>
+                                <LinearLayout android:layout_width="match_parent" android:layout_height="52dp"
+                                    android:orientation="horizontal" android:background="@drawable/bg_input">
+                                    <EditText android:id="@+id/etAgeValue"
+                                        android:layout_width="0dp" android:layout_height="match_parent"
+                                        android:layout_weight="1" android:paddingHorizontal="12dp"
+                                        android:textSize="15sp" android:textColor="@color/text_primary"
+                                        android:hint="2" android:textColorHint="@color/text_hint"
+                                        android:inputType="number" android:background="@null"/>
+                                    <Spinner android:id="@+id/spinnerAgeUnit"
+                                        android:layout_width="wrap_content" android:layout_height="match_parent"
+                                        android:background="@null" android:paddingEnd="8dp"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:layout_marginBottom="16dp">
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:orientation="vertical"
+                                android:layout_marginEnd="8dp">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="@string/label_weight_kg" android:textSize="12sp"
+                                    android:textColor="@color/text_primary" android:textStyle="bold"
+                                    android:layout_marginBottom="8dp"/>
+                                <EditText android:id="@+id/etWeightInfo"
+                                    android:layout_width="match_parent" android:layout_height="52dp"
+                                    android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                                    android:textSize="15sp" android:textColor="@color/text_primary"
+                                    android:hint="350" android:textColorHint="@color/text_hint"
+                                    android:inputType="numberDecimal"/>
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="@string/label_color" android:textSize="12sp"
+                                    android:textColor="@color/text_primary" android:textStyle="bold"
+                                    android:layout_marginBottom="8dp"/>
+                                <EditText android:id="@+id/etColor"
+                                    android:layout_width="match_parent" android:layout_height="52dp"
+                                    android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                                    android:textSize="15sp" android:textColor="@color/text_primary"
+                                    android:hint="Рыжая, серая..." android:textColorHint="@color/text_hint"
+                                    android:inputType="textCapSentences"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- qty > 1: самцов/самок -->
+                    <LinearLayout android:id="@+id/groupMultipleAnimals"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:visibility="gone">
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:text="@string/label_herd_composition" android:textSize="12sp"
+                            android:textColor="@color/text_primary" android:textStyle="bold"
+                            android:layout_marginBottom="8dp"/>
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:layout_marginBottom="4dp">
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:orientation="vertical"
+                                android:layout_marginEnd="8dp">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="@string/label_males" android:textSize="11sp"
+                                    android:textColor="@color/text_hint" android:layout_marginBottom="6dp"/>
+                                <EditText android:id="@+id/etMaleCount"
+                                    android:layout_width="match_parent" android:layout_height="52dp"
+                                    android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                                    android:textSize="15sp" android:textColor="@color/text_primary"
+                                    android:hint="0" android:textColorHint="@color/text_hint"
+                                    android:inputType="number"/>
+                            </LinearLayout>
+                            <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:orientation="vertical">
+                                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                    android:text="@string/label_females" android:textSize="11sp"
+                                    android:textColor="@color/text_hint" android:layout_marginBottom="6dp"/>
+                                <EditText android:id="@+id/etFemaleCount"
+                                    android:layout_width="match_parent" android:layout_height="52dp"
+                                    android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                                    android:textSize="15sp" android:textColor="@color/text_primary"
+                                    android:hint="0" android:textColorHint="@color/text_hint"
+                                    android:inputType="number"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                        <TextView android:id="@+id/tvGenderCountError"
+                            android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:text="@string/error_gender_count"
+                            android:textSize="11sp" android:textColor="@color/red_error"
+                            android:layout_marginBottom="8dp" android:visibility="gone"/>
+                        <View android:layout_width="match_parent" android:layout_height="1dp"
+                            android:background="@color/divider" android:layout_marginBottom="16dp"/>
+                    </LinearLayout>
+
+                    <!-- Прививки -->
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/label_vaccinations" android:textSize="12sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="16dp">
+                        <LinearLayout android:id="@+id/btnVaccYes"
+                            android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                            android:gravity="center" android:orientation="horizontal"
+                            android:background="@drawable/bg_input"
+                            android:clickable="true" android:focusable="true" android:layout_marginEnd="8dp">
+                            <TextView android:id="@+id/tvVaccYesCheck"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="&#10003;  " android:textSize="14sp"
+                                android:textColor="@color/green_primary" android:visibility="gone"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/option_yes" android:textSize="14sp"
+                                android:textColor="@color/text_primary" android:textStyle="bold"/>
+                        </LinearLayout>
+                        <LinearLayout android:id="@+id/btnVaccNo"
+                            android:layout_width="0dp" android:layout_height="44dp" android:layout_weight="1"
+                            android:gravity="center" android:orientation="horizontal"
+                            android:background="@drawable/bg_input"
+                            android:clickable="true" android:focusable="true">
+                            <TextView android:id="@+id/tvVaccNoCheck"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="&#10003;  " android:textSize="14sp"
+                                android:textColor="@color/green_primary" android:visibility="gone"/>
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/option_no" android:textSize="14sp"
+                                android:textColor="@color/text_primary" android:textStyle="bold"/>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- ══ ЧИП + ПАСПОРТ — скрывается при qty > 1 ══ -->
+                    <LinearLayout android:id="@+id/groupChipPassport"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <!-- Номер чипа -->
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:orientation="horizontal" android:layout_marginBottom="8dp">
+                            <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                                android:layout_weight="1" android:text="@string/label_chip_number"
+                                android:textSize="12sp" android:textColor="@color/text_primary"
+                                android:textStyle="bold"/>
+                            <TextView android:id="@+id/tvChipRequired"
+                                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/hint_chip_required_for_arash" android:textSize="10sp"
+                                android:textColor="@color/orange_accent" android:visibility="gone"/>
+                        </LinearLayout>
+                        <EditText android:id="@+id/etChipNumber"
+                            android:layout_width="match_parent" android:layout_height="52dp"
+                            android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                            android:textSize="15sp" android:textColor="@color/text_primary"
+                            android:hint="15 цифр: 643094100183620"
+                            android:textColorHint="@color/text_hint"
+                            android:inputType="number" android:maxLength="15"
+                            android:layout_marginBottom="4dp"/>
+                        <TextView android:id="@+id/tvChipError"
+                            android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:text="@string/error_chip_length"
+                            android:textSize="11sp" android:textColor="@color/red_error"
+                            android:layout_marginBottom="16dp" android:visibility="gone"/>
+
+                        <!-- Ветсвидетельство -->
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/label_vet_cert_no_full"
+                            android:textSize="12sp" android:textColor="@color/text_primary"
+                            android:textStyle="bold" android:layout_marginBottom="8dp"/>
+                        <LinearLayout android:layout_width="match_parent" android:layout_height="52dp"
+                            android:orientation="horizontal" android:background="@drawable/bg_input"
+                            android:layout_marginBottom="14dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="match_parent"
+                                android:text="КГ-" android:textSize="14sp"
+                                android:textColor="@color/text_primary" android:textStyle="bold"
+                                android:gravity="center" android:paddingStart="14dp" android:paddingEnd="4dp"
+                                android:background="@color/bg_screen"/>
+                            <EditText android:id="@+id/etVetCertNo"
+                                android:layout_width="match_parent" android:layout_height="match_parent"
+                                android:paddingHorizontal="10dp" android:textSize="14sp"
+                                android:textColor="@color/text_primary" android:hint="2024-007812"
+                                android:textColorHint="@color/text_hint" android:background="@null"
+                                android:digits="0123456789-" android:inputType="text"/>
+                        </LinearLayout>
+
+                        <!-- Дата осмотра -->
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/label_vet_exam_date"
+                            android:textSize="12sp" android:textColor="@color/text_primary"
+                            android:textStyle="bold" android:layout_marginBottom="8dp"/>
+                        <EditText android:id="@+id/etVetDate"
+                            android:layout_width="match_parent" android:layout_height="52dp"
+                            android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                            android:textSize="15sp" android:textColor="@color/text_primary"
+                            android:hint="дд.мм.гггг" android:textColorHint="@color/text_hint"
+                            android:inputType="number" android:digits="0123456789."
+                            android:maxLength="10" android:layout_marginBottom="16dp"/>
+
+                        <!-- Подсказка — чип/паспорт не нужны для группы -->
+                    </LinearLayout>
+                    <!-- конец groupChipPassport -->
+
+                    <!-- Подсказка когда qty > 1 -->
+                    <LinearLayout android:id="@+id/groupMultipleHint"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:background="@color/green_surface"
+                        android:padding="12dp" android:layout_marginBottom="16dp"
+                        android:visibility="gone">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="&#8505;&#65039;" android:textSize="16sp"
+                            android:layout_marginEnd="8dp"/>
+                        <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:text="@string/hint_group_no_docs"
+                            android:textSize="12sp" android:textColor="@color/green_dark"
+                            android:lineSpacingMultiplier="1.3"/>
+                    </LinearLayout>
+
+                </LinearLayout>
+                <!-- конец blockLivestock -->
+
+                <!-- ══ БЛОК ПТИЦА ══════════════════════════ -->
+                <LinearLayout android:id="@+id/blockPoultry"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:visibility="gone">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="16dp">
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical"
+                            android:layout_marginEnd="8dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_poultry_count" android:textSize="12sp"
+                                android:textColor="@color/text_primary" android:textStyle="bold"
+                                android:layout_marginBottom="8dp"/>
+                            <EditText android:id="@+id/etPoultryCount"
+                                android:layout_width="match_parent" android:layout_height="52dp"
+                                android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                                android:textSize="15sp" android:textColor="@color/text_primary"
+                                android:hint="10" android:textColorHint="@color/text_hint"
+                                android:inputType="number"/>
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_age_months" android:textSize="12sp"
+                                android:textColor="@color/text_primary" android:textStyle="bold"
+                                android:layout_marginBottom="8dp"/>
+                            <EditText android:id="@+id/etPoultryAge"
+                                android:layout_width="match_parent" android:layout_height="52dp"
+                                android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                                android:textSize="15sp" android:textColor="@color/text_primary"
+                                android:hint="6" android:textColorHint="@color/text_hint"
+                                android:inputType="number"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- ══ БЛОК ВЕСОВЫЕ ════════════════════════ -->
+                <LinearLayout android:id="@+id/blockWeightGoods"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:visibility="gone">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="16dp">
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical"
+                            android:layout_marginEnd="8dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_volume_weight" android:textSize="12sp"
+                                android:textColor="@color/text_primary" android:textStyle="bold"
+                                android:layout_marginBottom="8dp"/>
+                            <EditText android:id="@+id/etGoodsWeight"
+                                android:layout_width="match_parent" android:layout_height="52dp"
+                                android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                                android:textSize="15sp" android:textColor="@color/text_primary"
+                                android:hint="100" android:textColorHint="@color/text_hint"
+                                android:inputType="numberDecimal"/>
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_sort_type" android:textSize="12sp"
+                                android:textColor="@color/text_primary" android:textStyle="bold"
+                                android:layout_marginBottom="8dp"/>
+                            <EditText android:id="@+id/etGoodsSort"
+                                android:layout_width="match_parent" android:layout_height="52dp"
+                                android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                                android:textSize="15sp" android:textColor="@color/text_primary"
+                                android:hint="1 сорт, органик..."
+                                android:textColorHint="@color/text_hint"
+                                android:inputType="textCapSentences"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/label_harvest_year" android:textSize="12sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+                    <EditText android:id="@+id/etHarvestYear"
+                        android:layout_width="match_parent" android:layout_height="52dp"
+                        android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                        android:textSize="15sp" android:textColor="@color/text_primary"
+                        android:hint="2024" android:textColorHint="@color/text_hint"
+                        android:inputType="number" android:maxLength="4"
+                        android:layout_marginBottom="16dp"/>
+                </LinearLayout>
+
+                <!-- ══ БЛОК МОЛОКО ══════════════════════════ -->
+                <LinearLayout android:id="@+id/blockMilk"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:visibility="gone">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="16dp">
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical"
+                            android:layout_marginEnd="8dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_volume_liters" android:textSize="12sp"
+                                android:textColor="@color/text_primary" android:textStyle="bold"
+                                android:layout_marginBottom="8dp"/>
+                            <EditText android:id="@+id/etMilkVolume"
+                                android:layout_width="match_parent" android:layout_height="52dp"
+                                android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                                android:textSize="15sp" android:textColor="@color/text_primary"
+                                android:hint="50" android:textColorHint="@color/text_hint"
+                                android:inputType="numberDecimal"/>
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_fat_pct" android:textSize="12sp"
+                                android:textColor="@color/text_primary" android:textStyle="bold"
+                                android:layout_marginBottom="8dp"/>
+                            <EditText android:id="@+id/etMilkFat"
+                                android:layout_width="match_parent" android:layout_height="52dp"
+                                android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                                android:textSize="15sp" android:textColor="@color/text_primary"
+                                android:hint="3.5" android:textColorHint="@color/text_hint"
+                                android:inputType="numberDecimal"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <Spinner android:id="@+id/spinnerMilkFreq"
+                        android:layout_width="match_parent" android:layout_height="52dp"
+                        android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                        android:layout_marginBottom="16dp"/>
+                </LinearLayout>
+
+                <!-- ══ БЛОК ТЕХНИКА ════════════════════════ -->
+                <LinearLayout android:id="@+id/blockTech"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:visibility="gone">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="horizontal" android:layout_marginBottom="16dp">
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical"
+                            android:layout_marginEnd="8dp">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_brand_model" android:textSize="12sp"
+                                android:textColor="@color/text_primary" android:textStyle="bold"
+                                android:layout_marginBottom="8dp"/>
+                            <EditText android:id="@+id/etTechBrand"
+                                android:layout_width="match_parent" android:layout_height="52dp"
+                                android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                                android:textSize="15sp" android:textColor="@color/text_primary"
+                                android:hint="МТЗ-82, Кировец..."
+                                android:textColorHint="@color/text_hint"
+                                android:inputType="textCapSentences"/>
+                        </LinearLayout>
+                        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                            android:layout_weight="1" android:orientation="vertical">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_year_made" android:textSize="12sp"
+                                android:textColor="@color/text_primary" android:textStyle="bold"
+                                android:layout_marginBottom="8dp"/>
+                            <EditText android:id="@+id/etTechYear"
+                                android:layout_width="match_parent" android:layout_height="52dp"
+                                android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                                android:textSize="15sp" android:textColor="@color/text_primary"
+                                android:hint="2015" android:textColorHint="@color/text_hint"
+                                android:inputType="number" android:maxLength="4"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <Spinner android:id="@+id/spinnerTechCondition"
+                        android:layout_width="match_parent" android:layout_height="52dp"
+                        android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                        android:layout_marginBottom="16dp"/>
+                </LinearLayout>
+
+                <!-- ══ БЛОК УСЛУГИ ══════════════════════════ -->
+                <LinearLayout android:id="@+id/blockServices"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:visibility="gone">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/label_experience_years" android:textSize="12sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"
+                        android:layout_marginBottom="8dp"/>
+                    <EditText android:id="@+id/etServiceExp"
+                        android:layout_width="match_parent" android:layout_height="52dp"
+                        android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                        android:textSize="15sp" android:textColor="@color/text_primary"
+                        android:hint="5" android:textColorHint="@color/text_hint"
+                        android:inputType="number" android:layout_marginBottom="16dp"/>
+                </LinearLayout>
+
+                <!-- ══ ОБЩИЕ ПОЛЯ ═══════════════════════════ -->
+                <View android:layout_width="match_parent" android:layout_height="1dp"
+                    android:background="@color/divider" android:layout_marginBottom="20dp"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/label_listing_title_required" android:textSize="12sp"
+                    android:textColor="@color/text_primary" android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+                <EditText android:id="@+id/etTitle"
+                    android:layout_width="match_parent" android:layout_height="52dp"
+                    android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                    android:textSize="15sp" android:textColor="@color/text_primary"
+                    android:hint="Например: Корова Алатауская, 4 года"
+                    android:textColorHint="@color/text_hint"
+                    android:inputType="textCapSentences" android:maxLength="80"
+                    android:layout_marginBottom="16dp"/>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/listing_description"
+                        android:textSize="12sp" android:textColor="@color/text_primary"
+                        android:textStyle="bold"/>
+                    <TextView android:id="@+id/tvDescCounter"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="0 / 500" android:textSize="11sp"
+                        android:textColor="@color/text_hint"/>
+                </LinearLayout>
+                <EditText android:id="@+id/etDescription"
+                    android:layout_width="match_parent" android:layout_height="120dp"
+                    android:background="@drawable/bg_input" android:padding="14dp"
+                    android:textSize="14sp" android:textColor="@color/text_primary"
+                    android:hint="Дополнительная информация о товаре..."
+                    android:textColorHint="@color/text_hint" android:gravity="top"
+                    android:inputType="textMultiLine|textCapSentences"
+                    android:maxLength="500" android:layout_marginBottom="20dp"/>
+
+                <!-- Цена + валюта -->
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:layout_marginBottom="8dp">
+                    <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/label_price_required"
+                        android:textSize="12sp" android:textColor="@color/text_primary"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout android:layout_width="match_parent" android:layout_height="52dp"
+                    android:orientation="horizontal" android:background="@drawable/bg_input"
+                    android:layout_marginBottom="12dp">
+                    <EditText android:id="@+id/etPrice"
+                        android:layout_width="0dp" android:layout_height="match_parent"
+                        android:layout_weight="1" android:paddingHorizontal="14dp"
+                        android:textSize="15sp" android:textColor="@color/text_primary"
+                        android:hint="0" android:textColorHint="@color/text_hint"
+                        android:inputType="numberDecimal" android:background="@null"/>
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="match_parent"
+                        android:orientation="horizontal" android:gravity="center_vertical"
+                        android:paddingHorizontal="4dp">
+                        <TextView android:id="@+id/btnCurrencyKGS"
+                            android:layout_width="46dp" android:layout_height="34dp"
+                            android:text="сом" android:textSize="12sp"
+                            android:textColor="#FFFFFF" android:textStyle="bold"
+                            android:gravity="center" android:background="@color/green_primary"
+                            android:clickable="true" android:focusable="true"/>
+                        <TextView android:id="@+id/btnCurrencyUSD"
+                            android:layout_width="46dp" android:layout_height="34dp"
+                            android:text="USD" android:textSize="12sp"
+                            android:textColor="@color/text_hint" android:textStyle="bold"
+                            android:gravity="center" android:background="@drawable/bg_input"
+                            android:clickable="true" android:focusable="true"/>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:layout_marginBottom="20dp">
+                    <CheckBox android:id="@+id/cbNegotiable"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:buttonTint="@color/green_primary"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/label_negotiable_checkbox" android:textSize="14sp"
+                        android:textColor="@color/text_primary" android:layout_marginStart="6dp"/>
+                </LinearLayout>
+
+                <!-- Регион -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/label_region_required" android:textSize="12sp"
+                    android:textColor="@color/text_primary" android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+                <Spinner android:id="@+id/spinnerRegion"
+                    android:layout_width="match_parent" android:layout_height="52dp"
+                    android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                    android:layout_marginBottom="20dp"/>
+
+                <!-- Скрытый spinner -->
+                <Spinner android:id="@+id/spinnerCategory"
+                    android:layout_width="match_parent" android:layout_height="0dp"
+                    android:visibility="gone"/>
+
+                <!-- Геолокация -->
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/label_exact_location" android:textSize="12sp"
+                    android:textColor="@color/text_primary" android:textStyle="bold"
+                    android:layout_marginBottom="4dp"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/hint_location_visible"
+                    android:textSize="11sp" android:textColor="@color/text_hint"
+                    android:layout_marginBottom="10dp"/>
+                <LinearLayout android:id="@+id/btnDetectLocation"
+                    android:layout_width="match_parent" android:layout_height="52dp"
+                    android:orientation="horizontal" android:gravity="center_vertical"
+                    android:background="@drawable/bg_input" android:paddingHorizontal="14dp"
+                    android:clickable="true" android:focusable="true" android:layout_marginBottom="12dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="&#128205;" android:textSize="18sp" android:layout_marginEnd="10dp"/>
+                    <TextView android:id="@+id/tvLocationStatus"
+                        android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:text="@string/btn_detect_location"
+                        android:textSize="14sp" android:textColor="@color/green_primary"
+                        android:textStyle="bold"/>
+                    <ProgressBar android:id="@+id/pbLocation"
+                        android:layout_width="20dp" android:layout_height="20dp"
+                        android:indeterminateTint="@color/green_primary" android:visibility="gone"/>
+                </LinearLayout>
+                <FrameLayout android:id="@+id/locationMapContainer"
+                    android:layout_width="match_parent" android:layout_height="160dp"
+                    android:background="@color/divider" android:layout_marginBottom="8dp"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+            <!-- конец step2 -->
+
+            <!-- ═══ ШАГ 3: ПОДТВЕРЖДЕНИЕ ═════════════════ -->
+            <LinearLayout android:id="@+id/step3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:visibility="gone">
+
+                <LinearLayout android:id="@+id/passportHeader"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:visibility="gone"/>
+                <LinearLayout android:id="@+id/confirmHeader"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="vertical" android:visibility="gone"/>
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="&#9989;" android:textSize="48sp"
+                    android:layout_gravity="center_horizontal" android:layout_marginBottom="8dp"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/step3_title" android:textSize="22sp"
+                    android:textColor="@color/text_primary" android:textStyle="bold"
+                    android:gravity="center" android:layout_marginBottom="8dp"/>
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/step3_subtitle"
+                    android:textSize="13sp" android:textColor="@color/text_secondary"
+                    android:gravity="center" android:layout_marginBottom="24dp"/>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    app:cardCornerRadius="16dp" app:cardElevation="0dp"
+                    app:cardBackgroundColor="@color/bg_card" android:layout_marginBottom="16dp">
+                    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:orientation="vertical" android:padding="16dp">
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/preview_label" android:textSize="13sp"
+                            android:textColor="@color/text_hint" android:textStyle="bold"
+                            android:layout_marginBottom="12dp"/>
+                        <TextView android:id="@+id/tvPreviewTitle"
+                            android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:textSize="16sp" android:textColor="@color/text_primary"
+                            android:textStyle="bold" android:layout_marginBottom="4dp"/>
+                        <TextView android:id="@+id/tvPreviewCategory"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="12sp" android:textColor="@color/green_primary"
+                            android:layout_marginBottom="4dp"/>
+                        <TextView android:id="@+id/tvPreviewAnimalInfo"
+                            android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:textSize="12sp" android:textColor="@color/text_secondary"
+                            android:layout_marginBottom="8dp" android:visibility="gone"/>
+                        <TextView android:id="@+id/tvPreviewPrice"
+                            android:layout_width="match_parent" android:layout_height="wrap_content"
+                            android:textSize="20sp" android:textColor="@color/green_primary"
+                            android:textStyle="bold" android:layout_marginBottom="6dp"/>
+                        <TextView android:id="@+id/tvPreviewRegion"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="12sp" android:textColor="@color/text_secondary"
+                            android:layout_marginBottom="8dp"/>
+                        <TextView android:id="@+id/tvPreviewPhotoCount"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:textSize="12sp" android:textColor="@color/text_hint"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:background="@color/green_surface"
+                    android:padding="12dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="&#8505;&#65039;" android:textSize="16sp" android:layout_marginEnd="8dp"/>
+                    <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:text="@string/hint_moderation_wait"
+                        android:textSize="12sp" android:textColor="@color/green_dark"
+                        android:lineSpacingMultiplier="1.3"/>
+                </LinearLayout>
+            </LinearLayout>
+
+        </FrameLayout>
+    </ScrollView>
+
+    <!-- КНОПКИ -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:background="@color/bg_card"
+        android:paddingHorizontal="16dp" android:paddingVertical="12dp" android:elevation="8dp">
+        <LinearLayout android:id="@+id/btnPrev"
+            android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1"
+            android:gravity="center" android:background="@drawable/bg_chip_default"
+            android:layout_marginEnd="10dp" android:clickable="true" android:focusable="true"
+            android:visibility="gone">
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/btn_prev_nav" android:textSize="15sp"
+                android:textColor="@color/text_primary" android:textStyle="bold"/>
+        </LinearLayout>
+        <LinearLayout android:id="@+id/btnNext"
+            android:layout_width="0dp" android:layout_height="52dp" android:layout_weight="1"
+            android:gravity="center" android:background="@color/green_primary"
+            android:clickable="true" android:focusable="true">
+            <ProgressBar android:id="@+id/pbSubmit"
+                android:layout_width="20dp" android:layout_height="20dp"
+                android:indeterminateTint="#FFFFFF" android:layout_marginEnd="10dp"
+                android:visibility="gone"/>
+            <TextView android:id="@+id/tvNextLabel"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/btn_next" android:textSize="15sp"
+                android:textColor="#FFFFFF" android:textStyle="bold"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>

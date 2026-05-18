@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:fitsSystemWindows="true">
+
+    <!-- Шапка с кнопкой назад -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp">
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="‹"
+            android:textSize="28sp"
+            android:textColor="#111827"
+            android:clickable="true"
+            android:focusable="true"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="16dp"
+            android:paddingBottom="40dp">
+
+            <!-- Иконка -->
+            <FrameLayout
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:background="@drawable/bg_logo_circle_light"
+                android:layout_marginBottom="20dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="📱"
+                    android:textSize="38sp"/>
+            </FrameLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/otp_title"
+                android:textSize="24sp"
+                android:textColor="#111827"
+                android:textStyle="bold"
+                android:layout_marginBottom="6dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/otp_subtitle"
+                android:textSize="14sp"
+                android:textColor="#6B7280"/>
+
+            <TextView
+                android:id="@+id/tvOtpPhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+996 700 123 456"
+                android:textSize="15sp"
+                android:textColor="#0A1F14"
+                android:textStyle="bold"
+                android:layout_marginTop="2dp"
+                android:layout_marginBottom="4dp"/>
+
+            <TextView
+                android:id="@+id/btnChangePhone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/btn_change_number"
+                android:textSize="12sp"
+                android:textColor="#27AE60"
+                android:textStyle="bold"
+                android:layout_marginBottom="32dp"
+                android:clickable="true"
+                android:focusable="true"/>
+
+            <!-- 6 OTP полей -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="20dp">
+
+                <EditText
+                    android:id="@+id/otp1"
+                    android:layout_width="48dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#111827"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:background="@drawable/bg_otp_box"
+                    android:layout_marginEnd="8dp"
+                    android:cursorVisible="false"/>
+
+                <EditText
+                    android:id="@+id/otp2"
+                    android:layout_width="48dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#111827"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:background="@drawable/bg_otp_box"
+                    android:layout_marginEnd="8dp"
+                    android:cursorVisible="false"/>
+
+                <EditText
+                    android:id="@+id/otp3"
+                    android:layout_width="48dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#111827"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:background="@drawable/bg_otp_box"
+                    android:layout_marginEnd="8dp"
+                    android:cursorVisible="false"/>
+
+                <EditText
+                    android:id="@+id/otp4"
+                    android:layout_width="48dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#111827"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:background="@drawable/bg_otp_box"
+                    android:layout_marginEnd="8dp"
+                    android:cursorVisible="false"/>
+
+                <EditText
+                    android:id="@+id/otp5"
+                    android:layout_width="48dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#111827"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:background="@drawable/bg_otp_box"
+                    android:layout_marginEnd="8dp"
+                    android:cursorVisible="false"/>
+
+                <EditText
+                    android:id="@+id/otp6"
+                    android:layout_width="48dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    android:textColor="#111827"
+                    android:inputType="number"
+                    android:maxLength="1"
+                    android:background="@drawable/bg_otp_box"
+                    android:cursorVisible="false"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvOtpError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="#DC2626"
+                android:gravity="center"
+                android:layout_marginBottom="16dp"
+                android:visibility="gone"/>
+
+            <!-- Таймер повторной отправки -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:layout_marginBottom="32dp">
+
+                <TextView
+                    android:id="@+id/tvResendTimer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/otp_resend_prefix"
+                    android:textSize="13sp"
+                    android:textColor="#6B7280"/>
+
+                <TextView
+                    android:id="@+id/tvTimerCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="00:60"
+                    android:textSize="13sp"
+                    android:textColor="#0A1F14"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/btnResend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_resend_code"
+                    android:textSize="13sp"
+                    android:textColor="#27AE60"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    android:clickable="true"
+                    android:focusable="true"/>
+            </LinearLayout>
+
+            <!-- Кнопка подтвердить -->
+            <LinearLayout
+                android:id="@+id/btnVerify"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/bg_btn_primary_premium"
+                android:elevation="2dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ProgressBar
+                    android:id="@+id/pbVerify"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:indeterminateTint="#FFFFFF"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/btn_confirm"
+                    android:textSize="16sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/otp_not_received_hint"
+                android:textSize="11sp"
+                android:textColor="#9CA3AF"
+                android:gravity="center"
+                android:layout_marginTop="20dp"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

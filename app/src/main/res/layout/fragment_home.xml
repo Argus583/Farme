@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_screen">
+
+    <!-- ══ ШАПКА ══════════════════════════════════════════ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/bg_card"
+        android:paddingBottom="12dp"
+        android:fitsSystemWindows="true">
+
+        <!-- Строка 1: локация + иконки -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="16dp">
+
+            <!-- Геопозиция -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="📍"
+                android:textSize="16sp"
+                android:layout_marginEnd="6dp"/>
+
+            <TextView
+                android:id="@+id/tvLocation"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Бишкек, Кыргызстан"
+                android:textSize="16sp"
+                android:textColor="@color/text_primary"
+                android:textStyle="bold"/>
+
+            <!-- Уведомления -->
+            <FrameLayout
+                android:id="@+id/btnNotifications"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="8dp"
+                android:clickable="true"
+                android:focusable="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="🔔"
+                    android:textSize="22sp"/>
+                <TextView
+                    android:id="@+id/badgeHome"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_gravity="top|end"
+                    android:text=""
+                    android:textSize="9sp"
+                    android:textColor="#FFFFFF"
+                    android:gravity="center"
+                    android:background="@color/red_error"
+                    android:visibility="gone"/>
+            </FrameLayout>
+
+            <!-- Аватар -->
+            <TextView
+                android:id="@+id/tvHeaderAvatar"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:text="М"
+                android:textSize="15sp"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:background="@color/green_primary"
+                android:clickable="true"
+                android:focusable="true"/>
+        </LinearLayout>
+
+        <!-- Строка 2: поиск + фильтр -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="16dp"
+            android:gravity="center_vertical">
+
+            <!-- Поиск -->
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="44dp"
+                android:layout_weight="1"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_search_field"
+                android:paddingHorizontal="12dp"
+                android:layout_marginEnd="10dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="🔍"
+                    android:textSize="15sp"
+                    android:layout_marginEnd="6dp"/>
+                <EditText
+                    android:id="@+id/etSearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:hint="@string/search_hint"
+                    android:textColorHint="#9CA3AF"
+                    android:textSize="14sp"
+                    android:textColor="@color/text_primary"
+                    android:background="@null"
+                    android:imeOptions="actionSearch"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <!-- Кнопка фильтр -->
+            <LinearLayout
+                android:id="@+id/btnFilter"
+                android:layout_width="wrap_content"
+                android:layout_height="44dp"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:background="@drawable/bg_filter_btn"
+                android:paddingHorizontal="12dp"
+                android:clickable="true"
+                android:focusable="true">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="⚙️"
+                    android:textSize="14sp"
+                    android:layout_marginEnd="4dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/action_filter"
+                    android:textSize="13sp"
+                    android:textColor="@color/text_secondary"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Строка 3: чипы категорий -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="12dp"
+            android:paddingTop="10dp"
+            android:scrollbars="none">
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <LinearLayout android:id="@+id/chipLivestock"
+                    android:layout_width="70dp" android:layout_height="72dp"
+                    android:orientation="vertical" android:gravity="center"
+                    android:background="@drawable/bg_chip_category"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="🐄" android:textSize="26sp" android:gravity="center"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/cat_livestock" android:textSize="11sp" android:textColor="@color/text_secondary"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/chipGrain"
+                    android:layout_width="70dp" android:layout_height="72dp"
+                    android:orientation="vertical" android:gravity="center"
+                    android:background="@drawable/bg_chip_category"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="🌾" android:textSize="26sp" android:gravity="center"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/cat_grain" android:textSize="11sp" android:textColor="@color/text_secondary"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/chipTech"
+                    android:layout_width="70dp" android:layout_height="72dp"
+                    android:orientation="vertical" android:gravity="center"
+                    android:background="@drawable/bg_chip_category"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="🚜" android:textSize="26sp" android:gravity="center"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/cat_equipment" android:textSize="11sp" android:textColor="@color/text_secondary"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/chipFeed"
+                    android:layout_width="70dp" android:layout_height="72dp"
+                    android:orientation="vertical" android:gravity="center"
+                    android:background="@drawable/bg_chip_category"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="🌿" android:textSize="26sp" android:gravity="center"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/cat_feed" android:textSize="11sp" android:textColor="@color/text_secondary"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/chipServices"
+                    android:layout_width="70dp" android:layout_height="72dp"
+                    android:orientation="vertical" android:gravity="center"
+                    android:background="@drawable/bg_chip_category"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="🔧" android:textSize="26sp" android:gravity="center"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/cat_services" android:textSize="11sp" android:textColor="@color/text_secondary"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+                <LinearLayout android:id="@+id/chipPoultry"
+                    android:layout_width="70dp" android:layout_height="72dp"
+                    android:orientation="vertical" android:gravity="center"
+                    android:background="@drawable/bg_chip_category"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="🐔" android:textSize="26sp" android:gravity="center"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/cat_poultry" android:textSize="11sp" android:textColor="@color/text_secondary"
+                        android:layout_marginTop="4dp"/>
+                </LinearLayout>
+
+            </LinearLayout>
+        </HorizontalScrollView>
+    </LinearLayout>
+
+    <!-- ══ КОНТЕНТ (скроллируемый) ═══════════════════════ -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- История просмотров — скрыта пока нет данных -->
+            <LinearLayout
+                android:id="@+id/sectionHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:paddingHorizontal="16dp"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp">
+                    <TextView
+                        android:id="@+id/tvFeaturedTitle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/section_history"
+                        android:textSize="17sp"
+                        android:textColor="@color/text_primary"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:id="@+id/btnSeeAllFavorites"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/action_clear"
+                        android:textSize="13sp"
+                        android:textColor="@color/text_hint"
+                        android:clickable="true"
+                        android:focusable="true"/>
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerFeatured"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    android:paddingHorizontal="12dp"
+                    android:clipToPadding="false"
+                    android:scrollbars="none"/>
+
+            </LinearLayout>
+
+            <!-- Новые объявления -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="8dp">
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/listing_new"
+                    android:textSize="17sp"
+                    android:textColor="@color/text_primary"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerListings"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:paddingHorizontal="12dp"
+                android:paddingBottom="16dp"
+                android:clipToPadding="false"/>
+
+            <!-- Пустое состояние -->
+            <LinearLayout
+                android:id="@+id/emptyState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:padding="48dp"
+                android:visibility="gone">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="🌾" android:textSize="52sp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/empty_listings_not_found"
+                    android:textSize="16sp" android:textColor="@color/text_secondary"
+                    android:textStyle="bold" android:layout_marginTop="12dp"/>
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/hint_change_filters"
+                    android:textSize="13sp" android:textColor="@color/text_hint"
+                    android:layout_marginTop="6dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

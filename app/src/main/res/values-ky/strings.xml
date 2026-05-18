@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Farme</string>
+    <string name="app_tagline">Санарип Дыйкан</string>
+
+    <!-- Auth -->
+    <string name="login">Кирүү</string>
+    <string name="register">Катталуу</string>
+    <string name="phone">Телефон номери</string>
+    <string name="password">Сырсөз</string>
+    <string name="name_surname">Аты-жөнү</string>
+    <string name="select_region">Аймакты тандаңыз</string>
+    <string name="create_account">Аккаунт түзүү</string>
+    <string name="error_empty_fields">Бардык талааларды толтуруңуз</string>
+    <string name="error_invalid_phone">Телефон форматы туура эмес (+996XXXXXXXXX)</string>
+    <string name="error_short_password">Сырсөз кеминде 6 белгиден турушу керек</string>
+    <string name="error_passwords_match">Сырсөздөр дал келбейт</string>
+    <string name="error_accept_terms">Колдонуу шарттарын кабыл алыңыз</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Башкы</string>
+    <string name="nav_map">Карта</string>
+    <string name="nav_create">Түзүү</string>
+    <string name="nav_chats">Чаттар</string>
+    <string name="nav_profile">Профиль</string>
+
+    <!-- Listings -->
+    <string name="listing_new">Жаңы жарнамалар</string>
+    <string name="listing_history">Көрүү тарыхы</string>
+    <string name="listing_create">Жарнама жайгаштыруу</string>
+    <string name="listing_price">Баасы (сом)</string>
+    <string name="listing_negotiable">Баа сүйлөшүлөт</string>
+    <string name="listing_category">Категория</string>
+    <string name="listing_region">Аймак</string>
+    <string name="listing_description">Сүрөттөмө</string>
+    <string name="listing_photos">Сүрөттөр</string>
+    <string name="listing_verified">Паспорт текшерилген</string>
+
+    <!-- Categories -->
+    <string name="cat_livestock">Мал</string>
+    <string name="cat_grain">Дан</string>
+    <string name="cat_vegetables">Жашылчалар</string>
+    <string name="cat_fruits">Жемиштер</string>
+    <string name="cat_dairy">Сүт азыктары</string>
+    <string name="cat_poultry">Канаттуулар</string>
+    <string name="cat_feed">Жем-чөп</string>
+    <string name="cat_equipment">Техника</string>
+    <string name="cat_services">Кызматтар</string>
+
+    <!-- Regions -->
+    <string-array name="regions">
+        <item>Бардык аймактар</item>
+        <item>Чүй областы</item>
+        <item>Ысык-Көл областы</item>
+        <item>Ош областы</item>
+        <item>Жалал-Абад областы</item>
+        <item>Нарын областы</item>
+        <item>Баткен областы</item>
+        <item>Талас областы</item>
+        <item>Бишкек ш.</item>
+        <item>Ош ш.</item>
+    </string-array>
+
+    <!-- Status -->
+    <string name="status_pending">Модерацияда</string>
+    <string name="status_active">Активдүү</string>
+    <string name="status_rejected">Четтетилген</string>
+    <string name="status_archived">Архивде</string>
+
+    <!-- Actions -->
+    <string name="action_call">Чалуу</string>
+    <string name="action_message">Жазуу</string>
+    <string name="action_edit">Өзгөртүү</string>
+    <string name="action_archive">Архивге</string>
+    <string name="action_share">Бөлүшүү</string>
+    <string name="action_report">Арыздануу</string>
+    <string name="action_logout">Чыгуу</string>
+    <string name="action_save">Сактоо</string>
+    <string name="action_cancel">Жокко чыгаруу</string>
+    <string name="action_apply">Колдонуу</string>
+    <string name="action_reset">Баштапкы абалга</string>
+
+    <!-- Empty states -->
+    <string name="empty_listings">Жарнамалар жок</string>
+    <string name="empty_chats">Сүйлөшүүлөр жок</string>
+    <string name="empty_favorites">Тандамалдар жок</string>
+    <string name="empty_notifications">Билдирмелер жок</string>
+    <string name="empty_history">Көрүү тарыхы бош</string>
+
+    <!-- Errors -->
+    <string name="error_loading">Жүктөө катасы</string>
+    <string name="error_network">Интернет туташуусун текшериңиз</string>
+    <string name="error_try_again">Кайра аракет кылыңыз</string>
+
+    <!-- Home screen -->
+    <string name="history_cleared">Тарых тазаланды</string>
+    <string name="search_hint">Мал, дан, техника…</string>
+    <string name="action_filter">Чыпка</string>
+    <string name="action_clear">Тазалоо</string>
+    <string name="section_history">🕐 Көрүү тарыхы</string>
+    <string name="empty_listings_not_found">Жарнамалар табылган жок</string>
+    <string name="hint_change_filters">Чыпкаларды өзгөртүп көрүңүз</string>
+
+    <!-- Navigation bar -->
+    <string name="nav_map_label">Карта</string>
+
+    <!-- Common UI -->
+    <string name="btn_skip">Өткөрүп жибер</string>
+    <string name="btn_next">Кийинки</string>
+    <string name="btn_continue">Улантуу</string>
+    <string name="btn_confirm">Ырастоо</string>
+    <string name="btn_send_link">Шилтемени жөнөт</string>
+    <string name="loading">Жүктөлүүдө…</string>
+    <string name="unknown">Белгисиз</string>
+    <string name="no_messages">Билдирүү жок</string>
+    <string name="action_send">Жөнөтүү</string>
+    <string name="share_dialog_title">Бөлүшүү</string>
+
+    <!-- Auth -->
+    <string name="welcome">Кош келиңиздер</string>
+    <string name="login_subtitle">Аккаунтуңузга кириңиз</string>
+    <string name="btn_get_code">Код алуу</string>
+    <string name="create_account_title">Аккаунт түзүңүз</string>
+    <string name="verify_phone_subtitle">Телефон номерин ырастаңыз</string>
+    <string name="register_email_subtitle">Катталуу үчүн email киргизиңиз</string>
+    <string name="phone_verification_hint">🔒 Биз ырастоо кодун SMS менен жөнөтөбүз</string>
+    <string name="email_verification_hint">📧 Ырастоо каты emailге жөнөтүлөт</string>
+    <string name="error_enter_phone">Телефон номерин киргизиңиз</string>
+    <string name="error_invalid_phone_number">Номердин форматы туура эмес</string>
+    <string name="error_enter_email">Email киргизиңиз</string>
+    <string name="error_invalid_email">Email форматы туура эмес</string>
+    <string name="error_wrong_credentials">Туура эмес email же сырсөз</string>
+    <string name="error_account_banned">Аккаунт бөгөттөлгөн. Колдоого кайрылыңыз.</string>
+    <string name="select_country">Өлкөнү тандаңыз</string>
+    <string name="method_phone">Телефон</string>
+    <string name="forgot_password_short">Унуттуңузбу?</string>
+    <string name="remember_me">Мени эстеп кал</string>
+    <string name="forgot_password_title">Сырсөздү калыбына келтирүү</string>
+    <string name="forgot_password_subtitle">Email киргизиңиз — биз шилтемени жөнөтөбүз</string>
+    <string name="email_sent">Кат жөнөтүлдү!</string>
+    <string name="email_sent_hint">Почтаңызды текшериңиз жана кайтаруу шилтемесине өтүңүз</string>
+
+    <!-- OTP -->
+    <string name="otp_title">Номерди ырастоо</string>
+    <string name="otp_subtitle">Биз кодду SMS менен жөнөттүк</string>
+    <string name="btn_change_number">Номерди өзгөртүү</string>
+    <string name="btn_resend_code">Кодду кайра жөнөт</string>
+    <string name="otp_not_received_hint">SMS келбедиби? Номерди текшериңиз же кийинчерээк кайталаңыз</string>
+
+    <!-- Complete Profile -->
+    <string name="complete_registration_title">Катталууну аяктаңыз</string>
+    <string name="complete_registration_subtitle">Өзүңүз жөнүндө азыраак айтыңыз</string>
+    <string name="field_name">Аты</string>
+    <string name="field_last_name">Фамилиясы</string>
+    <string name="field_region">Аймак</string>
+    <string name="field_password">Сырсөз (кеминде 6 белги)</string>
+    <string name="field_confirm_password">Сырсөздү ырастаңыз</string>
+    <string name="terms_accept">Мен колдонуу шарттары менен купуялык саясатына макулмун</string>
+    <string name="phone_cannot_change">Телефон номерин өзгөртүүгө болбойт</string>
+
+    <!-- Profile -->
+    <string name="user_no_name">Аты жок</string>
+    <string name="reviews_count_format">(%d пикир)</string>
+    <string name="stat_listings_label">Жарнамалар</string>
+    <string name="stat_sold_label">Сатылган</string>
+    <string name="stat_reviews_label">Пикирлер</string>
+    <string name="stat_listings_short">Жарнама</string>
+    <string name="stat_rating_label">Рейтинг</string>
+    <string name="btn_edit_profile">Профилди өзгөртүү</string>
+    <string name="btn_logout_account">Аккаунттан чыгуу</string>
+    <string name="app_footer">Farme · Санарип Дыйкан</string>
+    <string name="menu_my_listings">Менин жарнамаларым</string>
+    <string name="menu_favorites">Тандамалдар</string>
+    <string name="menu_reviews_about_me">Менин жөнүмдөгү пикирлер</string>
+    <string name="menu_my_reviews">Менин пикирлерим</string>
+    <string name="menu_notifications">Билдирмелер</string>
+    <string name="menu_settings">Жөндөөлөр</string>
+    <string name="menu_support">Колдоо</string>
+    <string name="menu_help_support">Жардам жана колдоо</string>
+    <string name="menu_about">Колдонмо жөнүндө</string>
+    <string name="menu_admin_panel">Администратор панели</string>
+    <string name="menu_admin_panel_subtitle">Колдонуучулардын кайрылуулары</string>
+    <string name="logout_title">Аккаунттан чыгуу</string>
+    <string name="logout_message">Чыгуугну ырастайсызбы?</string>
+    <string name="about_title">Farme жөнүндө</string>
+    <string name="about_message">🌾 Farme · Санарип Дыйкан\n\nНускасы: 1.0.0\nКыргызстандын агрардык маркетплейси\n\nМал, дан, жашылча жана айыл чарба техникасын сатуу жана сатып алуу.\n\n© 2025 Farme</string>
+
+    <!-- Edit Profile -->
+    <string name="edit_profile_title">Профилди өзгөртүү</string>
+    <string name="error_enter_name">Атыңызды киргизиңиз</string>
+    <string name="profile_saved">Профиль сакталды ✓</string>
+    <string name="error_save">Сактоо катасы</string>
+    <string name="photo_updated">Сүрөт жаңыланды ✓</string>
+    <string name="error_photo_load">Сүрөттү жүктөө катасы</string>
+
+    <!-- Chats -->
+    <string name="search_chats_hint">Чаттарды издөө…</string>
+    <string name="empty_chats_hint">Жарнаманын карточкасынан сатуучуга жазыңыз</string>
+    <string name="chat_message_hint">Билдирүү жазуу…</string>
+
+    <!-- My Listings -->
+    <string name="tab_active">Активдүү</string>
+    <string name="tab_moderation">Модерацияда</string>
+    <string name="tab_archive">Архив</string>
+    <string name="empty_my_listings">Жарнамалар жок</string>
+    <string name="empty_my_listings_hint">«+ Кошуу» баскычын басып биринчи жарнамаңызды түзүңүз</string>
+
+    <!-- Favorites -->
+    <string name="empty_favorites_hint">Жарнамага 🤍 басып бул жерге кошуңуз</string>
+
+    <!-- Notifications -->
+    <string name="btn_mark_all_read">Баарын окулду деп белгилөө</string>
+
+    <!-- Admin Support -->
+    <string name="admin_support_title">Колдонуучулардын кайрылуулары</string>
+    <string name="tab_open">Ачык</string>
+    <string name="tab_answered">Жооп берилген</string>
+    <string name="empty_support_tickets">Ачык кайрылуулар жок</string>
+
+    <!-- Blocklist -->
+    <string name="blocklist_title">Кара тизме</string>
+    <string name="empty_blocklist">Кара тизме бош</string>
+    <string name="empty_blocklist_hint">Бөгөттөлгөн колдонуучулар бул жерде пайда болот</string>
+
+    <!-- Support -->
+    <string name="support_title">Колдоо</string>
+    <string name="support_faq">Жыш берилүүчү суроолор</string>
+    <string name="ticket_title">Кайрылуу</string>
+
+    <!-- Listing Detail -->
+    <string name="added_date_format">Кошулган: %s</string>
+    <string name="passport_verified">✅ Администратор текшерген</string>
+    <string name="passport_pending">⏳ Текшерүү күтүлүүдө</string>
+    <string name="confirm_mark_sold_title">Сатылды деп белгилөө?</string>
+    <string name="confirm_mark_sold_message">Жарнама сатылды деп белгиленип активдүү тизмеден жашырылат.</string>
+    <string name="btn_mark_sold">Сатылды</string>
+    <string name="marked_as_sold">✅ Сатылды деп белгиленди</string>
+    <string name="confirm_archive_message">Жарнама тапшырмадан жашырылат. Улантасызбы?</string>
+    <string name="moved_to_archive">Жарнама архивге жылдырылды</string>
+    <string name="review_published">✅ Пикир жарыяланды</string>
+    <string name="phone_not_specified">Номер көрсөтүлгөн эмес</string>
+    <string name="added_to_favorites">Тандамалдарга кошулду</string>
+    <string name="removed_from_favorites">Тандамалдардан чыгарылды</string>
+    <string name="report_title">Жарнамага арыздануу</string>
+    <string name="report_reason_label">Арыздануу себеби:</string>
+    <string name="report_details_hint">Кошумча маалымат (милдеттүү эмес)</string>
+    <string name="report_sent">Арыз жөнөтүлдү. Рахмат!</string>
+    <string name="error_send">Жөнөтүү катасы</string>
+    <string name="negotiable_short">Сүйлөшүлөт</string>
+    <string name="passport_species">Түрү</string>
+    <string name="passport_breed">Породасы</string>
+    <string name="passport_age">Жашы</string>
+    <string name="passport_sex">Жынысы</string>
+    <string name="passport_count">Баш</string>
+    <string name="passport_vet_cert">Вет. күбөлүк</string>
+    <string name="passport_vet_date">Текшерүү датасы</string>
+    <string name="passport_vaccines">Эмдөөлөр:</string>
+    <string name="btn_leave_review">Пикир калтыруу</string>
+
+    <!-- Seller Profile -->
+    <string name="seller_profile_title">Сатуучунун профили</string>
+    <string name="empty_seller_listings">Жарнамалар жок</string>
+
+    <!-- Create / Edit Listing -->
+    <string name="step_photos">Сүрөттөр</string>
+    <string name="step_about">Товар жөнүндө</string>
+    <string name="step_confirmation">Ырастоо</string>
+    <string name="btn_publish">Жарыялоо</string>
+    <string name="sending">Жөнөтүлүүдө…</string>
+    <string name="listing_submitted">✓ Жарнама модерацияга жөнөтүлдү</string>
+    <string name="edit_listing_title">Жарнаманы өзгөртүү</string>
+    <string name="listing_title_label">Аталышы</string>
+    <string name="error_add_photo">Жок дегенде бир сүрөт кошуңуз</string>
+    <string name="error_select_category">Категорияны тандаңыз</string>
+    <string name="error_select_subcategory">Подкатегорияны тандаңыз</string>
+    <string name="error_enter_quantity">Башынын санын киргизиңиз</string>
+    <string name="error_gender_count_format">Эркек + ургаачы %d болушу керек</string>
+    <string name="error_arashan_chip_required">Арашан — чип милдеттүү (15 сан)</string>
+    <string name="error_chip_format">Чип — так 15 сан</string>
+    <string name="error_enter_poultry_count">Канаттуулардын санын киргизиңиз</string>
+    <string name="error_enter_weight">Көлөм/салмакты киргизиңиз</string>
+    <string name="error_enter_milk_volume">Литр менен көлөмдү киргизиңиз</string>
+    <string name="error_title_too_short">Аталыш кеминде 3 белги болушу керек</string>
+    <string name="error_invalid_price">Туура бааны киргизиңиз</string>
+    <string name="detecting_location">Аныктоодо…</string>
+    <string name="error_location_failed">Аныктоо мүмкүн болгон жок</string>
+    <string name="error_gps_disabled">GPS\'ти күйгүзүп кайталаңыз</string>
+    <string name="error_gps">GPS катасы</string>
+    <string name="error_max_photos">Максимум 5 сүрөт</string>
+    <string name="btn_hide_details">— Деталдарды жашыруу</string>
+    <string name="btn_show_details">+ Кошумча маалымат (милдеттүү эмес)</string>
+    <string name="price_negotiable_label">Сүйлөшүлөт</string>
+    <string name="badge_main_photo">Негизги</string>
+    <string name="unit_heads">баш</string>
+    <string name="unit_photos">сүрөт</string>
+    <string name="vaccinated">эмдөлгөн</string>
+    <string name="passport_age_years">Жашы (жыл)</string>
+    <string name="passport_count_label">Башынын саны</string>
+
+    <!-- Sales -->
+    <string name="sales_title">Сатуулар</string>
+    <string name="empty_sales">Сатуулар азырынча жок</string>
+    <string name="empty_sales_hint">Жарнаманы сатылды деп белгилеңиз</string>
+
+    <!-- Reviews -->
+    <string name="reviews_title">Пикирлер</string>
+    <string name="empty_reviews">Пикирлер азырынча жок</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Жөндөөлөр</string>
+    <string name="settings_section_appearance">КОО СЫРТКЫ БЕТ</string>
+    <string name="settings_dark_theme">Күңүрт тема</string>
+    <string name="settings_section_region">АЙМАК</string>
+    <string name="settings_currency">Валюта</string>
+    <string name="settings_section_notifications">БИЛДИРМЕЛЕР</string>
+    <string name="settings_new_messages">Жаңы билдирүүлөр</string>
+    <string name="settings_price_changes">Тандамалдардагы баа өзгөрүүлөрү</string>
+    <string name="settings_section_privacy">КУПУЯЛЫК</string>
+    <string name="settings_blacklist">Кара тизме</string>
+
+    <!-- Extra strings for Java code -->
+    <string name="action_delete">Өчүрүү</string>
+    <string name="notif_all_read">Баары окулду деп белгиленди</string>
+    <string name="error_enter_message">Билдирүү жазыңыз</string>
+    <string name="ticket_sent">Кайрылуу жөнөтүлдү! 24 саат ичинде жооп беребиз.</string>
+    <string name="ticket_status_answered">Жооп берилди</string>
+    <string name="ticket_status_pending">Жооп күтүлүүдө</string>
+    <string name="support_admin_reply">🛡 Колдоо жообу</string>
+    <string name="error_enter_last_name">Фамилияңызды киргизиңиз</string>
+    <string name="account_created">Аккаунт түзүлдү!</string>
+    <string name="account_created_email">Аккаунт түзүлдү! Тастыктоо үчүн emailди текшериңиз</string>
+    <string name="error_session_lost">Сессия бүттү. Кайра аракет кылыңыз</string>
+    <string name="error_registration">Каттоо катасы</string>
+    <string name="error_email_in_use">Бул email буга чейин колдонулуп жатат</string>
+    <string name="error_email_not_found">Мындай emailди колдонгон колдонуучу табылган жок</string>
+    <string name="error_network_short">Тармак катасы</string>
+    <string name="select_currency">Валюта тандаңыз</string>
+    <string name="action_unblock">Бузуу</string>
+    <string name="user_unblocked">Колдонуучу бузулду</string>
+    <string name="user_blocked">Колдонуучу бөгөлдү</string>
+    <string name="block_user_title">Колдонуучуну бөгөттөйбүзбү?</string>
+    <string name="block_user_message">Анын жарнамалары менен билдирүүлөрүн көрбөйсүз.</string>
+    <string name="action_block">Бөгөттөө</string>
+    <string name="report_user_title">Колдонуучуга даттануу</string>
+    <string name="error_login_required">Аккаунтка кириңиз</string>
+    <string name="error_own_review">Өзүңүзгө пикир калтыра албайсыз</string>
+    <string name="error_select_rating">Баалоону тандаңыз</string>
+    <string name="error_select_reason">Себебин тандаңыз</string>
+    <string name="admin_reply_sent">Жооп жөнөтүлдү</string>
+    <string name="code_resent">Код кайра жөнөтүлдү</string>
+    <string name="clear_favorites_title">Тандамалдарды тазалоо</string>
+    <string name="clear_favorites_message">Сакталган бардык жарнамаларды жок кылуу?</string>
+    <string name="admin_reply_btn">Жооп жөнөтүү</string>
+    <string name="btn_close">Жабуу</string>
+    <string name="feature_coming_soon">Жарнама жакында пайда болот!</string>
+    <string name="error_access_denied">Жетки жок</string>
+    <string name="error_enter_title">Аталышын киргизиңиз</string>
+    <string name="listing_updated">✅ Жарыялама жаңыртылды жана модерацияга жиберилди</string>
+    <string name="error_already_reviewed">Сиз бул сатуучуга мурунтан эле баа бердиңиз</string>
+    <string name="review_sent">✅ Баа жөнөтүлдү!</string>
+
+    <!-- Titles & placeholders -->
+    <string name="messages_title">Билдирүүлөр</string>
+    <string name="status_online">Онлайн</string>
+
+    <!-- Seller Profile buttons/tabs -->
+    <string name="btn_write_seller">💬 Жазуу</string>
+    <string name="btn_call_seller">📞 Чалуу</string>
+    <string name="btn_block_seller">🚫 Бөгөттөө</string>
+    <string name="btn_report_seller">⚠️ Арыздануу</string>
+    <string name="tab_seller_listings">📋 Жарналар</string>
+    <string name="tab_seller_reviews">⭐ Баалар</string>
+
+    <!-- Support screen -->
+    <string name="support_write_title">💬  Колдоо кызматына жазуу</string>
+    <string name="support_form_hint">Жооп таба алган жоксузбу? Маселеңизди сүрөттөңүз — 24 саат ичинде жооп беребиз</string>
+    <string name="support_topic_label">Тема</string>
+    <string name="support_message_hint">Маселеңизди толук сүрөттөңүз...</string>
+    <string name="support_send_btn">Өтүнүч жөнөтүү</string>
+    <string name="support_my_tickets">Менин өтүнүчтөрүм</string>
+
+    <!-- My Listings -->
+    <string name="btn_add_listing">+ Кошуу</string>
+
+    <!-- Settings extra -->
+    <string name="settings_push_notifications">Push-билдирмелер</string>
+
+    <!-- Edit Profile -->
+    <string name="btn_change_photo">📷 Сүрөттү өзгөртүү</string>
+
+    <!-- Auth / OTP / Complete Profile -->
+    <string name="step_2_of_2">2-кадам 2дан</string>
+    <string name="hint_create_password">Сырсөз ойлоп табыңыз</string>
+    <string name="hint_repeat_password">Сырсөздү кайталаңыз</string>
+    <string name="email_address_label">Email дарек</string>
+    <string name="hint_enter_password">Сырсөздү киргизиңиз</string>
+    <string name="security_badge">🔒 Firebase Authentication менен корголгон</string>
+    <string name="otp_resend_prefix">Жаңы код алуу </string>
+
+    <!-- Listing Detail -->
+    <string name="sold_badge">✅ САТЫЛДЫ</string>
+    <string name="mark_sold_btn_label">✅  Сатылган деп белгилөө</string>
+    <string name="passport_title">🛡️ Санарип паспорт</string>
+    <string name="location_label">📍 Жайгашуу</string>
+    <string name="review_already_left">✅  Сиз мурунтан эле баа калтырдыңыз</string>
+
+    <!-- Edit Listing extra -->
+    <string name="passport_animal_title">📋 Малдын паспорту</string>
+    <string name="passport_vet_cert_no_label">Вет. күбөлүктүн номери</string>
+    <string name="passport_vet_date_label">Вет. кароонун датасы</string>
+    <string name="warning_remoderation">⚠️ Сактагандан кийин жарыялама кайрадан модерацияга жиберилет</string>
+
+    <!-- Dialog Review -->
+    <string name="dialog_leave_review_title">Баа калтыруу</string>
+    <string name="dialog_rate_seller">Сатуучуну баалаңыз</string>
+    <string name="dialog_tap_star">Жылдызды басыңыз</string>
+    <string name="dialog_comment_label">Комментарий</string>
+    <string name="dialog_review_hint">Бул сатуучу менен тажрыйбаңыз жөнүндө айтыңыз...</string>
+    <string name="btn_cancel">Жокко чыгаруу</string>
+    <string name="btn_send">Жөнөтүү</string>
+
+    <!-- Dialog Reject -->
+    <string name="dialog_reject_title">❌ Четтетүү себеби</string>
+    <string name="dialog_reject_prompt">Себепти тандаңыз:</string>
+    <string name="reason_invalid_docs">📄  Жарыксыз документтер</string>
+    <string name="reason_fake_info">⚠️  Туура эмес маалымат</string>
+    <string name="reason_no_vet_cert">🏥  Вет. күбөлүк жок</string>
+    <string name="reason_other">✏️  Башка себеп</string>
+    <string name="dialog_reject_hint">Себепти сүрөттөңүз...</string>
+    <string name="btn_reject">Четтетүү</string>
+
+    <!-- Search Fragment -->
+    <string name="nav_search">Издөө</string>
+    <string name="empty_nothing_found">Эч нерсе табылган жок</string>
+    <string name="hint_try_other_query">Башка суроону же категорияны колдонуп көрүңүз</string>
+
+    <!-- Favorites Fragment -->
+    <string name="btn_browse_listings">Жарыяламаларды карап чыгуу</string>
+
+    <!-- Empty State View -->
+    <string name="empty_state_hint">Чыпкаларды же издөөнү өзгөртүп көрүңүз</string>
+    <string name="btn_add_listing_full">Жарыялама кошуу</string>
+
+    <!-- Admin item_report -->
+    <string name="btn_open_item">👁 Ачуу</string>
+    <string name="btn_dismiss">Алып салуу</string>
+    <string name="btn_delete">Өчүрүү</string>
+    <string name="btn_ban">🚫 Бан</string>
+
+    <!-- Admin item_pending -->
+    <string name="badge_new">Жаңы</string>
+    <string name="btn_view_item">👁 Карап чыгуу</string>
+    <string name="btn_approve">✓ Кабыл алуу</string>
+
+    <!-- Profile Activity -->
+    <string name="stat_listings_count_label">жарыялама</string>
+    <string name="stat_reviews_count_label">пикир</string>
+    <string name="banner_promote_title">Жарыяламаны жылдыруу</string>
+    <string name="banner_promote_subtitle">Көбүрөөк көрүүлөр • 99 сомдон/апта</string>
+    <string name="menu_my_reviews">Менин пикирлерим</string>
+    <string name="menu_verify_profile">Профилди текшерүү</string>
+    <string name="menu_verify_hint">Ишеним • +30% көрүүлөр</string>
+    <string name="menu_help">Жардам жана колдоо</string>
+
+    <!-- Filter Bottom Sheet -->
+    <string name="filter_title">Чыпкалар жана иреттөө</string>
+    <string name="filter_reset">Баштапкы</string>
+    <string name="sort_label">Иреттөө</string>
+    <string name="sort_newest">Жаңыдан эскиге</string>
+    <string name="sort_oldest">Эскиден жаңыга</string>
+    <string name="sort_price_asc">Баа ↑</string>
+    <string name="sort_price_desc">Баа ↓</string>
+    <string name="price_range_label">Баа диапазону</string>
+    <string name="hint_from">Дан</string>
+    <string name="hint_to">Чейин</string>
+    <string name="filter_extras_label">Кошумча</string>
+    <string name="filter_passport_only">Паспорт менен гана</string>
+    <string name="filter_passport_only_hint">Паспорт администратор тарабынан текшерилген</string>
+    <string name="filter_negotiable">Баасы сүйлөшүлөт</string>
+    <string name="filter_negotiable_hint">Сатуучу сүйлөшүүгө даяр</string>
+    <string name="btn_apply_filters">Чыпкаларды колдонуу</string>
+
+    <!-- Create Listing -->
+    <string name="step1_title">Сүрөттөрдү кошуңуз</string>
+    <string name="step1_subtitle">1ден 5ке чейин сүрөт. Биринчиси башкы болот</string>
+    <string name="btn_select_photos">Сүрөттөрдү тандоо</string>
+    <string name="tip_quality_photos">Сапаттуу сүрөттөр сатуу мүмкүнчүлүгүн 3 эсеге арттырат</string>
+    <string name="step2_title">Товар жөнүндө</string>
+    <string name="step2_subtitle">Категорияны тандап, чоо-жайын толтуруңуз</string>
+    <string name="label_category_required">Категория *</string>
+    <string name="label_subcategory_required">Ички категория *</string>
+    <string name="hint_arash_chip_required">⚠️  Арашан тукуму — чипинин номери милдеттүү</string>
+    <string name="label_count_required">Малдын саны *</string>
+    <string name="label_weight_kg">Салмак (кг)</string>
+    <string name="label_color">Түс / масть</string>
+    <string name="label_herd_composition">Жылкы курамы</string>
+    <string name="label_males">♂ Эркек</string>
+    <string name="label_females">♀ Ургаачы</string>
+    <string name="error_gender_count">⚠️  Эркек жана ургаачынын суммасы жалпы санга барабар болушу керек</string>
+    <string name="label_vaccinations">Эмдөөлөр</string>
+    <string name="option_yes">Бар</string>
+    <string name="option_no">Жок</string>
+    <string name="label_chip_number">Чип номери</string>
+    <string name="hint_chip_required_for_arash">Арашан үчүн милдеттүү</string>
+    <string name="error_chip_length">⚠️  Чип номери так 15 цифрадан турушу керек</string>
+    <string name="label_vet_cert_no_full">Вет. күбөлүктүн №</string>
+    <string name="label_vet_exam_date">Ветеринардык кароонун датасы</string>
+    <string name="hint_group_no_docs">Чип жана вет паспорт ар бир мал үчүн өзүнчө көрсөтүлөт — топ менен сатканда бул талаалар толтурулбайт</string>
+    <string name="label_poultry_count">Саны (голов) *</string>
+    <string name="label_age_months">Жашы (ай)</string>
+    <string name="label_volume_weight">Көлөм / салмак (кг) *</string>
+    <string name="label_sort_type">Сорт / түрү</string>
+    <string name="label_harvest_year">Жыйын жылы</string>
+    <string name="label_volume_liters">Көлөм (литр) *</string>
+    <string name="label_fat_pct">Майлуулук (%)</string>
+    <string name="label_brand_model">Маркасы / модели</string>
+    <string name="label_year_made">Чыгарылган жылы</string>
+    <string name="label_experience_years">Иш тажрыйбасы (жыл)</string>
+    <string name="label_listing_title_required">Жарыялама аталышы *</string>
+    <string name="label_price_required">Баасы *</string>
+    <string name="label_negotiable_checkbox">Баасы сүйлөшүлөт</string>
+    <string name="label_region_required">Аймак *</string>
+    <string name="label_exact_location">Так жайгашуу</string>
+    <string name="hint_location_visible">Сатып алуучулар картадан жайгашуу ордуңузду көрөт</string>
+    <string name="btn_detect_location">Жайгашуу орду аныктоо</string>
+    <string name="step3_title">Баары даяр!</string>
+    <string name="step3_subtitle">Маалыматтарды текшерип жарыялаңыз</string>
+    <string name="preview_label">📋 Алдын ала кароо</string>
+    <string name="hint_moderation_wait">Жарыялама администратор бекиткенден кийин пайда болот (1–2 саат)</string>
+    <string name="btn_prev_nav">‹ Артка</string>
+    <string name="label_age">Жашы</string>
+    <string name="map_listings_title">Жарыяламалар картасы</string>
+    <string name="btn_show_all">Баары →</string>
+</resources>

@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingHorizontal="12dp">
+        <TextView
+            android:id="@+id/btnBack"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="‹"
+            android:textSize="28sp"
+            android:textColor="#111827"
+            android:clickable="true"
+            android:focusable="true"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/step_2_of_2"
+            android:textSize="13sp"
+            android:textColor="#9CA3AF"
+            android:layout_marginStart="8dp"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:scrollbars="none"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="8dp"
+            android:paddingBottom="40dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/complete_registration_title"
+                android:textSize="24sp"
+                android:textColor="#111827"
+                android:textStyle="bold"
+                android:layout_marginBottom="6dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/complete_registration_subtitle"
+                android:textSize="14sp"
+                android:textColor="#6B7280"
+                android:layout_marginBottom="28dp"/>
+
+            <!-- Имя -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/field_name"
+                android:textSize="12sp"
+                android:textColor="#374151"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+            <EditText
+                android:id="@+id/etFirstName"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="Азамат"
+                android:textColorHint="#9CA3AF"
+                android:textSize="15sp"
+                android:textColor="#111827"
+                android:inputType="textPersonName|textCapWords"
+                android:background="@drawable/bg_input_premium"
+                android:paddingHorizontal="16dp"
+                android:singleLine="true"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Фамилия -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/field_last_name"
+                android:textSize="12sp"
+                android:textColor="#374151"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+            <EditText
+                android:id="@+id/etLastName"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:hint="Осмонов"
+                android:textColorHint="#9CA3AF"
+                android:textSize="15sp"
+                android:textColor="#111827"
+                android:inputType="textPersonName|textCapWords"
+                android:background="@drawable/bg_input_premium"
+                android:paddingHorizontal="16dp"
+                android:singleLine="true"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Регион -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/field_region"
+                android:textSize="12sp"
+                android:textColor="#374151"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+            <Spinner
+                android:id="@+id/spinnerRegion"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/bg_input_premium"
+                android:paddingHorizontal="16dp"
+                android:layout_marginBottom="16dp"/>
+
+            <!-- Пароль (только для phone-регистрации) -->
+            <LinearLayout
+                android:id="@+id/passwordGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/field_password"
+                    android:textSize="12sp"
+                    android:textColor="#374151"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp">
+                    <EditText
+                        android:id="@+id/etPassword"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:hint="@string/hint_create_password"
+                        android:textColorHint="#9CA3AF"
+                        android:textSize="15sp"
+                        android:textColor="#111827"
+                        android:inputType="textPassword"
+                        android:background="@drawable/bg_input_premium"
+                        android:paddingStart="16dp"
+                        android:paddingEnd="50dp"
+                        android:singleLine="true"/>
+                    <TextView
+                        android:id="@+id/btnTogglePass"
+                        android:layout_width="48dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="end"
+                        android:gravity="center"
+                        android:text="👁"
+                        android:textSize="18sp"
+                        android:clickable="true"
+                        android:focusable="true"/>
+                </FrameLayout>
+            </LinearLayout>
+
+            <!-- Подтверждение пароля -->
+            <LinearLayout
+                android:id="@+id/confirmPasswordGroup"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/field_confirm_password"
+                    android:textSize="12sp"
+                    android:textColor="#374151"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="8dp"/>
+
+                <EditText
+                    android:id="@+id/etConfirmPassword"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:hint="@string/hint_repeat_password"
+                    android:textColorHint="#9CA3AF"
+                    android:textSize="15sp"
+                    android:textColor="#111827"
+                    android:inputType="textPassword"
+                    android:background="@drawable/bg_input_premium"
+                    android:paddingHorizontal="16dp"
+                    android:singleLine="true"/>
+            </LinearLayout>
+
+            <!-- Согласие -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="top"
+                android:layout_marginBottom="24dp">
+                <CheckBox
+                    android:id="@+id/cbTerms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:buttonTint="#27AE60"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/terms_accept"
+                    android:textSize="12sp"
+                    android:textColor="#6B7280"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginTop="2dp"
+                    android:lineSpacingMultiplier="1.3"/>
+            </LinearLayout>
+
+            <!-- Кнопка завершить -->
+            <LinearLayout
+                android:id="@+id/btnComplete"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:background="@drawable/bg_btn_primary_premium"
+                android:elevation="2dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ProgressBar
+                    android:id="@+id/pbComplete"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:indeterminateTint="#FFFFFF"
+                    android:layout_marginEnd="10dp"
+                    android:visibility="gone"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/create_account"
+                    android:textSize="16sp"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvCompleteError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:textColor="#DC2626"
+                android:gravity="center"
+                android:layout_marginTop="12dp"
+                android:visibility="gone"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

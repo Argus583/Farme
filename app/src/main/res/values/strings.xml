@@ -1,0 +1,534 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Farme</string>
+    <string name="app_tagline">Санарип Дыйкан</string>
+
+    <!-- Auth -->
+    <string name="login">Войти</string>
+    <string name="register">Регистрация</string>
+    <string name="phone">Номер телефона</string>
+    <string name="password">Пароль</string>
+    <string name="name_surname">Имя и фамилия</string>
+    <string name="select_region">Выберите регион</string>
+    <string name="create_account">Создать аккаунт</string>
+    <string name="error_empty_fields">Заполните все поля</string>
+    <string name="error_invalid_phone">Неверный формат телефона (+996XXXXXXXXX)</string>
+    <string name="error_short_password">Пароль должен быть не менее 6 символов</string>
+    <string name="error_passwords_match">Пароли не совпадают</string>
+    <string name="error_accept_terms">Примите условия использования</string>
+
+    <!-- Navigation -->
+    <string name="nav_home">Главная</string>
+    <string name="nav_map">Карта</string>
+    <string name="nav_create">Создать</string>
+    <string name="nav_chats">Чаты</string>
+    <string name="nav_profile">Профиль</string>
+
+    <!-- Listings -->
+    <string name="listing_new">Новые объявления</string>
+    <string name="listing_history">История просмотров</string>
+    <string name="listing_create">Разместить объявление</string>
+    <string name="listing_price">Цена (сом)</string>
+    <string name="listing_negotiable">Торг уместен</string>
+    <string name="listing_category">Категория</string>
+    <string name="listing_region">Регион</string>
+    <string name="listing_description">Описание</string>
+    <string name="listing_photos">Фотографии</string>
+    <string name="listing_verified">Паспорт проверен</string>
+
+    <!-- Categories -->
+    <string name="cat_livestock">Скот</string>
+    <string name="cat_grain">Зерно</string>
+    <string name="cat_vegetables">Овощи</string>
+    <string name="cat_fruits">Фрукты</string>
+    <string name="cat_dairy">Молоко</string>
+    <string name="cat_poultry">Птица</string>
+    <string name="cat_feed">Корма</string>
+    <string name="cat_equipment">Техника</string>
+    <string name="cat_services">Услуги</string>
+
+    <!-- Regions -->
+    <string-array name="regions">
+        <item>Все регионы</item>
+        <item>Чуйская область</item>
+        <item>Иссык-Кульская область</item>
+        <item>Ошская область</item>
+        <item>Джалал-Абадская область</item>
+        <item>Нарынская область</item>
+        <item>Баткенская область</item>
+        <item>Таласская область</item>
+        <item>г. Бишкек</item>
+        <item>г. Ош</item>
+    </string-array>
+
+    <!-- Status -->
+    <string name="status_pending">На модерации</string>
+    <string name="status_active">Активно</string>
+    <string name="status_rejected">Отклонено</string>
+    <string name="status_archived">В архиве</string>
+
+    <!-- Actions -->
+    <string name="action_call">Позвонить</string>
+    <string name="action_message">Написать</string>
+    <string name="action_edit">Редактировать</string>
+    <string name="action_archive">В архив</string>
+    <string name="action_share">Поделиться</string>
+    <string name="action_report">Пожаловаться</string>
+    <string name="action_logout">Выйти</string>
+    <string name="action_save">Сохранить</string>
+    <string name="action_cancel">Отмена</string>
+    <string name="action_apply">Применить</string>
+    <string name="action_reset">Сбросить</string>
+
+    <!-- Empty states -->
+    <string name="empty_listings">Объявлений пока нет</string>
+    <string name="empty_chats">Нет переписок</string>
+    <string name="empty_favorites">Нет избранных</string>
+    <string name="empty_notifications">Уведомлений нет</string>
+    <string name="empty_history">История просмотров пуста</string>
+
+    <!-- Errors -->
+    <string name="error_loading">Ошибка загрузки</string>
+    <string name="error_network">Проверьте подключение к интернету</string>
+    <string name="error_try_again">Попробуйте снова</string>
+
+    <!-- Home screen -->
+    <string name="history_cleared">История очищена</string>
+    <string name="search_hint">Скот, урожай, техника…</string>
+    <string name="action_filter">Фильтр</string>
+    <string name="action_clear">Очистить</string>
+    <string name="section_history">🕐 История просмотров</string>
+    <string name="empty_listings_not_found">Объявлений не найдено</string>
+    <string name="hint_change_filters">Попробуйте изменить фильтры</string>
+
+    <!-- Navigation bar -->
+    <string name="nav_map_label">Карта</string>
+
+    <!-- Common UI -->
+    <string name="btn_skip">Пропустить</string>
+    <string name="btn_next">Далее</string>
+    <string name="btn_continue">Продолжить</string>
+    <string name="btn_confirm">Подтвердить</string>
+    <string name="btn_send_link">Отправить ссылку</string>
+    <string name="loading">Загрузка…</string>
+    <string name="unknown">Неизвестно</string>
+    <string name="no_messages">Нет сообщений</string>
+    <string name="action_send">Отправить</string>
+    <string name="share_dialog_title">Поделиться</string>
+
+    <!-- Auth -->
+    <string name="welcome">Добро пожаловать</string>
+    <string name="login_subtitle">Войдите в свой аккаунт</string>
+    <string name="btn_get_code">Получить код</string>
+    <string name="create_account_title">Создайте аккаунт</string>
+    <string name="verify_phone_subtitle">Подтвердите номер телефона</string>
+    <string name="register_email_subtitle">Введите email для регистрации</string>
+    <string name="phone_verification_hint">🔒 Мы отправим SMS с кодом подтверждения</string>
+    <string name="email_verification_hint">📧 На email придёт письмо для подтверждения</string>
+    <string name="error_enter_phone">Введите номер телефона</string>
+    <string name="error_invalid_phone_number">Неверный формат номера</string>
+    <string name="error_enter_email">Введите email</string>
+    <string name="error_invalid_email">Неверный формат email</string>
+    <string name="error_wrong_credentials">Неверный email или пароль</string>
+    <string name="error_account_banned">Аккаунт заблокирован. Обратитесь в поддержку.</string>
+    <string name="select_country">Выберите страну</string>
+    <string name="method_phone">Телефон</string>
+    <string name="forgot_password_short">Забыли?</string>
+    <string name="remember_me">Запомнить меня</string>
+    <string name="forgot_password_title">Восстановление пароля</string>
+    <string name="forgot_password_subtitle">Введите email — мы отправим ссылку для сброса пароля</string>
+    <string name="email_sent">Письмо отправлено!</string>
+    <string name="email_sent_hint">Проверьте почту и перейдите по ссылке для сброса пароля</string>
+
+    <!-- OTP -->
+    <string name="otp_title">Подтверждение номера</string>
+    <string name="otp_subtitle">Мы отправили SMS с кодом на номер</string>
+    <string name="btn_change_number">Изменить номер</string>
+    <string name="btn_resend_code">Отправить код повторно</string>
+    <string name="otp_not_received_hint">Не получили SMS? Проверьте номер или попробуйте позже</string>
+
+    <!-- Complete Profile -->
+    <string name="complete_registration_title">Завершите регистрацию</string>
+    <string name="complete_registration_subtitle">Расскажите немного о себе</string>
+    <string name="field_name">Имя</string>
+    <string name="field_last_name">Фамилия</string>
+    <string name="field_region">Регион</string>
+    <string name="field_password">Пароль (мин. 6 символов)</string>
+    <string name="field_confirm_password">Подтвердите пароль</string>
+    <string name="terms_accept">Я согласен с условиями использования и политикой конфиденциальности</string>
+    <string name="phone_cannot_change">Номер телефона нельзя изменить</string>
+
+    <!-- Profile -->
+    <string name="user_no_name">Без имени</string>
+    <string name="reviews_count_format">(%d отзывов)</string>
+    <string name="stat_listings_label">Объявлений</string>
+    <string name="stat_sold_label">Продано</string>
+    <string name="stat_reviews_label">Отзывов</string>
+    <string name="stat_listings_short">Объявл.</string>
+    <string name="stat_rating_label">Рейтинг</string>
+    <string name="btn_edit_profile">Редактировать профиль</string>
+    <string name="btn_logout_account">Выйти из аккаунта</string>
+    <string name="app_footer">Farme · Санарип Дыйкан</string>
+    <string name="menu_my_listings">Мои объявления</string>
+    <string name="menu_favorites">Избранное</string>
+    <string name="menu_reviews_about_me">Отзывы обо мне</string>
+    <string name="menu_my_reviews">Мои отзывы</string>
+    <string name="menu_notifications">Уведомления</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_support">Поддержка</string>
+    <string name="menu_help_support">Помощь и поддержка</string>
+    <string name="menu_about">О приложении</string>
+    <string name="menu_admin_panel">Панель администратора</string>
+    <string name="menu_admin_panel_subtitle">Обращения пользователей</string>
+    <string name="logout_title">Выход из аккаунта</string>
+    <string name="logout_message">Вы уверены, что хотите выйти?</string>
+    <string name="about_title">О приложении Farme</string>
+    <string name="about_message">🌾 Farme · Санарип Дыйкан\n\nВерсия: 1.0.0\nАграрный маркетплейс Кыргызстана\n\nПлощадка для продажи и покупки скота, зерна, овощей и сельхозтехники.\n\n© 2025 Farme</string>
+
+    <!-- Edit Profile -->
+    <string name="edit_profile_title">Редактировать профиль</string>
+    <string name="error_enter_name">Введите имя</string>
+    <string name="profile_saved">Профиль сохранён ✓</string>
+    <string name="error_save">Ошибка сохранения</string>
+    <string name="photo_updated">Фото обновлено ✓</string>
+    <string name="error_photo_load">Ошибка загрузки фото</string>
+
+    <!-- Chats -->
+    <string name="search_chats_hint">Поиск по чатам…</string>
+    <string name="empty_chats_hint">Напишите продавцу из карточки объявления</string>
+    <string name="chat_message_hint">Написать сообщение…</string>
+
+    <!-- My Listings -->
+    <string name="tab_active">Активные</string>
+    <string name="tab_moderation">Модерация</string>
+    <string name="tab_archive">Архив</string>
+    <string name="empty_my_listings">Объявлений нет</string>
+    <string name="empty_my_listings_hint">Нажмите «+ Добавить», чтобы создать первое объявление</string>
+
+    <!-- Favorites -->
+    <string name="empty_favorites_hint">Нажмите 🤍 на объявлении, чтобы добавить его сюда</string>
+
+    <!-- Notifications -->
+    <string name="btn_mark_all_read">Все прочитаны</string>
+
+    <!-- Admin Support -->
+    <string name="admin_support_title">Обращения пользователей</string>
+    <string name="tab_open">Открытые</string>
+    <string name="tab_answered">Отвеченные</string>
+    <string name="empty_support_tickets">Нет открытых обращений</string>
+
+    <!-- Blocklist -->
+    <string name="blocklist_title">Чёрный список</string>
+    <string name="empty_blocklist">Чёрный список пуст</string>
+    <string name="empty_blocklist_hint">Заблокированные пользователи появятся здесь</string>
+
+    <!-- Support -->
+    <string name="support_title">Поддержка</string>
+    <string name="support_faq">Частые вопросы</string>
+    <string name="ticket_title">Обращение</string>
+
+    <!-- Listing Detail -->
+    <string name="added_date_format">Добавлено: %s</string>
+    <string name="passport_verified">✅ Проверено администратором</string>
+    <string name="passport_pending">⏳ Ожидает проверки</string>
+    <string name="confirm_mark_sold_title">Отметить как продано?</string>
+    <string name="confirm_mark_sold_message">Объявление будет помечено как проданное и скрыто из активных.</string>
+    <string name="btn_mark_sold">Продано</string>
+    <string name="marked_as_sold">✅ Отмечено как продано</string>
+    <string name="confirm_archive_message">Объявление будет скрыто из ленты. Продолжить?</string>
+    <string name="moved_to_archive">Объявление перемещено в архив</string>
+    <string name="review_published">✅ Отзыв опубликован</string>
+    <string name="phone_not_specified">Номер не указан</string>
+    <string name="added_to_favorites">Добавлено в избранное</string>
+    <string name="removed_from_favorites">Удалено из избранного</string>
+    <string name="report_title">Пожаловаться на объявление</string>
+    <string name="report_reason_label">Причина жалобы:</string>
+    <string name="report_details_hint">Дополнительные сведения (необязательно)</string>
+    <string name="report_sent">Жалоба отправлена. Спасибо!</string>
+    <string name="error_send">Ошибка отправки</string>
+    <string name="negotiable_short">Торг</string>
+    <string name="passport_species">Вид</string>
+    <string name="passport_breed">Порода</string>
+    <string name="passport_age">Возраст</string>
+    <string name="passport_sex">Пол</string>
+    <string name="passport_count">Голов</string>
+    <string name="passport_vet_cert">Вет. свидетельство</string>
+    <string name="passport_vet_date">Дата осмотра</string>
+    <string name="passport_vaccines">Прививки:</string>
+    <string name="btn_leave_review">Оставить отзыв о продавце</string>
+
+    <!-- Seller Profile -->
+    <string name="seller_profile_title">Профиль продавца</string>
+    <string name="empty_seller_listings">Нет объявлений</string>
+
+    <!-- Create / Edit Listing -->
+    <string name="step_photos">Фотографии</string>
+    <string name="step_about">О товаре</string>
+    <string name="step_confirmation">Подтверждение</string>
+    <string name="btn_publish">Опубликовать</string>
+    <string name="sending">Отправка…</string>
+    <string name="listing_submitted">✓ Объявление отправлено на модерацию</string>
+    <string name="edit_listing_title">Редактировать объявление</string>
+    <string name="listing_title_label">Название</string>
+    <string name="error_add_photo">Добавьте хотя бы одну фотографию</string>
+    <string name="error_select_category">Выберите категорию</string>
+    <string name="error_select_subcategory">Выберите подкатегорию</string>
+    <string name="error_enter_quantity">Введите количество голов</string>
+    <string name="error_gender_count_format">Самцов + самок должно быть %d</string>
+    <string name="error_arashan_chip_required">Арашан — обязателен чип (15 цифр)</string>
+    <string name="error_chip_format">Чип — ровно 15 цифр</string>
+    <string name="error_enter_poultry_count">Введите количество птицы</string>
+    <string name="error_enter_weight">Введите объём/вес</string>
+    <string name="error_enter_milk_volume">Введите объём в литрах</string>
+    <string name="error_title_too_short">Заголовок минимум 3 символа</string>
+    <string name="error_invalid_price">Введите корректную цену</string>
+    <string name="detecting_location">Определяем…</string>
+    <string name="error_location_failed">Не удалось определить</string>
+    <string name="error_gps_disabled">Включите GPS и попробуйте снова</string>
+    <string name="error_gps">Ошибка GPS</string>
+    <string name="error_max_photos">Максимум 5 фотографий</string>
+    <string name="btn_hide_details">— Скрыть детали</string>
+    <string name="btn_show_details">+ Подробнее о товаре (необязательно)</string>
+    <string name="price_negotiable_label">Договорная</string>
+    <string name="badge_main_photo">Главное</string>
+    <string name="unit_heads">гол.</string>
+    <string name="unit_photos">фото</string>
+    <string name="vaccinated">привит</string>
+    <string name="passport_age_years">Возраст (лет)</string>
+    <string name="passport_count_label">Кол-во голов</string>
+
+    <!-- Sales -->
+    <string name="sales_title">Продажи</string>
+    <string name="empty_sales">Продаж пока нет</string>
+    <string name="empty_sales_hint">Пометьте объявление как проданное</string>
+
+    <!-- Reviews -->
+    <string name="reviews_title">Отзывы</string>
+    <string name="empty_reviews">Отзывов пока нет</string>
+
+    <!-- Settings -->
+    <string name="settings_title">Настройки</string>
+    <string name="settings_section_appearance">ВНЕШНИЙ ВИД</string>
+    <string name="settings_dark_theme">Тёмная тема</string>
+    <string name="settings_section_region">РЕГИОН</string>
+    <string name="settings_currency">Валюта</string>
+    <string name="settings_section_notifications">УВЕДОМЛЕНИЯ</string>
+    <string name="settings_new_messages">Новые сообщения</string>
+    <string name="settings_price_changes">Изменение цен в избранном</string>
+    <string name="settings_section_privacy">ПРИВАТНОСТЬ</string>
+    <string name="settings_blacklist">Чёрный список</string>
+
+    <!-- Extra strings for Java code -->
+    <string name="action_delete">Удалить</string>
+    <string name="notif_all_read">Все отмечены прочитанными</string>
+    <string name="error_enter_message">Напишите сообщение</string>
+    <string name="ticket_sent">Обращение отправлено! Ответим в течение 24 часов.</string>
+    <string name="ticket_status_answered">Отвечено</string>
+    <string name="ticket_status_pending">Ожидает ответа</string>
+    <string name="support_admin_reply">🛡 Ответ поддержки</string>
+    <string name="error_enter_last_name">Введите фамилию</string>
+    <string name="account_created">Аккаунт создан!</string>
+    <string name="account_created_email">Аккаунт создан! Проверьте email для подтверждения</string>
+    <string name="error_session_lost">Сессия потеряна. Попробуйте снова</string>
+    <string name="error_registration">Ошибка регистрации</string>
+    <string name="error_email_in_use">Этот email уже используется</string>
+    <string name="error_email_not_found">Пользователь с таким email не найден</string>
+    <string name="error_network_short">Ошибка сети</string>
+    <string name="select_currency">Выберите валюту</string>
+    <string name="action_unblock">Разблокировать</string>
+    <string name="user_unblocked">Пользователь разблокирован</string>
+    <string name="user_blocked">Пользователь заблокирован</string>
+    <string name="block_user_title">Заблокировать пользователя?</string>
+    <string name="block_user_message">Вы не будете видеть его объявления и сообщения.</string>
+    <string name="action_block">Заблокировать</string>
+    <string name="report_user_title">Жалоба на пользователя</string>
+    <string name="error_login_required">Войдите в аккаунт</string>
+    <string name="error_own_review">Нельзя оставить отзыв себе</string>
+    <string name="error_select_rating">Выберите оценку</string>
+    <string name="error_select_reason">Выберите причину</string>
+    <string name="admin_reply_sent">Ответ отправлен</string>
+    <string name="code_resent">Код отправлен повторно</string>
+    <string name="clear_favorites_title">Очистить избранное</string>
+    <string name="clear_favorites_message">Удалить все сохранённые объявления?</string>
+    <string name="admin_reply_btn">Отправить ответ</string>
+    <string name="btn_close">Закрыть</string>
+    <string name="feature_coming_soon">Продвижение скоро появится!</string>
+    <string name="error_access_denied">Нет доступа</string>
+    <string name="error_enter_title">Введите название</string>
+    <string name="listing_updated">✅ Объявление обновлено и отправлено на модерацию</string>
+    <string name="error_already_reviewed">Вы уже оставляли отзыв этому продавцу</string>
+    <string name="review_sent">✅ Отзыв отправлен!</string>
+
+    <!-- Titles & placeholders -->
+    <string name="messages_title">Сообщения</string>
+    <string name="status_online">В сети</string>
+
+    <!-- Seller Profile buttons/tabs -->
+    <string name="btn_write_seller">💬 Написать</string>
+    <string name="btn_call_seller">📞 Позвонить</string>
+    <string name="btn_block_seller">🚫 Заблокировать</string>
+    <string name="btn_report_seller">⚠️ Пожаловаться</string>
+    <string name="tab_seller_listings">📋 Объявления</string>
+    <string name="tab_seller_reviews">⭐ Отзывы</string>
+
+    <!-- Support screen -->
+    <string name="support_write_title">💬  Написать в поддержку</string>
+    <string name="support_form_hint">Не нашли ответ? Опишите проблему — мы ответим в течение 24 часов</string>
+    <string name="support_topic_label">Тема обращения</string>
+    <string name="support_message_hint">Опишите вашу проблему подробно...</string>
+    <string name="support_send_btn">Отправить обращение</string>
+    <string name="support_my_tickets">Мои обращения</string>
+
+    <!-- My Listings -->
+    <string name="btn_add_listing">+ Добавить</string>
+
+    <!-- Settings extra -->
+    <string name="settings_push_notifications">Push-уведомления</string>
+
+    <!-- Edit Profile -->
+    <string name="btn_change_photo">📷 Изменить фото</string>
+
+    <!-- Auth / OTP / Complete Profile -->
+    <string name="step_2_of_2">Шаг 2 из 2</string>
+    <string name="hint_create_password">Придумайте пароль</string>
+    <string name="hint_repeat_password">Повторите пароль</string>
+    <string name="email_address_label">Email адрес</string>
+    <string name="hint_enter_password">Введите пароль</string>
+    <string name="security_badge">🔒 Защищено Firebase Authentication</string>
+    <string name="otp_resend_prefix">Получить новый код через </string>
+
+    <!-- Listing Detail -->
+    <string name="sold_badge">✅ ПРОДАНО</string>
+    <string name="mark_sold_btn_label">✅  Отметить как продано</string>
+    <string name="passport_title">🛡️ Цифровой паспорт</string>
+    <string name="location_label">📍 Местоположение</string>
+    <string name="review_already_left">✅  Вы уже оставили отзыв</string>
+
+    <!-- Edit Listing extra -->
+    <string name="passport_animal_title">📋 Паспорт животного</string>
+    <string name="passport_vet_cert_no_label">Номер вет. свидетельства</string>
+    <string name="passport_vet_date_label">Дата вет. осмотра</string>
+    <string name="warning_remoderation">⚠️ После сохранения объявление будет отправлено на повторную модерацию</string>
+
+    <!-- Dialog Review -->
+    <string name="dialog_leave_review_title">Оставить отзыв</string>
+    <string name="dialog_rate_seller">Оцените продавца</string>
+    <string name="dialog_tap_star">Нажмите на звезду</string>
+    <string name="dialog_comment_label">Комментарий</string>
+    <string name="dialog_review_hint">Расскажите о вашем опыте с этим продавцом...</string>
+    <string name="btn_cancel">Отмена</string>
+    <string name="btn_send">Отправить</string>
+
+    <!-- Dialog Reject -->
+    <string name="dialog_reject_title">❌ Причина отклонения</string>
+    <string name="dialog_reject_prompt">Выберите причину:</string>
+    <string name="reason_invalid_docs">📄  Недействительные документы</string>
+    <string name="reason_fake_info">⚠️  Недостоверная информация</string>
+    <string name="reason_no_vet_cert">🏥  Нет ветеринарного свидетельства</string>
+    <string name="reason_other">✏️  Другая причина</string>
+    <string name="dialog_reject_hint">Опишите причину...</string>
+    <string name="btn_reject">Отклонить</string>
+
+    <!-- Search Fragment -->
+    <string name="nav_search">Поиск</string>
+    <string name="empty_nothing_found">Ничего не найдено</string>
+    <string name="hint_try_other_query">Попробуйте другой запрос или категорию</string>
+
+    <!-- Favorites Fragment -->
+    <string name="btn_browse_listings">Смотреть объявления</string>
+
+    <!-- Empty State View -->
+    <string name="empty_state_hint">Попробуйте изменить фильтры или поисковый запрос</string>
+    <string name="btn_add_listing_full">Добавить объявление</string>
+
+    <!-- Admin item_report -->
+    <string name="btn_open_item">👁 Открыть</string>
+    <string name="btn_dismiss">Снять</string>
+    <string name="btn_delete">Удалить</string>
+    <string name="btn_ban">🚫 Бан</string>
+
+    <!-- Admin item_pending -->
+    <string name="badge_new">Новое</string>
+    <string name="btn_view_item">👁 Смотреть</string>
+    <string name="btn_approve">✓ Принять</string>
+
+    <!-- Profile Activity -->
+    <string name="stat_listings_count_label">объявлений</string>
+    <string name="stat_reviews_count_label">отзывов</string>
+    <string name="banner_promote_title">Продвинуть объявление</string>
+    <string name="banner_promote_subtitle">Больше просмотров • от 99 сом/нед</string>
+    <string name="menu_my_reviews">Мои отзывы</string>
+    <string name="menu_verify_profile">Верификация профиля</string>
+    <string name="menu_verify_hint">Больше доверия • +30% просмотров</string>
+    <string name="menu_help">Помощь и поддержка</string>
+
+    <!-- Filter Bottom Sheet -->
+    <string name="filter_title">Фильтры и сортировка</string>
+    <string name="filter_reset">Сбросить</string>
+    <string name="sort_label">Сортировка</string>
+    <string name="sort_newest">Новые сначала</string>
+    <string name="sort_oldest">Старые сначала</string>
+    <string name="sort_price_asc">Цена ↑</string>
+    <string name="sort_price_desc">Цена ↓</string>
+    <string name="price_range_label">Диапазон цены</string>
+    <string name="hint_from">От</string>
+    <string name="hint_to">До</string>
+    <string name="filter_extras_label">Дополнительно</string>
+    <string name="filter_passport_only">Только с паспортом</string>
+    <string name="filter_passport_only_hint">Паспорт проверен администратором</string>
+    <string name="filter_negotiable">Торг уместен</string>
+    <string name="filter_negotiable_hint">Продавец готов к переговорам</string>
+    <string name="btn_apply_filters">Применить фильтры</string>
+
+    <!-- Create Listing -->
+    <string name="step1_title">Добавьте фотографии</string>
+    <string name="step1_subtitle">От 1 до 5 фото. Первое станет главным</string>
+    <string name="btn_select_photos">Выбрать фотографии</string>
+    <string name="tip_quality_photos">Качественные фото в 3 раза увеличивают шанс продажи</string>
+    <string name="step2_title">О товаре</string>
+    <string name="step2_subtitle">Выберите категорию и заполните детали</string>
+    <string name="label_category_required">Категория *</string>
+    <string name="label_subcategory_required">Подкатегория *</string>
+    <string name="hint_arash_chip_required">⚠️  Порода Арашан — номер чипа обязателен</string>
+    <string name="label_count_required">Количество голов *</string>
+    <string name="label_weight_kg">Вес (кг)</string>
+    <string name="label_color">Окрас / масть</string>
+    <string name="label_herd_composition">Состав стада</string>
+    <string name="label_males">♂ Самцов</string>
+    <string name="label_females">♀ Самок</string>
+    <string name="error_gender_count">⚠️  Сумма самцов и самок должна равняться количеству</string>
+    <string name="label_vaccinations">Прививки</string>
+    <string name="option_yes">Есть</string>
+    <string name="option_no">Нет</string>
+    <string name="label_chip_number">Номер чипа</string>
+    <string name="hint_chip_required_for_arash">Обязательно для Арашан</string>
+    <string name="error_chip_length">⚠️  Номер чипа — ровно 15 цифр</string>
+    <string name="label_vet_cert_no_full">№ ветеринарного свидетельства</string>
+    <string name="label_vet_exam_date">Дата ветеринарного осмотра</string>
+    <string name="hint_group_no_docs">Чип и ветпаспорт указываются для каждого животного отдельно — при продаже группой эти поля не заполняются</string>
+    <string name="label_poultry_count">Количество (голов) *</string>
+    <string name="label_age_months">Возраст (мес.)</string>
+    <string name="label_volume_weight">Объём / вес (кг) *</string>
+    <string name="label_sort_type">Сорт / тип</string>
+    <string name="label_harvest_year">Год урожая</string>
+    <string name="label_volume_liters">Объём (литров) *</string>
+    <string name="label_fat_pct">Жирность (%)</string>
+    <string name="label_brand_model">Марка / модель</string>
+    <string name="label_year_made">Год выпуска</string>
+    <string name="label_experience_years">Опыт работы (лет)</string>
+    <string name="label_listing_title_required">Заголовок объявления *</string>
+    <string name="label_price_required">Цена *</string>
+    <string name="label_negotiable_checkbox">Торг уместен</string>
+    <string name="label_region_required">Регион *</string>
+    <string name="label_exact_location">Точное местоположение</string>
+    <string name="hint_location_visible">Покупатели увидят ваше расположение на карте</string>
+    <string name="btn_detect_location">Определить местоположение</string>
+    <string name="step3_title">Всё готово!</string>
+    <string name="step3_subtitle">Проверьте данные и опубликуйте</string>
+    <string name="preview_label">📋 Предпросмотр</string>
+    <string name="hint_moderation_wait">Объявление появится после одобрения администратором (1–2 часа)</string>
+    <string name="btn_prev_nav">‹ Назад</string>
+    <string name="label_age">Возраст</string>
+    <string name="map_listings_title">Карта объявлений</string>
+    <string name="btn_show_all">Все →</string>
+</resources>

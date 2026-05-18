@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_screen">
+
+    <!-- Шапка -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:background="@color/green_primary"
+        android:paddingHorizontal="16dp" android:paddingVertical="16dp"
+        android:fitsSystemWindows="true">
+        <TextView android:id="@+id/btnBack"
+            android:layout_width="40dp" android:layout_height="40dp"
+            android:text="‹" android:textSize="28sp" android:textColor="#FFFFFF"
+            android:gravity="center" android:clickable="true" android:focusable="true"/>
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="@string/support_title"
+            android:textSize="18sp" android:textColor="#FFFFFF" android:textStyle="bold"
+            android:layout_marginStart="4dp"/>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none">
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+            android:orientation="vertical" android:paddingBottom="32dp">
+
+            <!-- Заголовок FAQ -->
+            <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/support_faq"
+                android:textSize="16sp" android:textColor="@color/text_primary"
+                android:textStyle="bold"
+                android:paddingHorizontal="16dp" android:paddingTop="20dp" android:paddingBottom="10dp"/>
+
+            <!-- Контейнер FAQ (заполняется программно) -->
+            <LinearLayout android:id="@+id/faqContainer"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="12dp"/>
+
+            <!-- Разделитель -->
+            <View android:layout_width="match_parent" android:layout_height="1dp"
+                android:background="@color/bg_screen" android:layout_marginTop="20dp"
+                android:layout_marginHorizontal="16dp"/>
+
+            <!-- Форма обращения -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/bg_card"
+                android:layout_marginHorizontal="12dp" android:layout_marginTop="16dp"
+                android:padding="16dp">
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/support_write_title"
+                    android:textSize="15sp" android:textColor="@color/text_primary"
+                    android:textStyle="bold" android:layout_marginBottom="4dp"/>
+
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/support_form_hint"
+                    android:textSize="13sp" android:textColor="@color/text_secondary"
+                    android:layout_marginBottom="12dp"/>
+
+                <!-- Выбор темы -->
+                <TextView android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:text="@string/support_topic_label"
+                    android:textSize="12sp" android:textColor="@color/text_hint"
+                    android:layout_marginBottom="4dp"/>
+
+                <LinearLayout android:id="@+id/topicContainer"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:orientation="horizontal" android:layout_marginBottom="12dp">
+
+                    <HorizontalScrollView android:layout_width="match_parent" android:layout_height="wrap_content"
+                        android:scrollbars="none">
+                        <LinearLayout android:id="@+id/topicChips"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:orientation="horizontal"/>
+                    </HorizontalScrollView>
+                </LinearLayout>
+
+                <!-- Поле сообщения -->
+                <EditText android:id="@+id/etSupportMessage"
+                    android:layout_width="match_parent" android:layout_height="120dp"
+                    android:background="@drawable/bg_input"
+                    android:hint="@string/support_message_hint"
+                    android:textSize="14sp" android:textColor="@color/text_primary"
+                    android:textColorHint="@color/text_hint"
+                    android:padding="12dp" android:gravity="top"
+                    android:inputType="textMultiLine" android:layout_marginBottom="12dp"/>
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+                    android:id="@+id/btnSendTicket"
+                    android:orientation="horizontal" android:gravity="center"
+                    android:background="@drawable/bg_btn_primary"
+                    android:padding="14dp">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/support_send_btn"
+                        android:textSize="15sp" android:textColor="#FFFFFF" android:textStyle="bold"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- История обращений -->
+            <TextView android:id="@+id/tvTicketsHeader"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:text="@string/support_my_tickets"
+                android:textSize="16sp" android:textColor="@color/text_primary"
+                android:textStyle="bold"
+                android:paddingHorizontal="16dp" android:paddingTop="20dp" android:paddingBottom="10dp"
+                android:visibility="gone"/>
+
+            <LinearLayout android:id="@+id/ticketsContainer"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingHorizontal="12dp"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:fitsSystemWindows="true"
+    android:background="@color/bg_screen">
+
+    <!-- Шапка -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:background="@color/green_primary"
+        android:paddingHorizontal="16dp" android:paddingVertical="14dp"
+        android:fitsSystemWindows="true">
+        <TextView android:id="@+id/btnBack"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="←" android:textSize="22sp" android:textColor="#FFFFFF"
+            android:paddingEnd="12dp" android:clickable="true" android:focusable="true"/>
+        <TextView android:id="@+id/tvSellerProfileTitle"
+            android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="@string/seller_profile_title"
+            android:textSize="18sp" android:textColor="#FFFFFF" android:textStyle="bold"/>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Карточка продавца -->
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@color/green_primary"
+                android:paddingHorizontal="20dp"
+                android:paddingTop="20dp"
+                android:paddingBottom="28dp"
+                android:gravity="center">
+
+                <!-- Аватар -->
+                <FrameLayout android:layout_width="80dp" android:layout_height="80dp"
+                    android:layout_marginBottom="12dp">
+                    <TextView android:id="@+id/tvSellerInitial"
+                        android:layout_width="80dp" android:layout_height="80dp"
+                        android:text="А" android:textSize="32sp" android:textColor="#FFFFFF"
+                        android:textStyle="bold" android:gravity="center"
+                        android:background="@color/green_dark"/>
+                    <ImageView android:id="@+id/ivSellerAvatar"
+                        android:layout_width="80dp" android:layout_height="80dp"
+                        android:scaleType="centerCrop" android:visibility="gone"/>
+                </FrameLayout>
+
+                <!-- Имя -->
+                <TextView android:id="@+id/tvSellerName"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="Имя продавца" android:textSize="20sp"
+                    android:textColor="#FFFFFF" android:textStyle="bold"/>
+
+                <!-- Регион -->
+                <TextView android:id="@+id/tvSellerRegion"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="📍 Регион" android:textSize="13sp"
+                    android:textColor="@color/green_light" android:layout_marginTop="4dp"/>
+
+                <!-- На сайте с ... -->
+                <TextView android:id="@+id/tvSellerSince"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:textSize="12sp" android:textColor="@color/green_light"
+                    android:layout_marginTop="2dp"/>
+
+                <!-- Статистика -->
+                <LinearLayout android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="16dp">
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical"
+                        android:gravity="center" android:background="#33FFFFFF"
+                        android:paddingVertical="10dp" android:layout_marginEnd="6dp">
+                        <TextView android:id="@+id/tvSellerListingsCount"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="0" android:textSize="22sp"
+                            android:textColor="#FFFFFF" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/stat_listings_short" android:textSize="10sp" android:textColor="@color/green_light"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical"
+                        android:gravity="center" android:background="#33FFFFFF"
+                        android:paddingVertical="10dp" android:layout_marginEnd="6dp">
+                        <TextView android:id="@+id/tvSellerRating"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="0.0" android:textSize="22sp"
+                            android:textColor="#FFFFFF" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/stat_rating_label" android:textSize="10sp" android:textColor="@color/green_light"/>
+                    </LinearLayout>
+
+                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                        android:layout_weight="1" android:orientation="vertical"
+                        android:gravity="center" android:background="#33FFFFFF"
+                        android:paddingVertical="10dp">
+                        <TextView android:id="@+id/tvSellerReviewsCount"
+                            android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="0" android:textSize="22sp"
+                            android:textColor="#FFFFFF" android:textStyle="bold"/>
+                        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                            android:text="@string/stat_reviews_label" android:textSize="10sp" android:textColor="@color/green_light"/>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Кнопка написать -->
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="16dp"
+                android:background="@color/bg_card">
+                <LinearLayout android:id="@+id/btnWriteSeller"
+                    android:layout_width="0dp" android:layout_height="48dp"
+                    android:layout_weight="1" android:gravity="center"
+                    android:background="@color/green_primary"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/btn_write_seller" android:textSize="14sp"
+                        android:textColor="#FFFFFF" android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout android:id="@+id/btnCallSeller"
+                    android:layout_width="0dp" android:layout_height="48dp"
+                    android:layout_weight="1" android:gravity="center"
+                    android:background="@drawable/bg_chip_default"
+                    android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/btn_call_seller" android:textSize="14sp"
+                        android:textColor="@color/green_primary" android:textStyle="bold"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Блокировка и жалоба (скрыто для своего профиля) -->
+            <LinearLayout android:id="@+id/layoutBlockReport"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingHorizontal="16dp"
+                android:paddingBottom="10dp"
+                android:paddingTop="2dp"
+                android:background="@color/bg_card">
+                <LinearLayout android:id="@+id/btnBlockSeller"
+                    android:layout_width="0dp" android:layout_height="40dp"
+                    android:layout_weight="1" android:gravity="center"
+                    android:background="@drawable/bg_chip_category"
+                    android:layout_marginEnd="8dp"
+                    android:clickable="true" android:focusable="true">
+                    <TextView android:id="@+id/tvBlockLabel"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/btn_block_seller" android:textSize="12sp"
+                        android:textColor="@color/red_error"/>
+                </LinearLayout>
+                <LinearLayout android:id="@+id/btnReportSeller"
+                    android:layout_width="0dp" android:layout_height="40dp"
+                    android:layout_weight="1" android:gravity="center"
+                    android:background="@drawable/bg_chip_category"
+                    android:clickable="true" android:focusable="true">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/btn_report_seller" android:textSize="12sp"
+                        android:textColor="@color/orange_dark"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Вкладки -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="48dp"
+                android:orientation="horizontal" android:background="@color/bg_card"
+                android:layout_marginTop="8dp">
+                <TextView android:id="@+id/tabSellerListings"
+                    android:layout_width="0dp" android:layout_height="match_parent"
+                    android:layout_weight="1" android:text="@string/tab_seller_listings"
+                    android:gravity="center" android:textSize="13sp"
+                    android:textColor="@color/green_primary" android:textStyle="bold"
+                    android:clickable="true" android:focusable="true"/>
+                <TextView android:id="@+id/tabSellerReviews"
+                    android:layout_width="0dp" android:layout_height="match_parent"
+                    android:layout_weight="1" android:text="@string/tab_seller_reviews"
+                    android:gravity="center" android:textSize="13sp"
+                    android:textColor="@color/text_secondary"
+                    android:clickable="true" android:focusable="true"/>
+            </LinearLayout>
+            <View android:id="@+id/tabSellerIndicator"
+                android:layout_width="match_parent" android:layout_height="2dp"
+                android:background="@color/green_primary"/>
+
+            <!-- Объявления продавца -->
+            <LinearLayout android:id="@+id/containerListings"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="12dp"/>
+
+            <!-- Отзывы продавца -->
+            <LinearLayout android:id="@+id/containerReviews"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:padding="12dp"
+                android:visibility="gone"/>
+
+            <!-- Пусто -->
+            <LinearLayout android:id="@+id/emptyContent"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:gravity="center"
+                android:padding="40dp" android:visibility="gone">
+                <TextView android:id="@+id/tvEmptyIcon"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="📋" android:textSize="48sp"/>
+                <TextView android:id="@+id/tvEmptyText"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/empty_seller_listings" android:textSize="16sp"
+                    android:textColor="@color/text_primary" android:textStyle="bold"
+                    android:layout_marginTop="12dp"/>
+            </LinearLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</LinearLayout>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.farme">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.READ_MEDIA_IMAGES"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"
+        android:maxSdkVersion="32"/>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/farme_icon"
+        android:roundIcon="@mipmap/farme_icon"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.Farme"
+        android:usesCleartextTraffic="false">
+
+        <!-- Google Maps API key -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCkRst-F08ymhYoR9EStKLN32D1K5fVLQc"/>
+
+        <!-- ══ SPLASH ═══════════════════════════════════════════ -->
+        <activity android:name=".SplashActivity"
+            android:exported="true"
+            android:theme="@style/Theme.Farme.Splash"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <!-- ══ ONBOARDING ═══════════════════════════════════════ -->
+        <activity android:name=".OnboardingActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Farme.Auth"
+            android:screenOrientation="portrait"/>
+
+        <!-- ══ AUTH ═════════════════════════════════════════════ -->
+        <activity android:name=".auth.AuthActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Farme.Auth"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:name=".auth.OtpActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Farme.Auth"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:name=".auth.CompleteProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Farme.Auth"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:name=".auth.ForgotPasswordActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Farme.Auth"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <!-- ══ MAIN ═════════════════════════════════════════════ -->
+        <activity android:name=".MainActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <!-- ══ LISTINGS ═════════════════════════════════════════ -->
+        <activity android:name=".ListingDetailActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".CreateListingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:name=".EditListingActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:name=".MyListingsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <!-- ══ CHAT ═════════════════════════════════════════════ -->
+        <activity android:name=".ChatActivity"
+            android:exported="false"
+            android:theme="@style/Theme.Farme.Chat"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden"/>
+
+        <!-- ══ PROFILE ══════════════════════════════════════════ -->
+        <activity android:name=".ProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".EditProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize"/>
+
+        <activity android:name=".SellerProfileActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <!-- ══ OTHER ════════════════════════════════════════════ -->
+        <activity android:name=".FavoritesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".ReviewsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".NotificationsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".SettingsActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".SupportActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".AdminSupportActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".TicketChatActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".BlocklistActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+        <activity android:name=".SalesActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"/>
+
+
+
+
+
+
+
+
+
+    </application>
+</manifest>

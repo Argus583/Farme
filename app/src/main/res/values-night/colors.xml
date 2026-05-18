@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Зелёная палитра — в тёмной теме чуть светлее для читаемости -->
+    <color name="green_primary">#52B788</color>
+    <color name="green_dark">#2D6A4F</color>
+    <color name="green_light">#74C69D</color>
+    <color name="green_surface">#1B3A2D</color>
+
+    <!-- Акцент -->
+    <color name="orange_accent">#F4A261</color>
+    <color name="orange_dark">#F4A261</color>
+    <color name="orange_surface">#2C2010</color>
+
+    <!-- Тёмная тема -->
+    <color name="bg_screen">#0F1A14</color>
+    <color name="bg_card">#1E2D24</color>
+    <color name="text_primary">#E8F5EE</color>
+    <color name="text_secondary">#8FAF9C</color>
+    <color name="text_hint">#5A7A68</color>
+    <color name="divider">#2A3D30</color>
+    <color name="stroke">#2A3D30</color>
+    <color name="background">#0F1A14</color>
+    <color name="nav_inactive">#5A7A68</color>
+    <color name="nav_active">#52B788</color>
+
+    <!-- Статусы -->
+    <color name="red_error">#FF6B6B</color>
+    <color name="badge_unread">#F4A261</color>
+
+    <!-- Поверхности -->
+    <color name="surface_input">#1E2D24</color>
+    <color name="surface_card">#1E2D24</color>
+    <color name="surface_nav">#141F18</color>
+
+    <!-- Пузырьки чата -->
+    <color name="msg_mine_bg">#1B4332</color>
+    <color name="msg_mine_text">#E8F5EE</color>
+    <color name="msg_other_bg">#1E2D24</color>
+    <color name="msg_other_text">#E8F5EE</color>
+    <color name="msg_time_text">#5A7A68</color>
+</resources>

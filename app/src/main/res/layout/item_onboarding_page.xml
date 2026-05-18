@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp">
+
+    <TextView android:id="@+id/tvOnboardEmoji"
+        android:layout_width="120dp" android:layout_height="120dp"
+        android:text="🌾" android:textSize="60sp" android:gravity="center"
+        android:background="#EFF8F1" android:layout_marginBottom="36dp"/>
+
+    <TextView android:id="@+id/tvOnboardTitle"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Заголовок" android:textSize="24sp" android:textColor="#111827"
+        android:textStyle="bold" android:gravity="center" android:layout_marginBottom="16dp"/>
+
+    <TextView android:id="@+id/tvOnboardDesc"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:text="Описание" android:textSize="15sp" android:textColor="#6B7280"
+        android:gravity="center" android:lineSpacingMultiplier="1.5"/>
+</LinearLayout>

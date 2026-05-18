@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg_screen">
+
+    <!-- Шапка -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="center_vertical"
+        android:background="@color/green_primary"
+        android:paddingHorizontal="16dp" android:paddingVertical="16dp"
+        android:fitsSystemWindows="true">
+        <TextView android:id="@+id/btnBack"
+            android:layout_width="40dp" android:layout_height="40dp"
+            android:text="‹" android:textSize="28sp" android:textColor="#FFFFFF"
+            android:gravity="center" android:clickable="true" android:focusable="true"/>
+        <TextView android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:text="@string/admin_support_title"
+            android:textSize="17sp" android:textColor="#FFFFFF" android:textStyle="bold"
+            android:layout_marginStart="4dp"/>
+        <TextView android:id="@+id/tvTicketCount"
+            android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:textSize="13sp" android:textColor="#CCFFFFFF"/>
+    </LinearLayout>
+
+    <!-- Фильтр вкладок -->
+    <LinearLayout android:layout_width="match_parent" android:layout_height="48dp"
+        android:orientation="horizontal"
+        android:background="@color/bg_card">
+        <TextView android:id="@+id/tabOpen"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:text="@string/tab_open"
+            android:gravity="center" android:textSize="14sp"
+            android:textColor="@color/green_primary" android:textStyle="bold"
+            android:background="@color/bg_card"/>
+        <View android:layout_width="1dp" android:layout_height="match_parent"
+            android:background="@color/bg_screen"/>
+        <TextView android:id="@+id/tabAnswered"
+            android:layout_width="0dp" android:layout_height="match_parent"
+            android:layout_weight="1" android:text="@string/tab_answered"
+            android:gravity="center" android:textSize="14sp"
+            android:textColor="@color/text_secondary"/>
+    </LinearLayout>
+
+    <View android:layout_width="match_parent" android:layout_height="1dp"
+        android:background="@color/bg_screen"/>
+
+    <ProgressBar android:id="@+id/progressBar"
+        android:layout_width="wrap_content" android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" android:layout_marginTop="32dp"
+        android:indeterminateTint="@color/green_primary" android:visibility="gone"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerTickets"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scrollbars="none"
+        android:padding="8dp"
+        android:clipToPadding="false"/>
+
+    <LinearLayout android:id="@+id/emptyState"
+        android:layout_width="match_parent" android:layout_height="match_parent"
+        android:orientation="vertical" android:gravity="center"
+        android:visibility="gone">
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="✅" android:textSize="48sp" android:layout_marginBottom="12dp"/>
+        <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="@string/empty_support_tickets"
+            android:textSize="16sp" android:textColor="@color/text_primary" android:textStyle="bold"/>
+    </LinearLayout>
+
+</LinearLayout>

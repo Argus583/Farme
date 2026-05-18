@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="1dp"
+    app:cardBackgroundColor="@color/bg_card">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="12dp">
+
+        <!-- Фото -->
+        <FrameLayout android:layout_width="100dp" android:layout_height="90dp"
+            android:layout_marginEnd="12dp">
+            <ImageView android:id="@+id/ivListingPhoto"
+                android:layout_width="match_parent" android:layout_height="match_parent"
+                android:scaleType="centerCrop" android:background="@color/bg_screen"/>
+            <!-- Бейдж паспорт -->
+            <TextView android:id="@+id/badgePassport"
+                android:layout_width="wrap_content" android:layout_height="18dp"
+                android:layout_gravity="bottom|start"
+                android:text="✓ Паспорт" android:textSize="9sp"
+                android:textColor="@color/green_primary" android:textStyle="bold"
+                android:gravity="center" android:paddingHorizontal="5dp"
+                android:background="@color/green_surface" android:visibility="gone"/>
+        </FrameLayout>
+
+        <!-- Информация -->
+        <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+            android:layout_weight="1" android:orientation="vertical">
+
+            <TextView android:id="@+id/tvTitle"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:textSize="14sp" android:textColor="@color/text_primary"
+                android:textStyle="bold" android:maxLines="2"
+                android:ellipsize="end" android:layout_marginBottom="4dp"/>
+
+            <!-- Регион + дата -->
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="horizontal"
+                android:gravity="center_vertical" android:layout_marginBottom="6dp">
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="📍" android:textSize="11sp"/>
+                <TextView android:id="@+id/tvRegion"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:textSize="11sp"
+                    android:textColor="@color/text_secondary" android:layout_marginStart="2dp"
+                    android:maxLines="1" android:ellipsize="end"/>
+            </LinearLayout>
+
+            <!-- Цена + рейтинг -->
+            <LinearLayout android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:orientation="horizontal"
+                android:gravity="center_vertical">
+                <TextView android:id="@+id/tvPrice"
+                    android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:textSize="15sp"
+                    android:textColor="@color/green_primary" android:textStyle="bold"/>
+                <LinearLayout android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" android:orientation="horizontal"
+                    android:gravity="center_vertical">
+                    <TextView android:id="@+id/tvPassportIcon"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="🛡️" android:textSize="13sp" android:visibility="gone"
+                        android:layout_marginEnd="4dp"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="★" android:textSize="12sp" android:textColor="@color/orange_accent"/>
+                    <TextView android:id="@+id/tvRating"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="—" android:textSize="11sp" android:textColor="@color/text_secondary"
+                        android:textStyle="bold" android:layout_marginStart="2dp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- Категория -->
+            <TextView android:id="@+id/tvCategory"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:textSize="10sp" android:textColor="@color/green_primary"
+                android:background="@color/green_surface" android:paddingHorizontal="6dp"
+                android:paddingVertical="2dp" android:layout_marginTop="4dp"/>
+        </LinearLayout>
+
+        <!-- Кнопка избранное -->
+        <LinearLayout android:layout_width="36dp" android:layout_height="36dp"
+            android:gravity="center" android:layout_gravity="top">
+            <TextView android:id="@+id/btnFavorite"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="🤍" android:textSize="18sp"
+                android:clickable="true" android:focusable="true"/>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
