@@ -457,7 +457,6 @@
     <string name="stat_reviews_count_label">отзывов</string>
     <string name="banner_promote_title">Продвинуть объявление</string>
     <string name="banner_promote_subtitle">Больше просмотров • от 99 сом/нед</string>
-    <string name="menu_my_reviews">Мои отзывы</string>
     <string name="menu_verify_profile">Верификация профиля</string>
     <string name="menu_verify_hint">Больше доверия • +30% просмотров</string>
     <string name="menu_help">Помощь и поддержка</string>
