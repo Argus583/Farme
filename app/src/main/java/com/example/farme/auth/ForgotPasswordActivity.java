@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.auth.FirebaseAuth;
 import com.example.farme.R;
 
-public class ForgotPasswordActivity extends AppCompatActivity {
+public class ForgotPasswordActivity extends com.example.farme.BaseActivity {
 
     private TextView btnBack, tvForgotError;
     private EditText etEmail;

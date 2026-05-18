@@ -13,7 +13,7 @@ import com.google.firebase.database.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class SupportActivity extends AppCompatActivity {
+public class SupportActivity extends BaseActivity {
 
     private LinearLayout faqContainer, ticketsContainer, btnSendTicket, topicChips;
     private EditText     etMessage;

@@ -12,7 +12,7 @@ import com.google.firebase.database.*;
 import com.example.farme.fragments.*;
 import java.util.*;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private LinearLayout navHome, navMap,
             navChats, navProfile;

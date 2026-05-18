@@ -26,7 +26,7 @@ import java.util.concurrent.TimeUnit;
  * Получает phone и mode (login/register) из AuthActivity.
  * Использует Firebase Phone Authentication.
  */
-public class OtpActivity extends AppCompatActivity {
+public class OtpActivity extends com.example.farme.BaseActivity {
 
     private TextView btnBack, tvOtpPhone, btnChangePhone;
     private EditText[] otpFields = new EditText[6];

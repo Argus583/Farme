@@ -16,7 +16,7 @@ import com.google.firebase.database.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class ProfileActivity extends AppCompatActivity {
+public class ProfileActivity extends BaseActivity {
 
     private TextView tvAvatarInitials, tvProfileName, tvProfileRegion;
     private TextView tvListingsCount, tvReviewsCount, tvRating;

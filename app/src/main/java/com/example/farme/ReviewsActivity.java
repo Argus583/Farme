@@ -11,7 +11,7 @@ import com.google.firebase.database.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class ReviewsActivity extends AppCompatActivity {
+public class ReviewsActivity extends BaseActivity {
 
     private RecyclerView  recycler;
     private LinearLayout  emptyState;

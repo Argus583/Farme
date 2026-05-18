@@ -21,7 +21,7 @@ import com.example.farme.R;
  * Phone-логика → переход на OtpActivity.
  * Email-логика → стандартный signIn / createUser.
  */
-public class AuthActivity extends AppCompatActivity {
+public class AuthActivity extends com.example.farme.BaseActivity {
 
     private TextView tabLogin, tabRegister;
     private LinearLayout methodPhone, methodEmail;

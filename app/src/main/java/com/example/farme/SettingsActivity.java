@@ -1,9 +1,7 @@
 package com.example.farme;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ListView;
@@ -11,7 +9,6 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 import androidx.appcompat.widget.SwitchCompat;
 
@@ -20,7 +17,7 @@ import com.google.firebase.database.*;
 
 import java.util.Locale;
 
-public class SettingsActivity extends AppCompatActivity {
+public class SettingsActivity extends BaseActivity {
 
     private static final String PREFS = "farme_settings";
     private static final String[] CURRENCIES  = {"сом (KGS)", "доллар (USD)", "рубль (RUB)"};
@@ -35,17 +32,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     private static final String[] LANG_NAMES = {"Русский", "English", "Кыргызча"};
     private static final String[] LANG_CODES = {"ru", "en", "ky"};
-
-    @Override
-    protected void attachBaseContext(Context base) {
-        SharedPreferences p = base.getSharedPreferences(PREFS, Context.MODE_PRIVATE);
-        String lang = p.getString("language", "ru");
-        Locale locale = new Locale(lang);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration(base.getResources().getConfiguration());
-        config.setLocale(locale);
-        super.attachBaseContext(base.createConfigurationContext(config));
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -224,7 +210,10 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void showLanguageDialog() {
         String current = prefs.getString("language", "ru");
-        int selected = "en".equals(current) ? 1 : 0;
+        int selected = 0;
+        for (int i = 0; i < LANG_CODES.length; i++) {
+            if (LANG_CODES[i].equals(current)) { selected = i; break; }
+        }
         AlertDialog dialog = new AlertDialog.Builder(this)
                 .setTitle("Язык / Language")
                 .setSingleChoiceItems(LANG_NAMES, selected, null)
@@ -246,13 +235,6 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void applyLanguage(String langCode) {
         prefs.edit().putString("language", langCode).apply();
-        updateLanguageLabel(langCode);
-        Locale locale = new Locale(langCode);
-        Locale.setDefault(locale);
-        Configuration config = new Configuration(getResources().getConfiguration());
-        config.setLocale(locale);
-        getResources().updateConfiguration(config, getResources().getDisplayMetrics());
-        // Перезапуск приложения
         Intent i = new Intent(this, SplashActivity.class);
         i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
         startActivity(i);

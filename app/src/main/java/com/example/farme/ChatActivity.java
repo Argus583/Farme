@@ -20,7 +20,7 @@ import com.example.farme.model.Message;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class ChatActivity extends AppCompatActivity {
+public class ChatActivity extends BaseActivity {
 
     private TextView     tvChatName, tvChatSubtitle, tvChatAvatar;
     private TextView     btnBackChat;

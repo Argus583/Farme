@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.*;
 import androidx.viewpager2.widget.ViewPager2;
 import com.example.farme.auth.AuthActivity;
 
-public class OnboardingActivity extends AppCompatActivity {
+public class OnboardingActivity extends BaseActivity {
 
     private ViewPager2 pager;
     private TextView tvNextLabel, btnSkip;

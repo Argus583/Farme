@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 import java.util.HashMap;
 
-public class TicketChatActivity extends AppCompatActivity {
+public class TicketChatActivity extends BaseActivity {
 
     private TextView     tvTicketSubject, tvTicketStatus;
     private ScrollView   scrollChat;

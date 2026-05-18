@@ -32,7 +32,7 @@ import com.google.firebase.database.*;
 import java.io.*;
 import java.util.*;
 
-public class CreateListingActivity extends AppCompatActivity {
+public class CreateListingActivity extends BaseActivity {
 
     // ── Шапка ────────────────────────────────────────────
     private TextView     btnBack, tvStepTitle, tvStepCounter;

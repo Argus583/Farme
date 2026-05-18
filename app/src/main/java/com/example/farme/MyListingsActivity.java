@@ -13,7 +13,7 @@ import com.example.farme.adapter.ListingAdapter;
 import com.example.farme.model.Listing;
 import java.util.*;
 
-public class MyListingsActivity extends AppCompatActivity {
+public class MyListingsActivity extends BaseActivity {
 
     private RecyclerView  recycler;
     private LinearLayout  emptyState;

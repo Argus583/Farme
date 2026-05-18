@@ -24,7 +24,7 @@ import java.util.Map;
  *   phone = +996...  (для phone)
  *   email = ...      (для email)
  */
-public class CompleteProfileActivity extends AppCompatActivity {
+public class CompleteProfileActivity extends com.example.farme.BaseActivity {
 
     private TextView btnBack, btnTogglePass, tvCompleteError;
     private EditText etFirstName, etLastName, etPassword, etConfirmPassword;

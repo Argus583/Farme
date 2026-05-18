@@ -13,7 +13,7 @@ import com.google.firebase.database.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class AdminSupportActivity extends AppCompatActivity {
+public class AdminSupportActivity extends BaseActivity {
 
     private RecyclerView recycler;
     private ProgressBar  progressBar;

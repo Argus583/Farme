@@ -19,7 +19,7 @@ import com.google.firebase.database.*;
 import java.io.*;
 import java.util.*;
 
-public class EditProfileActivity extends AppCompatActivity {
+public class EditProfileActivity extends BaseActivity {
 
     private TextView  tvAvatarInitial;
     private ImageView ivAvatar;

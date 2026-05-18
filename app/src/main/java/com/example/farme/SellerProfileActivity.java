@@ -22,7 +22,7 @@ import com.example.farme.model.Listing;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class SellerProfileActivity extends AppCompatActivity {
+public class SellerProfileActivity extends BaseActivity {
 
     private TextView tvSellerInitial, tvSellerName, tvSellerRegion, tvSellerSince;
     private TextView tvSellerListingsCount, tvSellerRating, tvSellerReviewsCount;

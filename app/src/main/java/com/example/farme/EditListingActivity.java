@@ -26,7 +26,7 @@ import com.example.farme.model.Listing;
 import java.util.HashMap;
 import java.util.Map;
 
-public class EditListingActivity extends AppCompatActivity {
+public class EditListingActivity extends BaseActivity {
 
     private TextView btnBackEdit, btnSave;
     private EditText etTitle, etDescription, etPrice;

@@ -24,7 +24,7 @@ import com.example.farme.model.Listing;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SalesActivity extends AppCompatActivity {
+public class SalesActivity extends BaseActivity {
 
     private RecyclerView recyclerSales;
     private LinearLayout emptySales;

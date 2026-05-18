@@ -11,7 +11,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
 import java.util.*;
 
-public class BlocklistActivity extends AppCompatActivity {
+public class BlocklistActivity extends BaseActivity {
 
     private LinearLayout listContainer, emptyState;
     private ProgressBar  progressBar;

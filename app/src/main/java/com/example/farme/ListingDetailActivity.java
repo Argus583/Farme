@@ -19,7 +19,7 @@ import com.example.farme.utils.HistoryManager;
 import com.example.farme.utils.Validator;
 import java.util.*;
 
-public class ListingDetailActivity extends AppCompatActivity {
+public class ListingDetailActivity extends BaseActivity {
 
     // ── Views ─────────────────────────────────────────────
     private ViewPager2   vpPhotos;
