@@ -93,7 +93,7 @@ public class AdminSupportActivity extends BaseActivity {
                         allTickets.sort((a, b) -> Long.compare(b.createdAt, a.createdAt));
                         long openCount = 0;
                         for (Ticket t : allTickets) if ("open".equals(t.status)) openCount++;
-                        tvTicketCount.setText(openCount + " открытых");
+                        tvTicketCount.setText(getString(R.string.open_tickets_count, openCount));
                         progressBar.setVisibility(View.GONE);
                         applyFilter();
                     }
@@ -119,7 +119,8 @@ public class AdminSupportActivity extends BaseActivity {
             }
             if (tv != null)
                 tv.setText(currentFilter.equals("open")
-                        ? "Нет открытых обращений" : "Нет отвеченных обращений");
+                        ? getString(R.string.empty_support_tickets)
+                        : getString(R.string.empty_answered_tickets));
         }
     }
 
@@ -132,7 +133,7 @@ public class AdminSupportActivity extends BaseActivity {
         layout.setPadding(dp(20), dp(16), dp(20), dp(8));
 
         TextView tvUser = new TextView(this);
-        tvUser.setText("👤 " + (ticket.userName != null ? ticket.userName : "Неизвестно"));
+        tvUser.setText("👤 " + (ticket.userName != null ? ticket.userName : getString(R.string.unknown)));
         tvUser.setTextSize(15);
         tvUser.setTextColor(getColor(R.color.text_primary));
         tvUser.setTypeface(null, android.graphics.Typeface.BOLD);
@@ -162,7 +163,7 @@ public class AdminSupportActivity extends BaseActivity {
 
         // Поле ответа
         TextView tvReplyLabel = new TextView(this);
-        tvReplyLabel.setText("Ваш ответ:");
+        tvReplyLabel.setText(getString(R.string.admin_your_reply_label));
         tvReplyLabel.setTextSize(13);
         tvReplyLabel.setTextColor(getColor(R.color.text_primary));
         tvReplyLabel.setTypeface(null, android.graphics.Typeface.BOLD);
@@ -170,7 +171,7 @@ public class AdminSupportActivity extends BaseActivity {
         layout.addView(tvReplyLabel);
 
         EditText etReply = new EditText(this);
-        etReply.setHint("Напишите ответ пользователю...");
+        etReply.setHint(getString(R.string.admin_reply_hint));
         etReply.setBackgroundResource(R.drawable.bg_input);
         etReply.setPadding(dp(12), dp(10), dp(12), dp(10));
         etReply.setMinHeight(dp(90));
@@ -190,6 +191,10 @@ public class AdminSupportActivity extends BaseActivity {
                     }
                     sendReply(ticket, replyText);
                 })
+                .setNeutralButton(getString(R.string.btn_close_session), (d, w) ->
+                        mDatabase.child("support").child(ticket.id).child("status").setValue("closed")
+                                .addOnSuccessListener(a ->
+                                        Toast.makeText(this, getString(R.string.session_closed), Toast.LENGTH_SHORT).show()))
                 .setNegativeButton(getString(R.string.btn_close), null)
                 .show();
     }
@@ -293,7 +298,7 @@ public class AdminSupportActivity extends BaseActivity {
 
             // Тема
             TextView tvTopic = new TextView(AdminSupportActivity.this);
-            tvTopic.setText("📌 " + (t.topic != null ? t.topic : "Общий вопрос"));
+            tvTopic.setText("📌 " + (t.topic != null ? t.topic : getString(R.string.general_question)));
             tvTopic.setTextSize(12);
             tvTopic.setTextColor(getColor(R.color.green_primary));
             tvTopic.setPadding(0, dp(3), 0, dp(6));

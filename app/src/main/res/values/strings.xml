@@ -47,6 +47,20 @@
     <string name="cat_equipment">Техника</string>
     <string name="cat_services">Услуги</string>
 
+    <!-- Search filter categories (index 0 = all) -->
+    <string-array name="search_categories">
+        <item>Все категории</item>
+        <item>Скот</item>
+        <item>Зерно</item>
+        <item>Овощи</item>
+        <item>Фрукты</item>
+        <item>Молоко</item>
+        <item>Птица</item>
+        <item>Корма</item>
+        <item>Техника</item>
+        <item>Услуги</item>
+    </string-array>
+
     <!-- Regions -->
     <string-array name="regions">
         <item>Все регионы</item>
@@ -146,6 +160,18 @@
     <string name="btn_change_number">Изменить номер</string>
     <string name="btn_resend_code">Отправить код повторно</string>
     <string name="otp_not_received_hint">Не получили SMS? Проверьте номер или попробуйте позже</string>
+    <string name="error_enter_code">Введите все 6 цифр кода</string>
+    <string name="error_code_pending">Ожидаем отправки SMS, подождите…</string>
+    <string name="error_sms_send">Ошибка отправки SMS. Проверьте номер</string>
+    <string name="error_sms_billing">SMS недоступно. Обратитесь в поддержку</string>
+    <string name="error_too_many_requests">Слишком много запросов. Попробуйте позже</string>
+    <string name="error_wrong_code">Неверный код подтверждения</string>
+
+    <!-- Push Notifications -->
+    <string name="notif_channel_chat">Сообщения</string>
+    <string name="notif_channel_chat_desc">Уведомления о новых сообщениях в чате</string>
+    <string name="notif_channel_system">Система</string>
+    <string name="notif_channel_system_desc">Статусы объявлений, ответы поддержки</string>
 
     <!-- Complete Profile -->
     <string name="complete_registration_title">Завершите регистрацию</string>
@@ -395,6 +421,9 @@
     <string name="email_address_label">Email адрес</string>
     <string name="hint_enter_password">Введите пароль</string>
     <string name="security_badge">🔒 Защищено Firebase Authentication</string>
+    <string name="sign_in_with_google">Войти через Google</string>
+    <string name="or_divider">или</string>
+    <string name="error_google_sign_in">Не удалось войти через Google</string>
     <string name="otp_resend_prefix">Получить новый код через </string>
 
     <!-- Listing Detail -->
@@ -530,4 +559,111 @@
     <string name="label_age">Возраст</string>
     <string name="map_listings_title">Карта объявлений</string>
     <string name="btn_show_all">Все →</string>
+    <string name="delete_chat_title">Удалить чат?</string>
+    <string name="delete_chat_message">Чат с %s будет удалён</string>
+
+    <!-- Admin Support (hardcoded strings fixed) -->
+    <string name="open_tickets_count">%d открытых</string>
+    <string name="empty_answered_tickets">Нет отвеченных обращений</string>
+    <string name="admin_your_reply_label">Ваш ответ:</string>
+    <string name="admin_reply_hint">Напишите ответ пользователю…</string>
+    <string name="btn_close_session">Завершить сеанс</string>
+    <string name="session_closed">Сеанс завершён</string>
+    <string name="general_question">Общий вопрос</string>
+
+    <!-- Ticket Chat -->
+    <string name="ticket_status_closed">🔒 Сеанс завершён</string>
+    <string name="ticket_closed_by_admin">🔒 Сеанс завершён администратором</string>
+    <string name="ticket_waiting_hint">⏳ Ожидаем ответа от поддержки\nОбычно отвечаем в течение 24 часов</string>
+
+    <!-- Support FAQ + Topics -->
+    <string-array name="faq_questions">
+        <item>Как добавить объявление?</item>
+        <item>Почему моё объявление не опубликовано?</item>
+        <item>Как связаться с продавцом?</item>
+        <item>Как добавить паспорт животного?</item>
+        <item>Как редактировать или удалить объявление?</item>
+        <item>Как пройти верификацию аккаунта?</item>
+        <item>Как изменить регион?</item>
+        <item>Как отключить уведомления?</item>
+    </string-array>
+    <string-array name="faq_answers">
+        <item>Нажмите кнопку «+» в нижней части экрана. Заполните название, категорию, цену и регион. Добавьте фотографию товара. После отправки объявление пройдёт проверку модератором — обычно до 24 часов.</item>
+        <item>Новые объявления проходят проверку модератором. Если объявление отклонено — откройте «Мои объявления», там будет указана причина отклонения. Исправьте и отправьте повторно.</item>
+        <item>Откройте карточку объявления и нажмите кнопку «Написать». Откроется чат с продавцом. Если продавец не отвечает долго, попробуйте позвонить по номеру из его профиля.</item>
+        <item>При создании объявления в категории «Скот» появится раздел «Паспорт животного». Заполните данные: порода, возраст, прививки, ветеринарное свидетельство.</item>
+        <item>Перейдите в «Мои объявления» и откройте нужное. Нажмите кнопку редактирования (карандаш). Там можно изменить данные или удалить объявление.</item>
+        <item>Заполните профиль полностью: имя, регион, фото. Опубликуйте несколько объявлений. Для ускоренной верификации напишите нам через форму ниже.</item>
+        <item>Перейдите в Профиль → Настройки → выберите нужный регион. Это повлияет на отображение объявлений на главной странице и карте.</item>
+        <item>Перейдите в Профиль → Настройки → раздел «Push-уведомления». Там можно отключить каждый тип уведомлений отдельно.</item>
+    </string-array>
+    <string-array name="support_topics">
+        <item>Общий вопрос</item>
+        <item>Объявления</item>
+        <item>Чаты</item>
+        <item>Аккаунт</item>
+        <item>Паспорт животного</item>
+        <item>Другое</item>
+    </string-array>
+
+    <!-- Map / Search -->
+    <string name="nearby_count_format">Ближайшие · %d объявлений</string>
+    <string name="search_results_format">Найдено: %d</string>
+
+    <!-- Seller Profile -->
+    <string name="seller_since_format">На сайте с %s</string>
+    <string name="report_reason_fraud">Мошенничество</string>
+    <string name="report_reason_abuse">Оскорбительное поведение</string>
+    <string name="report_reason_spam">Спам</string>
+    <string name="report_reason_other">Другое</string>
+    <string name="user_report_sent">Жалоба отправлена. Мы рассмотрим её в течение 24 часов.</string>
+
+    <!-- Sales -->
+    <string name="sales_count_format">Продажи (%d)</string>
+
+    <!-- Settings -->
+    <string name="settings_language">Язык</string>
+
+    <!-- RejectDialog -->
+    <string name="error_specify_reason">Укажите причину</string>
+
+    <!-- Create Listing photo count -->
+    <string name="preview_photo_count_format">📷  %d фото</string>
+
+    <!-- Category / Region chips (with emoji for display in filter &amp; map) -->
+    <string name="chip_cat_all">Все</string>
+    <string name="chip_cat_livestock">🐄 Скот</string>
+    <string name="chip_cat_grain">🌾 Зерно</string>
+    <string name="chip_cat_vegetables">🥬 Овощи</string>
+    <string name="chip_cat_fruits">🍎 Фрукты</string>
+    <string name="chip_cat_dairy">🥛 Молоко</string>
+    <string name="chip_cat_poultry">🐔 Птица</string>
+
+    <string name="chip_reg_all">Все регионы</string>
+    <string name="chip_reg_chuy">Чуйская</string>
+    <string name="chip_reg_issyk">Иссык-Кульская</string>
+    <string name="chip_reg_osh">Ошская</string>
+    <string name="chip_reg_jalal">Джалал-Абадская</string>
+    <string name="chip_reg_naryn">Нарынская</string>
+    <string name="chip_reg_batken">Баткенская</string>
+    <string name="chip_reg_talas">Таласская</string>
+    <string name="chip_reg_bishkek">г. Бишкек</string>
+    <string name="chip_reg_osh_city">г. Ош</string>
+
+    <!-- OnboardingActivity -->
+    <string name="btn_start">Начать</string>
+
+    <!-- ReviewDialogHelper -->
+    <string name="anonymous">Аноним</string>
+
+    <!-- Filter expanded -->
+    <string name="filter_subcategory">Подкатегория</string>
+    <string name="filter_seller_rating">Рейтинг продавца</string>
+    <string name="filter_rating_any">Любой</string>
+    <string name="filter_photo_only">Только с фото</string>
+    <string name="filter_photo_only_hint">Есть хотя бы одно фото</string>
+    <string name="filter_active_count">Фильтры: %d</string>
+    <string name="chip_cat_korma">🌿 Корма</string>
+    <string name="chip_cat_tekhnika">🚜 Техника</string>
+    <string name="chip_cat_uslugi">🔧 Услуги</string>
 </resources>

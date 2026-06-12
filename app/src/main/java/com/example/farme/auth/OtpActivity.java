@@ -15,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.*;
 import com.google.firebase.database.*;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.example.farme.FarmeFcmService;
 import com.example.farme.MainActivity;
 import com.example.farme.R;
 import java.util.HashMap;
@@ -211,12 +213,17 @@ public class OtpActivity extends com.example.farme.BaseActivity {
                 @Override
                 public void onVerificationFailed(@NonNull FirebaseException e) {
                     setLoading(false);
-                    String msg = "Ошибка отправки SMS";
+                    String msg = getString(R.string.error_sms_send);
                     if (e.getMessage() != null) {
-                        if (e.getMessage().contains("invalid format")) {
-                            msg = "Неверный формат номера";
-                        } else if (e.getMessage().contains("quota")) {
-                            msg = "Слишком много запросов. Попробуйте позже";
+                        if (e.getMessage().contains("invalid format")
+                                || e.getMessage().contains("Invalid phone")) {
+                            msg = getString(R.string.error_invalid_phone_number);
+                        } else if (e.getMessage().contains("quota")
+                                || e.getMessage().contains("too many")) {
+                            msg = getString(R.string.error_too_many_requests);
+                        } else if (e.getMessage().contains("BILLING_NOT_ENABLED")
+                                || e.getMessage().contains("billing")) {
+                            msg = getString(R.string.error_sms_billing);
                         }
                     }
                     showError(msg);
@@ -239,11 +246,11 @@ public class OtpActivity extends com.example.farme.BaseActivity {
         for (EditText et : otpFields) code.append(et.getText().toString());
 
         if (code.length() != 6) {
-            showError("Введите все 6 цифр");
+            showError(getString(R.string.error_enter_code));
             return;
         }
         if (verificationId == null) {
-            showError("Ожидаем отправки SMS, подождите...");
+            showError(getString(R.string.error_code_pending));
             return;
         }
 
@@ -275,9 +282,12 @@ public class OtpActivity extends com.example.farme.BaseActivity {
                                     Boolean banned = snap.child("banned").getValue(Boolean.class);
                                     if (Boolean.TRUE.equals(banned)) {
                                         mAuth.signOut();
-                                        showError("Аккаунт заблокирован");
+                                        showError(getString(R.string.error_account_banned));
                                         return;
                                     }
+                                    // Сохраняем FCM-токен после входа
+                                    FirebaseMessaging.getInstance().getToken()
+                                            .addOnSuccessListener(FarmeFcmService::saveToken);
                                     Intent i = new Intent(this, MainActivity.class);
                                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                                             | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -295,7 +305,7 @@ public class OtpActivity extends com.example.farme.BaseActivity {
                 })
                 .addOnFailureListener(e -> {
                     setLoading(false);
-                    showError("Неверный код подтверждения");
+                    showError(getString(R.string.error_wrong_code));
                 });
     }
 

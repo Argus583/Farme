@@ -48,7 +48,8 @@ public class OnboardingActivity extends BaseActivity {
                         buildDots(pos);
                         tvNextLabel.setText(
                                 pos == pages.length - 1
-                                        ? "Начать" : "Далее");
+                                        ? getString(R.string.btn_start)
+                                        : getString(R.string.btn_next));
                     }
                 });
 

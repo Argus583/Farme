@@ -20,15 +20,12 @@ import java.util.Locale;
 public class SettingsActivity extends BaseActivity {
 
     private static final String PREFS = "farme_settings";
-    private static final String[] CURRENCIES  = {"сом (KGS)", "доллар (USD)", "рубль (RUB)"};
-    private static final String[] CURRENCY_CODES = {"KGS", "USD", "RUB"};
-
     private SharedPreferences prefs;
     private DatabaseReference mDatabase;
     private String currentUid;
 
     private SwitchCompat switchPush, switchMsg, switchPrices;
-    private TextView tvCurrencyValue, tvLanguageValue;
+    private TextView tvLanguageValue;
 
     private static final String[] LANG_NAMES = {"Русский", "English", "Кыргызча"};
     private static final String[] LANG_CODES = {"ru", "en", "ky"};
@@ -74,12 +71,6 @@ public class SettingsActivity extends BaseActivity {
         updateLanguageLabel(prefs.getString("language", "ru"));
         View itemLanguage = findViewById(R.id.itemLanguage);
         if (itemLanguage != null) itemLanguage.setOnClickListener(v -> showLanguageDialog());
-
-        // Currency
-        tvCurrencyValue = findViewById(R.id.tvCurrencyValue);
-        updateCurrencyLabel(prefs.getString("currency", "KGS"));
-        View itemCurrency = findViewById(R.id.itemCurrency);
-        if (itemCurrency != null) itemCurrency.setOnClickListener(v -> showCurrencyDialog());
 
         // Push notifications
         switchPush = findViewById(R.id.switchPush);
@@ -182,32 +173,6 @@ public class SettingsActivity extends BaseActivity {
                 .show();
     }
 
-    private void showCurrencyDialog() {
-        String current = prefs.getString("currency", "KGS");
-        int selected = 0;
-        for (int i = 0; i < CURRENCY_CODES.length; i++) {
-            if (CURRENCY_CODES[i].equals(current)) { selected = i; break; }
-        }
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(getString(R.string.select_currency))
-                .setSingleChoiceItems(CURRENCIES, selected, null)
-                .setPositiveButton(getString(R.string.action_apply), null)
-                .setNegativeButton(getString(R.string.action_cancel), null)
-                .create();
-        dialog.setOnShowListener(d -> {
-            dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(v -> {
-                ListView lv = dialog.getListView();
-                int choice = lv.getCheckedItemPosition();
-                if (choice >= 0) {
-                    prefs.edit().putString("currency", CURRENCY_CODES[choice]).apply();
-                    updateCurrencyLabel(CURRENCY_CODES[choice]);
-                }
-                dialog.dismiss();
-            });
-        });
-        dialog.show();
-    }
-
     private void showLanguageDialog() {
         String current = prefs.getString("language", "ru");
         int selected = 0;
@@ -215,7 +180,7 @@ public class SettingsActivity extends BaseActivity {
             if (LANG_CODES[i].equals(current)) { selected = i; break; }
         }
         AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle("Язык / Language")
+                .setTitle(getString(R.string.settings_language))
                 .setSingleChoiceItems(LANG_NAMES, selected, null)
                 .setPositiveButton("OK", null)
                 .setNegativeButton("Отмена / Cancel", null)
@@ -248,17 +213,6 @@ public class SettingsActivity extends BaseActivity {
             case "ky": tvLanguageValue.setText("Кыргызча"); break;
             default:   tvLanguageValue.setText("Русский");  break;
         }
-    }
-
-    private void updateCurrencyLabel(String code) {
-        if (tvCurrencyValue == null) return;
-        for (int i = 0; i < CURRENCY_CODES.length; i++) {
-            if (CURRENCY_CODES[i].equals(code)) {
-                tvCurrencyValue.setText(CURRENCIES[i]);
-                return;
-            }
-        }
-        tvCurrencyValue.setText("сом (KGS)");
     }
 
     private void confirmLogout() {

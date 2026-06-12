@@ -818,7 +818,7 @@ public class CreateListingActivity extends BaseActivity {
             tvPreviewRegion.setText("📍  " + spinnerRegion.getSelectedItem());
 
         if (tvPreviewPhotoCount != null)
-            tvPreviewPhotoCount.setText("📷  " + base64Photos.size() + " фото");
+            tvPreviewPhotoCount.setText(getString(R.string.preview_photo_count_format, base64Photos.size()));
 
         // Инфо о животном
         if (tvPreviewAnimalInfo != null) {

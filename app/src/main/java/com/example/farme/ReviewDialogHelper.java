@@ -22,9 +22,12 @@ import java.util.Map;
 
 public class ReviewDialogHelper {
 
+    public interface OnReviewSubmitted { void onSuccess(); }
+
     private final Context context;
     private final String sellerUid;
     private final String listingId;
+    private final OnReviewSubmitted callback;
     private int selectedRating = 0;
 
     private TextView[] stars;
@@ -40,9 +43,15 @@ public class ReviewDialogHelper {
     };
 
     public ReviewDialogHelper(Context context, String sellerUid, String listingId) {
+        this(context, sellerUid, listingId, null);
+    }
+
+    public ReviewDialogHelper(Context context, String sellerUid, String listingId,
+                              OnReviewSubmitted callback) {
         this.context   = context;
         this.sellerUid = sellerUid;
         this.listingId = listingId;
+        this.callback  = callback;
     }
 
     public void show() {
@@ -149,7 +158,7 @@ public class ReviewDialogHelper {
                     String authorName = snap.getValue(String.class);
 
                     Map<String, Object> review = new HashMap<>();
-                    review.put("authorName", authorName != null ? authorName : "Аноним");
+                    review.put("authorName", authorName != null ? authorName : context.getString(R.string.anonymous));
                     review.put("authorUid",  myUid);
                     review.put("rating",     (double) rating);
                     review.put("text",       text);
@@ -159,10 +168,10 @@ public class ReviewDialogHelper {
                     // Сохраняем отзыв — ключ = UID автора (один отзыв на продавца)
                     db.child("reviews").child(sellerUid).child(myUid).setValue(review)
                             .addOnSuccessListener(v -> {
-                                // Пересчитываем средний рейтинг продавца
                                 updateSellerRating(sellerUid, db);
                                 dialog.dismiss();
                                 Toast.makeText(context, context.getString(R.string.review_sent), Toast.LENGTH_SHORT).show();
+                                if (callback != null) callback.onSuccess();
                             })
                             .addOnFailureListener(e ->
                                     Toast.makeText(context,

@@ -42,60 +42,100 @@
             <HorizontalScrollView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingHorizontal="16dp" android:scrollbars="none"
-                android:layout_marginBottom="16dp">
+                android:layout_marginBottom="4dp">
                 <LinearLayout android:id="@+id/chipGroupCategory"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"
                     android:orientation="horizontal">
                     <TextView android:id="@+id/chipCatAll"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="Все" android:gravity="center"
+                        android:text="@string/chip_cat_all" android:gravity="center"
                         android:paddingHorizontal="16dp" android:textSize="13sp"
                         android:textColor="#FFFFFF" android:background="@color/green_primary"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipCatSkot"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="🐄 Скот" android:gravity="center"
+                        android:text="@string/chip_cat_livestock" android:gravity="center"
                         android:paddingHorizontal="16dp" android:textSize="13sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipCatZerno"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="🌾 Зерно" android:gravity="center"
+                        android:text="@string/chip_cat_grain" android:gravity="center"
                         android:paddingHorizontal="16dp" android:textSize="13sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipCatOvoshi"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="🥬 Овощи" android:gravity="center"
+                        android:text="@string/chip_cat_vegetables" android:gravity="center"
                         android:paddingHorizontal="16dp" android:textSize="13sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipCatFrukty"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="🍎 Фрукты" android:gravity="center"
+                        android:text="@string/chip_cat_fruits" android:gravity="center"
                         android:paddingHorizontal="16dp" android:textSize="13sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipCatMoloko"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="🥛 Молоко" android:gravity="center"
+                        android:text="@string/chip_cat_dairy" android:gravity="center"
                         android:paddingHorizontal="16dp" android:textSize="13sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipCatPtitsa"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="🐔 Птица" android:gravity="center"
+                        android:text="@string/chip_cat_poultry" android:gravity="center"
+                        android:paddingHorizontal="16dp" android:textSize="13sp"
+                        android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
+                        android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
+                    <TextView android:id="@+id/chipCatKorma"
+                        android:layout_width="wrap_content" android:layout_height="36dp"
+                        android:text="@string/chip_cat_korma" android:gravity="center"
+                        android:paddingHorizontal="16dp" android:textSize="13sp"
+                        android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
+                        android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
+                    <TextView android:id="@+id/chipCatTekhnika"
+                        android:layout_width="wrap_content" android:layout_height="36dp"
+                        android:text="@string/chip_cat_tekhnika" android:gravity="center"
+                        android:paddingHorizontal="16dp" android:textSize="13sp"
+                        android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
+                        android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
+                    <TextView android:id="@+id/chipCatUslugi"
+                        android:layout_width="wrap_content" android:layout_height="36dp"
+                        android:text="@string/chip_cat_uslugi" android:gravity="center"
                         android:paddingHorizontal="16dp" android:textSize="13sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:clickable="true" android:focusable="true"/>
                 </LinearLayout>
             </HorizontalScrollView>
 
+            <!-- ═══ ПОДКАТЕГОРИЯ (скрыта, появляется при выборе категории) ═══ -->
+            <LinearLayout android:id="@+id/subcatSection"
+                android:layout_width="match_parent" android:layout_height="wrap_content"
+                android:orientation="vertical" android:visibility="gone">
+
+                <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:text="@string/filter_subcategory" android:textSize="13sp"
+                    android:textColor="@color/text_hint" android:textStyle="bold"
+                    android:paddingHorizontal="20dp" android:paddingTop="12dp"
+                    android:layout_marginBottom="8dp"/>
+
+                <HorizontalScrollView android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="16dp" android:scrollbars="none"
+                    android:layout_marginBottom="4dp">
+                    <LinearLayout android:id="@+id/chipGroupSubcat"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:orientation="horizontal"/>
+                </HorizontalScrollView>
+            </LinearLayout>
+
             <!-- ═══ СОРТИРОВКА ═══ -->
             <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:text="@string/sort_label" android:textSize="13sp"
                 android:textColor="@color/text_hint" android:textStyle="bold"
-                android:paddingHorizontal="20dp" android:layout_marginBottom="8dp"/>
+                android:paddingHorizontal="20dp" android:paddingTop="12dp"
+                android:layout_marginBottom="8dp"/>
 
             <HorizontalScrollView android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -173,62 +213,101 @@
                     android:orientation="horizontal">
                     <TextView android:id="@+id/chipRegAll"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="Все регионы" android:gravity="center"
+                        android:text="@string/chip_reg_all" android:gravity="center"
                         android:paddingHorizontal="14dp" android:textSize="12sp"
                         android:textColor="#FFFFFF" android:background="@color/green_primary"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipRegChuy"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="Чуйская" android:gravity="center"
+                        android:text="@string/chip_reg_chuy" android:gravity="center"
                         android:paddingHorizontal="14dp" android:textSize="12sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipRegIssyk"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="Иссык-Кульская" android:gravity="center"
+                        android:text="@string/chip_reg_issyk" android:gravity="center"
                         android:paddingHorizontal="14dp" android:textSize="12sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipRegOsh"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="Ошская" android:gravity="center"
+                        android:text="@string/chip_reg_osh" android:gravity="center"
                         android:paddingHorizontal="14dp" android:textSize="12sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipRegJalal"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="Джалал-Абадская" android:gravity="center"
+                        android:text="@string/chip_reg_jalal" android:gravity="center"
                         android:paddingHorizontal="14dp" android:textSize="12sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipRegNaryn"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="Нарынская" android:gravity="center"
+                        android:text="@string/chip_reg_naryn" android:gravity="center"
                         android:paddingHorizontal="14dp" android:textSize="12sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipRegBatken"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="Баткенская" android:gravity="center"
+                        android:text="@string/chip_reg_batken" android:gravity="center"
                         android:paddingHorizontal="14dp" android:textSize="12sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipRegTalas"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="Таласская" android:gravity="center"
+                        android:text="@string/chip_reg_talas" android:gravity="center"
                         android:paddingHorizontal="14dp" android:textSize="12sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipRegBishkek"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="г. Бишкек" android:gravity="center"
+                        android:text="@string/chip_reg_bishkek" android:gravity="center"
                         android:paddingHorizontal="14dp" android:textSize="12sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
                     <TextView android:id="@+id/chipRegOshCity"
                         android:layout_width="wrap_content" android:layout_height="36dp"
-                        android:text="г. Ош" android:gravity="center"
+                        android:text="@string/chip_reg_osh_city" android:gravity="center"
                         android:paddingHorizontal="14dp" android:textSize="12sp"
+                        android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
+                        android:clickable="true" android:focusable="true"/>
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!-- ═══ РЕЙТИНГ ПРОДАВЦА (новый) ═══ -->
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                android:text="@string/filter_seller_rating" android:textSize="13sp"
+                android:textColor="@color/text_hint" android:textStyle="bold"
+                android:paddingHorizontal="20dp" android:layout_marginBottom="8dp"/>
+
+            <HorizontalScrollView android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp" android:scrollbars="none"
+                android:layout_marginBottom="16dp">
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView android:id="@+id/ratingAny"
+                        android:layout_width="wrap_content" android:layout_height="36dp"
+                        android:text="@string/filter_rating_any" android:gravity="center"
+                        android:paddingHorizontal="16dp" android:textSize="13sp"
+                        android:textColor="#FFFFFF" android:background="@color/green_primary"
+                        android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
+                    <TextView android:id="@+id/rating3"
+                        android:layout_width="wrap_content" android:layout_height="36dp"
+                        android:text="3★ +" android:gravity="center"
+                        android:paddingHorizontal="16dp" android:textSize="13sp"
+                        android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
+                        android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
+                    <TextView android:id="@+id/rating4"
+                        android:layout_width="wrap_content" android:layout_height="36dp"
+                        android:text="4★ +" android:gravity="center"
+                        android:paddingHorizontal="16dp" android:textSize="13sp"
+                        android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
+                        android:layout_marginEnd="8dp" android:clickable="true" android:focusable="true"/>
+                    <TextView android:id="@+id/rating45"
+                        android:layout_width="wrap_content" android:layout_height="36dp"
+                        android:text="4.5★ +" android:gravity="center"
+                        android:paddingHorizontal="16dp" android:textSize="13sp"
                         android:textColor="@color/green_primary" android:background="@drawable/bg_chip_default"
                         android:clickable="true" android:focusable="true"/>
                 </LinearLayout>
@@ -261,7 +340,7 @@
             <!-- Торг уместен -->
             <LinearLayout android:layout_width="match_parent" android:layout_height="56dp"
                 android:orientation="horizontal" android:gravity="center_vertical"
-                android:paddingHorizontal="20dp" android:layout_marginBottom="16dp">
+                android:paddingHorizontal="20dp" android:layout_marginBottom="2dp">
                 <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
                     android:layout_weight="1" android:orientation="vertical">
                     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
@@ -273,6 +352,24 @@
                 </LinearLayout>
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switchNegotiable"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+            <!-- Только с фото (новый) -->
+            <LinearLayout android:layout_width="match_parent" android:layout_height="56dp"
+                android:orientation="horizontal" android:gravity="center_vertical"
+                android:paddingHorizontal="20dp" android:layout_marginBottom="16dp">
+                <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content"
+                    android:layout_weight="1" android:orientation="vertical">
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/filter_photo_only" android:textSize="14sp"
+                        android:textColor="@color/text_primary" android:textStyle="bold"/>
+                    <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:text="@string/filter_photo_only_hint"
+                        android:textSize="11sp" android:textColor="@color/text_hint"/>
+                </LinearLayout>
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/switchPhotoOnly"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"/>
             </LinearLayout>
 

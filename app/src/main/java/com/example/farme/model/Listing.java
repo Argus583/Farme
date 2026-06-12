@@ -6,6 +6,7 @@ public class Listing {
     private String  id;
     private String  uid;
     private String  category;
+    private String  subcategory;
     private String  title;
     private String  description;
     private double  price;
@@ -19,6 +20,7 @@ public class Listing {
     private boolean rejected;
     private boolean sold;
     private String  rejectReason;
+    private String  currency;
     private long    createdAt;
     private String  sellerName;
     private String  sellerPhone;
@@ -82,6 +84,7 @@ public class Listing {
     public String  getId()           { return id; }
     public String  getUid()          { return uid; }
     public String  getCategory()     { return category; }
+    public String  getSubcategory()  { return subcategory; }
     public String  getTitle()        { return title; }
     public String  getDescription()  { return description; }
     public double  getPrice()        { return price; }
@@ -96,6 +99,7 @@ public class Listing {
     public boolean isSold()          { return sold; }
     public void    setSold(boolean s){ this.sold = s; }
     public String  getRejectReason() { return rejectReason; }
+    public String  getCurrency()     { return currency; }
     public long    getCreatedAt()    { return createdAt; }
     public String  getSellerName()   { return sellerName; }
     public String  getSellerPhone()  { return sellerPhone; }
@@ -107,6 +111,7 @@ public class Listing {
     public void setId(String id)               { this.id = id; }
     public void setUid(String uid)             { this.uid = uid; }
     public void setCategory(String cat)        { this.category = cat; }
+    public void setSubcategory(String sub)     { this.subcategory = sub; }
     public void setTitle(String title)         { this.title = title; }
     public void setDescription(String desc)    { this.description = desc; }
     public void setPrice(double price)         { this.price = price; }
@@ -119,6 +124,7 @@ public class Listing {
     public void setPending(Boolean pending)    { this.pending = pending; }
     public void setRejected(boolean rejected)  { this.rejected = rejected; }
     public void setRejectReason(String r)      { this.rejectReason = r; }
+    public void setCurrency(String c)          { this.currency = c; }
     public void setCreatedAt(long time)        { this.createdAt = time; }
     public void setSellerName(String n)        { this.sellerName = n; }
     public void setSellerPhone(String p)       { this.sellerPhone = p; }
@@ -138,8 +144,12 @@ public class Listing {
     }
     public String getPriceFormatted() {
         if (price <= 0) return "Договорная";
-        return String.format(
-                        java.util.Locale.getDefault(), "%,.0f сом", price)
+        boolean isUsd = "USD".equals(currency);
+        if (isUsd) {
+            return String.format(java.util.Locale.getDefault(), "$%,.0f", price)
+                    .replace(",", " ");
+        }
+        return String.format(java.util.Locale.getDefault(), "%,.0f сом", price)
                 .replace(",", " ");
     }
     public String getCategoryEmoji() {

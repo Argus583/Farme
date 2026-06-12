@@ -1,8 +1,11 @@
 package com.example.farme;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +14,7 @@ import androidx.annotation.*;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager2.widget.ViewPager2;
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
 import com.example.farme.adapter.PhotoPagerAdapter;
@@ -27,6 +31,7 @@ public class ListingDetailActivity extends BaseActivity {
     private TextView     tvRegion, tvDescription, tvCreatedAt;
     private TextView     tvSellerName, tvSellerRegion, tvSellerRating;
     private TextView     tvSellerAvatar;
+    private ImageView    ivSellerAvatarImg;
     private TextView     tvSoldBadge;
     private LinearLayout sellerCard;
     private LinearLayout btnCall, btnMessage;
@@ -84,6 +89,7 @@ public class ListingDetailActivity extends BaseActivity {
         tvSellerRegion    = findViewById(R.id.tvSellerRegion);
         tvSellerRating    = findViewById(R.id.tvSellerRating);
         tvSellerAvatar    = findViewById(R.id.tvSellerAvatar);
+        ivSellerAvatarImg = findViewById(R.id.ivSellerAvatarImg);
         tvSoldBadge       = findViewById(R.id.tvSoldBadge);
         sellerCard        = findViewById(R.id.sellerCard);
         btnCall           = findViewById(R.id.btnCall);
@@ -340,21 +346,10 @@ public class ListingDetailActivity extends BaseActivity {
     }
 
     private void openReviewDialog(String sellerUid) {
-        Intent i = new Intent(this, ReviewsActivity.class);
-        i.putExtra("sellerUid",  sellerUid);
-        i.putExtra("listingId",  listingId);
-        i.putExtra("openReview", true);
-        startActivityForResult(i, 101);
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 101 && resultCode == RESULT_OK) {
+        new ReviewDialogHelper(this, sellerUid, listingId, () -> {
             if (btnLeaveReview != null) btnLeaveReview.setVisibility(View.GONE);
             if (reviewDoneRow  != null) reviewDoneRow.setVisibility(View.VISIBLE);
-            Toast.makeText(this, getString(R.string.review_published), Toast.LENGTH_SHORT).show();
-        }
+        }).show();
     }
 
     // ═════════════════════════════════════════════════════
@@ -403,6 +398,10 @@ public class ListingDetailActivity extends BaseActivity {
         i.putExtra("sellerUid",    currentListing.getUid());
         i.putExtra("listingId",    listingId);
         i.putExtra("listingTitle", currentListing.getTitle());
+        String sName = currentListing.getSellerName();
+        if (sName == null || sName.isEmpty())
+            sName = tvSellerName != null ? tvSellerName.getText().toString() : "";
+        i.putExtra("sellerName", sName);
         startActivity(i);
     }
 
@@ -426,6 +425,7 @@ public class ListingDetailActivity extends BaseActivity {
                         String name   = snap.child("name").getValue(String.class);
                         String region = snap.child("region").getValue(String.class);
                         Double rating = snap.child("rating").getValue(Double.class);
+                        String avatar = snap.child("avatar").getValue(String.class);
 
                         if (tvSellerName != null && name != null)
                             tvSellerName.setText(name);
@@ -438,6 +438,18 @@ public class ListingDetailActivity extends BaseActivity {
                         if (tvSellerAvatar != null && name != null && !name.isEmpty())
                             tvSellerAvatar.setText(
                                     String.valueOf(name.charAt(0)).toUpperCase());
+
+                        if (avatar != null && !avatar.isEmpty() && ivSellerAvatarImg != null) {
+                            try {
+                                String data = avatar.contains(",")
+                                        ? avatar.substring(avatar.indexOf(",") + 1) : avatar;
+                                byte[] bytes = Base64.decode(data, Base64.DEFAULT);
+                                Glide.with(ListingDetailActivity.this)
+                                        .load(bytes).circleCrop().into(ivSellerAvatarImg);
+                                ivSellerAvatarImg.setVisibility(View.VISIBLE);
+                                if (tvSellerAvatar != null) tvSellerAvatar.setVisibility(View.GONE);
+                            } catch (Exception ignored) {}
+                        }
 
                         if (sellerCard != null && !sellerUid.equals(myUid))
                             sellerCard.setOnClickListener(v -> {

@@ -180,6 +180,7 @@ public class ProfileFragment extends Fragment {
     private void loadUserData() {
         mDatabase.child("users").child(currentUid).get()
                 .addOnSuccessListener(snap -> {
+                    if (!isAdded()) return;
                     if (swipeRefresh != null) swipeRefresh.setRefreshing(false);
                     if (!snap.exists()) return;
 
@@ -236,6 +237,7 @@ public class ProfileFragment extends Fragment {
                         dividerAdminPanel.setVisibility(isAdmin ? View.VISIBLE : View.GONE);
                 })
                 .addOnFailureListener(e -> {
+                    if (!isAdded()) return;
                     if (swipeRefresh != null) swipeRefresh.setRefreshing(false);
                 });
     }

@@ -81,7 +81,7 @@ public class SalesActivity extends BaseActivity {
                         }
 
                         if (tvTitle != null)
-                            tvTitle.setText("Продажи (" + soldIds.size() + ")");
+                            tvTitle.setText(getString(R.string.sales_count_format, soldIds.size()));
 
                         if (soldIds.isEmpty()) {
                             recyclerSales.setVisibility(View.GONE);

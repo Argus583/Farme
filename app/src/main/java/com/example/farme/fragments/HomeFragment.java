@@ -34,13 +34,16 @@ public class HomeFragment extends Fragment {
     private final List<Listing> featuredListings = new ArrayList<>();
     private final Set<String>   favoritesIds     = new HashSet<>();
 
-    private String  filterCategory   = "Все";
-    private String  filterRegion     = "Все регионы";
+    private String  filterCategory   = "";   // empty = all
+    private String  filterRegion     = "";   // empty = all
     private double  filterPriceMin   = 0;
     private double  filterPriceMax   = Double.MAX_VALUE;
     private String  filterSort       = "new";
     private boolean filterPassport   = false;
     private boolean filterNegotiable = false;
+    private boolean filterPhotoOnly    = false;
+    private double  filterMinRating    = 0;
+    private String  filterSubcategory  = "";
 
     private DatabaseReference mDatabase;
 
@@ -167,7 +170,7 @@ public class HomeFragment extends Fragment {
             if (chip == null) continue;
             final String cat = cats[i];
             chip.setOnClickListener(v -> {
-                filterCategory = cat.equals(filterCategory) ? "Все" : cat;
+                filterCategory = cat.equals(filterCategory) ? "" : cat;
                 updateChipStyles(view, ids, cats);
                 applyFilters(etSearch != null
                         ? etSearch.getText().toString().trim() : "");
@@ -197,6 +200,7 @@ public class HomeFragment extends Fragment {
         if (btnFilter == null) return;
         btnFilter.setOnClickListener(v -> {
             FilterBottomSheet sheet = new FilterBottomSheet();
+            sheet.setInitialParams(getCurrentParams());
             sheet.setListener(p -> {
                 filterCategory   = p.category;
                 filterRegion     = p.region;
@@ -205,21 +209,67 @@ public class HomeFragment extends Fragment {
                 filterSort       = p.sortBy;
                 filterPassport   = p.passportOnly;
                 filterNegotiable = p.negotiableOnly;
+                filterPhotoOnly   = p.photoOnly;
+                filterMinRating   = p.minSellerRating;
+                filterSubcategory = p.subcategory;
                 applyFilters(etSearch != null
                         ? etSearch.getText().toString().trim() : "");
-                // Подсвечиваем кнопку фильтра
-                boolean hasFilter = !"Все".equals(p.category)
-                        || !"Все регионы".equals(p.region)
+                boolean hasFilter = !p.category.isEmpty()
+                        || !p.subcategory.isEmpty()
+                        || !p.region.isEmpty()
                         || p.priceMin > 0 || p.priceMax < Double.MAX_VALUE
                         || !"new".equals(p.sortBy)
-                        || p.passportOnly || p.negotiableOnly;
-                if (btnFilter != null)
-                    btnFilter.setBackgroundResource(hasFilter
-                            ? R.drawable.bg_chip_selected
-                            : R.drawable.bg_filter_btn);
+                        || p.passportOnly || p.negotiableOnly
+                        || p.photoOnly || p.minSellerRating > 0;
+                int activeCount = 0;
+                if (!p.category.isEmpty()) activeCount++;
+                if (!p.subcategory.isEmpty()) activeCount++;
+                if (!p.region.isEmpty()) activeCount++;
+                if (p.priceMin > 0 || p.priceMax < Double.MAX_VALUE) activeCount++;
+                if (!"new".equals(p.sortBy)) activeCount++;
+                if (p.passportOnly) activeCount++;
+                if (p.negotiableOnly) activeCount++;
+                if (p.photoOnly) activeCount++;
+                if (p.minSellerRating > 0) activeCount++;
+                updateFilterBadge(hasFilter, activeCount);
             });
             sheet.show(getParentFragmentManager(), "filter");
         });
+    }
+
+    private FilterBottomSheet.FilterParams getCurrentParams() {
+        FilterBottomSheet.FilterParams p = new FilterBottomSheet.FilterParams();
+        p.category       = filterCategory;
+        p.subcategory    = filterSubcategory;
+        p.region         = filterRegion;
+        p.priceMin       = filterPriceMin;
+        p.priceMax       = filterPriceMax;
+        p.sortBy         = filterSort;
+        p.passportOnly   = filterPassport;
+        p.negotiableOnly = filterNegotiable;
+        p.photoOnly      = filterPhotoOnly;
+        p.minSellerRating = filterMinRating;
+        return p;
+    }
+
+    private void updateFilterBadge(boolean hasFilter, int count) {
+        if (btnFilter == null) return;
+        btnFilter.setBackgroundResource(hasFilter
+                ? R.drawable.bg_chip_selected
+                : R.drawable.bg_filter_btn);
+        for (int i = 0; i < btnFilter.getChildCount(); i++) {
+            View child = btnFilter.getChildAt(i);
+            if (child instanceof TextView) {
+                TextView tv = (TextView) child;
+                if (tv.getText() != null && !tv.getText().toString().equals("⚙️")) {
+                    tv.setText(hasFilter
+                            ? getString(R.string.filter_active_count, count)
+                            : getString(R.string.action_filter));
+                    tv.setTextColor(hasFilter ? 0xFFFFFFFF : getResources().getColor(R.color.text_secondary, null));
+                    break;
+                }
+            }
+        }
     }
 
     private void loadUserInfo() {
@@ -307,7 +357,7 @@ public class HomeFragment extends Fragment {
         for (String id : historyIds) {
             Listing l = map.get(id);
             if (l != null) {
-                boolean matchCategory = "Все".equals(filterCategory)
+                boolean matchCategory = filterCategory.isEmpty()
                         || filterCategory.equals(l.getCategory());
                 if (matchCategory) featuredListings.add(l);
             }
@@ -332,15 +382,19 @@ public class HomeFragment extends Fragment {
                     .contains(query.toLowerCase()))
                     || (l.getDescription() != null && l.getDescription()
                     .toLowerCase().contains(query.toLowerCase()));
-            boolean matchC = "Все".equals(filterCategory)
+            boolean matchC = filterCategory.isEmpty()
                     || filterCategory.equals(l.getCategory());
-            boolean matchR = "Все регионы".equals(filterRegion)
+            boolean matchR = filterRegion.isEmpty()
                     || filterRegion.equals(l.getRegion());
             boolean matchP = l.getPrice() >= filterPriceMin
                     && l.getPrice() <= filterPriceMax;
             boolean matchPass = !filterPassport || l.hasPassport();
             boolean matchNeg  = !filterNegotiable || l.isNegotiable();
-            if (matchQ && matchC && matchR && matchP && matchPass && matchNeg)
+            boolean matchPhoto  = !filterPhotoOnly || l.hasPhotos();
+            boolean matchRating = filterMinRating <= 0 || l.getSellerRating() >= filterMinRating;
+            boolean matchSubcat = filterSubcategory.isEmpty()
+                    || filterSubcategory.equals(l.getSubcategory());
+            if (matchQ && matchC && matchSubcat && matchR && matchP && matchPass && matchNeg && matchPhoto && matchRating)
                 filtered.add(l);
         }
         switch (filterSort) {

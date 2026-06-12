@@ -132,6 +132,7 @@ public class FavoritesFragment extends Fragment {
                 .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (!isAdded()) return;
                         List<String> favIds = new ArrayList<>();
                         for (DataSnapshot child : snapshot.getChildren()) {
                             favIds.add(child.getKey());
@@ -152,6 +153,7 @@ public class FavoritesFragment extends Fragment {
 
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
+                        if (!isAdded()) return;
                         Toast.makeText(requireContext(),
                                 "Ошибка: " + error.getMessage(), Toast.LENGTH_SHORT).show();
                     }
@@ -198,12 +200,14 @@ public class FavoritesFragment extends Fragment {
     private void removeFavorite(String listingId) {
         mDatabase.child("favorites").child(myUid).child(listingId)
                 .removeValue()
-                .addOnSuccessListener(v ->
-                        Toast.makeText(requireContext(),
-                                "Удалено из избранного", Toast.LENGTH_SHORT).show())
-                .addOnFailureListener(e ->
-                        Toast.makeText(requireContext(),
-                                "Ошибка: " + e.getMessage(), Toast.LENGTH_SHORT).show());
+                .addOnSuccessListener(v -> {
+                    if (!isAdded()) return;
+                    Toast.makeText(requireContext(), "Удалено из избранного", Toast.LENGTH_SHORT).show();
+                })
+                .addOnFailureListener(e -> {
+                    if (!isAdded()) return;
+                    Toast.makeText(requireContext(), "Ошибка: " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                });
     }
 
     // ─── ОЧИСТИТЬ ВСЁ ─────────────────────────────────────────

@@ -145,7 +145,7 @@ public class SellerProfileActivity extends BaseActivity {
                         if (ca != null) {
                             String date = new SimpleDateFormat("dd.MM.yyyy",
                                     Locale.getDefault()).format(new Date(ca));
-                            tvSellerSince.setText("На сайте с " + date);
+                            tvSellerSince.setText(getString(R.string.seller_since_format, date));
                         }
 
                         if (rating != null)
@@ -418,7 +418,12 @@ public class SellerProfileActivity extends BaseActivity {
     // ── Жалоба на пользователя ────────────────────────────────
     private void openReportUserDialog() {
         if (myUid == null) return;
-        String[] reasons = {"Мошенничество", "Оскорбительное поведение", "Спам", "Другое"};
+        String[] reasons = {
+            getString(R.string.report_reason_fraud),
+            getString(R.string.report_reason_abuse),
+            getString(R.string.report_reason_spam),
+            getString(R.string.report_reason_other)
+        };
         final int[] selected = {0};
 
         LinearLayout layout = new LinearLayout(this);
@@ -426,7 +431,7 @@ public class SellerProfileActivity extends BaseActivity {
         layout.setPadding(dp(20), dp(16), dp(20), dp(8));
 
         TextView tvLabel = new TextView(this);
-        tvLabel.setText("Причина жалобы:");
+        tvLabel.setText(getString(R.string.report_reason_label));
         tvLabel.setTextSize(14);
         tvLabel.setTextColor(getColor(R.color.text_primary));
         tvLabel.setTypeface(null, android.graphics.Typeface.BOLD);
@@ -447,7 +452,7 @@ public class SellerProfileActivity extends BaseActivity {
         layout.addView(rg);
 
         EditText etMsg = new EditText(this);
-        etMsg.setHint("Дополнительные сведения (необязательно)");
+        etMsg.setHint(getString(R.string.report_details_hint));
         etMsg.setBackgroundResource(R.drawable.bg_input);
         etMsg.setPadding(dp(12), dp(10), dp(12), dp(10));
         etMsg.setMinHeight(dp(80));
@@ -486,10 +491,10 @@ public class SellerProfileActivity extends BaseActivity {
         if (!message.isEmpty()) report.put("message", message);
         mDatabase.child("reports").child(reportId).setValue(report)
                 .addOnSuccessListener(a -> Toast.makeText(this,
-                        "Жалоба отправлена. Мы рассмотрим её в течение 24 часов.",
+                        getString(R.string.user_report_sent),
                         Toast.LENGTH_LONG).show())
                 .addOnFailureListener(e -> Toast.makeText(this,
-                        "Ошибка отправки", Toast.LENGTH_SHORT).show());
+                        getString(R.string.error_send), Toast.LENGTH_SHORT).show());
     }
 
     private int dp(int v) {

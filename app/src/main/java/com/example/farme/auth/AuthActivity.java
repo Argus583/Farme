@@ -7,9 +7,20 @@ import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.*;
 import androidx.appcompat.app.AppCompatActivity;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.common.api.ApiException;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.*;
+import com.google.firebase.messaging.FirebaseMessaging;
+import com.example.farme.FarmeFcmService;
 import com.example.farme.MainActivity;
+import com.example.farme.PhoneVerificationHelper;
 import com.example.farme.R;
 
 /**
@@ -42,6 +53,8 @@ public class AuthActivity extends com.example.farme.BaseActivity {
     private ProgressBar pbBtnLoading;
     private CheckBox cbRemember;
 
+    private static final int RC_GOOGLE_SIGN_IN = 9001;
+
     private String mode   = "login";
     private String method = "phone";
     private String selectedCountryCode = "+996";
@@ -50,6 +63,8 @@ public class AuthActivity extends com.example.farme.BaseActivity {
 
     private FirebaseAuth      mAuth;
     private DatabaseReference mDatabase;
+    private GoogleSignInClient mGoogleSignInClient;
+    private LinearLayout btnGoogleSignIn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +73,12 @@ public class AuthActivity extends com.example.farme.BaseActivity {
 
         mAuth     = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+
+        GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken(getString(R.string.default_web_client_id))
+                .requestEmail()
+                .build();
+        mGoogleSignInClient = GoogleSignIn.getClient(this, gso);
 
         initViews();
         setupClickListeners();
@@ -98,6 +119,7 @@ public class AuthActivity extends com.example.farme.BaseActivity {
         tvBtnPrimary      = findViewById(R.id.tvBtnPrimary);
         pbBtnLoading      = findViewById(R.id.pbBtnLoading);
         cbRemember        = findViewById(R.id.cbRemember);
+        btnGoogleSignIn   = findViewById(R.id.btnGoogleSignIn);
     }
 
     private void setupClickListeners() {
@@ -118,6 +140,11 @@ public class AuthActivity extends com.example.farme.BaseActivity {
         btnPrimary.setOnClickListener(v -> {
             if (isLoading) return;
             handlePrimaryAction();
+        });
+
+        btnGoogleSignIn.setOnClickListener(v -> {
+            if (isLoading) return;
+            handleGoogleSignIn();
         });
     }
 
@@ -210,26 +237,66 @@ public class AuthActivity extends com.example.farme.BaseActivity {
         }
     }
 
-    // ─── Phone: отправка OTP ─────────────────────────────
+    // ─── Phone: сначала пробуем Firebase PNV, потом SMS OTP ──────────
     private void handlePhone() {
+        setLoading(true);
+
+        // Проверяем поддержку Firebase PNV на этом устройстве
+        PhoneVerificationHelper.getInstance().checkSupport(supported -> {
+            runOnUiThread(() -> {
+                if (supported) {
+                    // ✅ Устройство поддерживает PNV — определяем номер автоматически
+                    startPnvVerification();
+                } else {
+                    // ❌ PNV не поддерживается — обычный ввод номера + SMS
+                    setLoading(false);
+                    proceedWithManualPhone();
+                }
+            });
+        });
+    }
+
+    /** Запуск Firebase PNV — показывает диалог Google для подтверждения номера */
+    private void startPnvVerification() {
+        PhoneVerificationHelper.getInstance().verify(
+                this,
+                (phoneNumber, pnvToken) -> {
+                    // ✅ Номер подтверждён через SIM — переходим на OTP (Firebase Auth)
+                    setLoading(false);
+                    Intent i = new Intent(this, OtpActivity.class);
+                    i.putExtra("phone",    phoneNumber);
+                    i.putExtra("mode",     mode);
+                    i.putExtra("pnvToken", pnvToken); // для возможной передачи на сервер
+                    startActivity(i);
+                },
+                e -> {
+                    // ❌ PNV не сработал (отказ пользователя, ошибка сети) — fallback на ручной ввод
+                    setLoading(false);
+                    proceedWithManualPhone();
+                }
+        );
+    }
+
+    /** Обычный поток: пользователь вводит номер вручную → SMS OTP */
+    private void proceedWithManualPhone() {
         String rawPhone = etLoginPhone.getText().toString().trim();
         String digits   = rawPhone.replaceAll("[^0-9]", "");
 
         if (digits.isEmpty()) {
-            showFieldError(tvLoginPhoneError, etLoginPhone, getString(R.string.error_enter_phone));
+            showFieldError(tvLoginPhoneError, etLoginPhone,
+                    getString(R.string.error_enter_phone));
             return;
         }
         if (digits.length() < 7 || digits.length() > 12) {
-            showFieldError(tvLoginPhoneError, etLoginPhone, getString(R.string.error_invalid_phone_number));
+            showFieldError(tvLoginPhoneError, etLoginPhone,
+                    getString(R.string.error_invalid_phone_number));
             return;
         }
 
         String fullPhone = selectedCountryCode + digits;
-
-        // Переход на OtpActivity
         Intent i = new Intent(this, OtpActivity.class);
         i.putExtra("phone", fullPhone);
-        i.putExtra("mode", mode); // login / register
+        i.putExtra("mode",  mode);
         startActivity(i);
     }
 
@@ -294,6 +361,9 @@ public class AuthActivity extends com.example.farme.BaseActivity {
                         showFormError(getString(R.string.error_account_banned));
                         return;
                     }
+                    // Сохраняем FCM-токен после email-входа
+                    FirebaseMessaging.getInstance().getToken()
+                            .addOnSuccessListener(FarmeFcmService::saveToken);
                     Intent i = new Intent(this, MainActivity.class);
                     i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
                             | Intent.FLAG_ACTIVITY_CLEAR_TASK);
@@ -307,6 +377,55 @@ public class AuthActivity extends com.example.farme.BaseActivity {
                             | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                     startActivity(i);
                     finish();
+                });
+    }
+
+    // ═══ Google Sign-In ══════════════════════════════════
+    private void handleGoogleSignIn() {
+        setLoading(true);
+        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+        startActivityForResult(signInIntent, RC_GOOGLE_SIGN_IN);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_GOOGLE_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account.getIdToken());
+            } catch (ApiException e) {
+                setLoading(false);
+                showFormError(getString(R.string.error_google_sign_in));
+            }
+        }
+    }
+
+    private void firebaseAuthWithGoogle(String idToken) {
+        AuthCredential credential = GoogleAuthProvider.getCredential(idToken, null);
+        mAuth.signInWithCredential(credential)
+                .addOnSuccessListener(authResult -> {
+                    boolean isNew = authResult.getAdditionalUserInfo() != null
+                            && authResult.getAdditionalUserInfo().isNewUser();
+                    if (isNew) {
+                        // Новый пользователь — заполнить профиль
+                        Intent i = new Intent(this, CompleteProfileActivity.class);
+                        i.putExtra("authMethod", "google");
+                        if (mAuth.getCurrentUser() != null) {
+                            i.putExtra("email", mAuth.getCurrentUser().getEmail());
+                            i.putExtra("name",  mAuth.getCurrentUser().getDisplayName());
+                        }
+                        i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(i);
+                        finish();
+                    } else {
+                        checkUserAndNavigate();
+                    }
+                })
+                .addOnFailureListener(e -> {
+                    setLoading(false);
+                    showFormError(getString(R.string.error_google_sign_in));
                 });
     }
 

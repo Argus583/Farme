@@ -62,20 +62,35 @@ public class TicketChatActivity extends BaseActivity {
                 Long   createdAt = snap.child("createdAt").getValue(Long.class);
 
                 if (tvTicketSubject != null)
-                    tvTicketSubject.setText(subject != null ? subject : "Обращение");
+                    tvTicketSubject.setText(subject != null ? subject : getString(R.string.ticket_title));
 
-                boolean answered = "answered".equals(status) || "closed".equals(status);
-                if (tvTicketStatus != null)
-                    tvTicketStatus.setText(answered ? "✓ Отвечено" : "⏳ Ожидает ответа");
+                boolean isClosed = "closed".equals(status);
+                if (tvTicketStatus != null) {
+                    if (isClosed)
+                        tvTicketStatus.setText(getString(R.string.ticket_status_closed));
+                    else if ("answered".equals(status))
+                        tvTicketStatus.setText("✓ " + getString(R.string.ticket_status_answered));
+                    else
+                        tvTicketStatus.setText("⏳ " + getString(R.string.ticket_status_pending));
+                }
 
-                buildChat(message, createdAt, snap.child("replies"));
+                setInputEnabled(!isClosed);
+                buildChat(message, createdAt, snap.child("replies"), isClosed);
             }
             @Override public void onCancelled(@NonNull DatabaseError e) {}
         };
         mDatabase.child("support").child(ticketId).addValueEventListener(ticketListener);
     }
 
-    private void buildChat(String message, Long createdAt, DataSnapshot repliesSnap) {
+    private void setInputEnabled(boolean enabled) {
+        if (etUserReply != null) etUserReply.setEnabled(enabled);
+        if (btnSendReply != null) {
+            btnSendReply.setEnabled(enabled);
+            btnSendReply.setAlpha(enabled ? 1f : 0.4f);
+        }
+    }
+
+    private void buildChat(String message, Long createdAt, DataSnapshot repliesSnap, boolean isClosed) {
         chatContainer.removeAllViews();
         SimpleDateFormat sdf = new SimpleDateFormat("d MMM, HH:mm", new Locale("ru"));
 
@@ -96,10 +111,20 @@ public class TicketChatActivity extends BaseActivity {
             }
         }
 
-        // Ещё не ответили — подсказка
-        if (!hasAdminReply) {
+        if (isClosed) {
+            TextView tvClosed = new TextView(this);
+            tvClosed.setText(getString(R.string.ticket_closed_by_admin));
+            tvClosed.setTextSize(13);
+            tvClosed.setTextColor(getColor(R.color.text_hint));
+            tvClosed.setGravity(Gravity.CENTER);
+            LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            lp.topMargin = dp(20);
+            tvClosed.setLayoutParams(lp);
+            chatContainer.addView(tvClosed);
+        } else if (!hasAdminReply) {
             TextView tvWait = new TextView(this);
-            tvWait.setText("⏳ Ожидаем ответа от поддержки\nОбычно отвечаем в течение 24 часов");
+            tvWait.setText(getString(R.string.ticket_waiting_hint));
             tvWait.setTextSize(13);
             tvWait.setTextColor(getColor(R.color.text_hint));
             tvWait.setGravity(Gravity.CENTER);
@@ -131,7 +156,7 @@ public class TicketChatActivity extends BaseActivity {
         // Подпись "🛡 Поддержка" над ответом
         if (isAdmin) {
             TextView tvLabel = new TextView(this);
-            tvLabel.setText("🛡 Поддержка");
+            tvLabel.setText(getString(R.string.support_admin_reply));
             tvLabel.setTextSize(11);
             tvLabel.setTextColor(getColor(R.color.green_primary));
             tvLabel.setTypeface(null, android.graphics.Typeface.BOLD);

@@ -25,28 +25,9 @@ public class SupportActivity extends BaseActivity {
     private ValueEventListener ticketsListener;
     private Query              ticketsQuery;
 
-    private static final String[][] FAQ = {
-        {"Как добавить объявление?",
-         "Нажмите кнопку «+» в нижней части экрана. Заполните название, категорию, цену и регион. Добавьте фотографию товара. После отправки объявление пройдёт проверку модератором — обычно до 24 часов."},
-        {"Почему моё объявление не опубликовано?",
-         "Новые объявления проходят проверку модератором. Если объявление отклонено — откройте «Мои объявления», там будет указана причина отклонения. Исправьте и отправьте повторно."},
-        {"Как связаться с продавцом?",
-         "Откройте карточку объявления и нажмите кнопку «Написать». Откроется чат с продавцом. Если продавец не отвечает долго, попробуйте позвонить по номеру из его профиля."},
-        {"Как добавить паспорт животного?",
-         "При создании объявления в категории «Скот» появится раздел «Паспорт животного». Заполните данные: порода, возраст, прививки, ветеринарное свидетельство. После верификации паспорт получит отметку «Проверено»."},
-        {"Как редактировать или удалить объявление?",
-         "Перейдите в «Мои объявления» и откройте нужное. Нажмите кнопку редактирования (карандаш). Там можно изменить данные или удалить объявление."},
-        {"Как пройти верификацию аккаунта?",
-         "Заполните профиль полностью: имя, регион, фото. Опубликуйте несколько объявлений. Для ускоренной верификации напишите нам через форму ниже."},
-        {"Как изменить регион?",
-         "Перейдите в Профиль → Настройки → выберите нужный регион. Это повлияет на отображение объявлений на главной странице и карте."},
-        {"Как отключить уведомления?",
-         "Перейдите в Профиль → Настройки → раздел «Push-уведомления». Там можно отключить каждый тип уведомлений отдельно (новые сообщения, одобрение объявлений и др.)."}
-    };
-
-    private static final String[] TOPICS = {
-        "Общий вопрос", "Объявления", "Чаты", "Аккаунт", "Паспорт животного", "Другое"
-    };
+    private String[] faqQuestions;
+    private String[] faqAnswers;
+    private String[] topics;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +37,11 @@ public class SupportActivity extends BaseActivity {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         myUid     = FirebaseAuth.getInstance().getCurrentUser() != null
                   ? FirebaseAuth.getInstance().getCurrentUser().getUid() : null;
+
+        faqQuestions = getResources().getStringArray(R.array.faq_questions);
+        faqAnswers   = getResources().getStringArray(R.array.faq_answers);
+        topics       = getResources().getStringArray(R.array.support_topics);
+        selectedTopic = topics[0];
 
         faqContainer    = findViewById(R.id.faqContainer);
         ticketsContainer = findViewById(R.id.ticketsContainer);
@@ -75,7 +61,10 @@ public class SupportActivity extends BaseActivity {
     }
 
     private void buildFaq() {
-        for (String[] qa : FAQ) {
+        for (int i = 0; i < faqQuestions.length; i++) {
+            String question = faqQuestions[i];
+            String answer   = i < faqAnswers.length ? faqAnswers[i] : "";
+
             CardView card = new CardView(this);
             CardView.LayoutParams lp = new CardView.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
@@ -84,25 +73,23 @@ public class SupportActivity extends BaseActivity {
             card.setLayoutParams(lp);
             card.setRadius(dp(12));
             card.setCardElevation(0);
-            card.setCardBackgroundColor(Color.WHITE);
+            card.setCardBackgroundColor(getColor(R.color.bg_card));
 
             LinearLayout inner = new LinearLayout(this);
             inner.setOrientation(LinearLayout.VERTICAL);
             inner.setPadding(dp(16), dp(14), dp(16), dp(14));
 
-            // Вопрос + стрелка
             LinearLayout row = new LinearLayout(this);
             row.setOrientation(LinearLayout.HORIZONTAL);
             row.setGravity(android.view.Gravity.CENTER_VERTICAL);
 
             TextView tvQ = new TextView(this);
-            tvQ.setText(qa[0]);
+            tvQ.setText(question);
             tvQ.setTextSize(14);
             tvQ.setTextColor(getColor(R.color.text_primary));
             tvQ.setTypeface(null, android.graphics.Typeface.BOLD);
-            LinearLayout.LayoutParams qLp = new LinearLayout.LayoutParams(0,
-                    ViewGroup.LayoutParams.WRAP_CONTENT, 1f);
-            tvQ.setLayoutParams(qLp);
+            tvQ.setLayoutParams(new LinearLayout.LayoutParams(0,
+                    ViewGroup.LayoutParams.WRAP_CONTENT, 1f));
 
             TextView arrow = new TextView(this);
             arrow.setText("▼");
@@ -113,9 +100,8 @@ public class SupportActivity extends BaseActivity {
             row.addView(tvQ);
             row.addView(arrow);
 
-            // Ответ (скрыт)
             TextView tvA = new TextView(this);
-            tvA.setText(qa[1]);
+            tvA.setText(answer);
             tvA.setTextSize(13);
             tvA.setTextColor(getColor(R.color.text_secondary));
             tvA.setPadding(0, dp(10), 0, 0);
@@ -125,7 +111,6 @@ public class SupportActivity extends BaseActivity {
             inner.addView(tvA);
             card.addView(inner);
 
-            // Клик — раскрыть/свернуть
             row.setOnClickListener(v -> {
                 boolean expanded = tvA.getVisibility() == View.VISIBLE;
                 tvA.setVisibility(expanded ? View.GONE : View.VISIBLE);
@@ -139,7 +124,7 @@ public class SupportActivity extends BaseActivity {
     }
 
     private void buildTopicChips() {
-        for (String topic : TOPICS) {
+        for (String topic : topics) {
             TextView chip = new TextView(this);
             LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
@@ -267,7 +252,7 @@ public class SupportActivity extends BaseActivity {
         card.setLayoutParams(lp);
         card.setRadius(dp(12));
         card.setCardElevation(0);
-        card.setCardBackgroundColor(Color.WHITE);
+        card.setCardBackgroundColor(getColor(R.color.bg_card));
 
         LinearLayout inner = new LinearLayout(this);
         inner.setOrientation(LinearLayout.VERTICAL);

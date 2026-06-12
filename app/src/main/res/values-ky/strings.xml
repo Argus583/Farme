@@ -47,6 +47,20 @@
     <string name="cat_equipment">Техника</string>
     <string name="cat_services">Кызматтар</string>
 
+    <!-- Search filter categories (index 0 = all) -->
+    <string-array name="search_categories">
+        <item>Бардык категориялар</item>
+        <item>Мал</item>
+        <item>Дан</item>
+        <item>Жашылчалар</item>
+        <item>Жемиштер</item>
+        <item>Сүт азыктары</item>
+        <item>Канаттуулар</item>
+        <item>Жем-чөп</item>
+        <item>Техника</item>
+        <item>Кызматтар</item>
+    </string-array>
+
     <!-- Regions -->
     <string-array name="regions">
         <item>Бардык аймактар</item>
@@ -146,6 +160,18 @@
     <string name="btn_change_number">Номерди өзгөртүү</string>
     <string name="btn_resend_code">Кодду кайра жөнөт</string>
     <string name="otp_not_received_hint">SMS келбедиби? Номерди текшериңиз же кийинчерээк кайталаңыз</string>
+    <string name="error_enter_code">Кодду 6 сан толук киргизиңиз</string>
+    <string name="error_code_pending">SMS жөнөтүлүүдө, күтүңүз…</string>
+    <string name="error_sms_send">SMS жөнөтүүдө ката. Номерди текшериңиз</string>
+    <string name="error_sms_billing">SMS жеткиликсиз. Колдоо кызматына кайрылыңыз</string>
+    <string name="error_too_many_requests">Өтө көп суроо. Кийинчерээк аракет кылыңыз</string>
+    <string name="error_wrong_code">Туура эмес код</string>
+
+    <!-- Push Notifications -->
+    <string name="notif_channel_chat">Билдирүүлөр</string>
+    <string name="notif_channel_chat_desc">Жаңы чат билдирүүлөрү жөнүндө</string>
+    <string name="notif_channel_system">Система</string>
+    <string name="notif_channel_system_desc">Жарнама статусу, колдоо жооптору</string>
 
     <!-- Complete Profile -->
     <string name="complete_registration_title">Катталууну аяктаңыз</string>
@@ -395,6 +421,9 @@
     <string name="email_address_label">Email дарек</string>
     <string name="hint_enter_password">Сырсөздү киргизиңиз</string>
     <string name="security_badge">🔒 Firebase Authentication менен корголгон</string>
+    <string name="sign_in_with_google">Google аркылуу кирүү</string>
+    <string name="or_divider">же</string>
+    <string name="error_google_sign_in">Google аркылуу кирүү мүмкүн болгон жок</string>
     <string name="otp_resend_prefix">Жаңы код алуу </string>
 
     <!-- Listing Detail -->
@@ -530,4 +559,111 @@
     <string name="label_age">Жашы</string>
     <string name="map_listings_title">Жарыяламалар картасы</string>
     <string name="btn_show_all">Баары →</string>
+    <string name="delete_chat_title">Чатты жок кылуу?</string>
+    <string name="delete_chat_message">%s менен болгон чат жок кылынат</string>
+
+    <!-- Admin Support (hardcoded strings fixed) -->
+    <string name="open_tickets_count">%d ачык</string>
+    <string name="empty_answered_tickets">Жооп берилген кайрылуулар жок</string>
+    <string name="admin_your_reply_label">Сиздин жообуңуз:</string>
+    <string name="admin_reply_hint">Колдонуучуга жооп жазыңыз…</string>
+    <string name="btn_close_session">Сеансты жабуу</string>
+    <string name="session_closed">Сеанс жабылды</string>
+    <string name="general_question">Жалпы суроо</string>
+
+    <!-- Ticket Chat -->
+    <string name="ticket_status_closed">🔒 Сеанс жабылды</string>
+    <string name="ticket_closed_by_admin">🔒 Сеанс администратор тарабынан жабылды</string>
+    <string name="ticket_waiting_hint">⏳ Колдоо кызматынын жообун күтүүдө\nАдатта 24 саат ичинде жооп беребиз</string>
+
+    <!-- Support FAQ + Topics -->
+    <string-array name="faq_questions">
+        <item>Жарнама кантип кошуу керек?</item>
+        <item>Эмне үчүн менин жарнамам жарыяланган жок?</item>
+        <item>Сатуучу менен кантип байланышуу керек?</item>
+        <item>Жаныбардын паспортун кантип кошуу керек?</item>
+        <item>Жарнаманы кантип өзгөртүү же жок кылуу керек?</item>
+        <item>Аккаунтту кантип верификациялоо керек?</item>
+        <item>Аймакты кантип өзгөртүү керек?</item>
+        <item>Билдирмелерди кантип өчүрүү керек?</item>
+    </string-array>
+    <string-array name="faq_answers">
+        <item>Экрандын төмөнкү бөлүгүндөгү «+» баскычын басыңыз. Аталышын, категориясын, баасын жана аймагын толтуруңуз. Сүрөт кошуңуз. Жөнөткөндөн кийин жарнама модератор текшерүүсүнөн өтөт — адатта 24 саатка чейин.</item>
+        <item>Жаңы жарнамалар модератор текшерүүсүнөн өтөт. Четке кагылса — «Менин жарнамаларым» бөлүмүн ачыңыз, ал жерде себеби көрсөтүлөт. Оңдоп, кайра жөнөтүңүз.</item>
+        <item>Жарнаманын картасын ачып, «Жазуу» баскычын басыңыз. Сатуучу менен чат ачылат. Сатуучу узак убакыт жооп бербесе, анын профилиндеги номерге чалып көрүңүз.</item>
+        <item>«Мал» категориясында жарнама түзүүдө «Жаныбардын паспорту» бөлүмү пайда болот. Породасын, жашын, эмдөөлөрүн жана ветеринардык күбөлүгүн толтуруңуз.</item>
+        <item>«Менин жарнамаларым» бөлүмүнө өтүп, керектүүсүн ачыңыз. Өзгөртүү баскычын (карандаш) басыңыз. Ал жерде маалыматты өзгөртүп же жарнаманы жок кыла аласыз.</item>
+        <item>Профилди толук толтуруңуз: аты, аймак, сүрөт. Бир нече жарнама жарыялаңыз. Тезирээк верификация үчүн төмөндөгү форма аркылуу бизге жазыңыз.</item>
+        <item>Профиль → Жөндөөлөр → керектүү аймакты тандаңыз. Бул башкы барактагы жана картадагы жарнамалардын көрсөтүлүшүнө таасир этет.</item>
+        <item>Профиль → Жөндөөлөр → «Push-билдирмелер» бөлүмүнө өтүңүз. Ал жерде ар бир билдирме түрүн өзүнчө өчүрүүгө болот.</item>
+    </string-array>
+    <string-array name="support_topics">
+        <item>Жалпы суроо</item>
+        <item>Жарнамалар</item>
+        <item>Чаттар</item>
+        <item>Аккаунт</item>
+        <item>Жаныбардын паспорту</item>
+        <item>Башка</item>
+    </string-array>
+
+    <!-- Map / Search -->
+    <string name="nearby_count_format">Жакынкы · %d жарнама</string>
+    <string name="search_results_format">Табылды: %d</string>
+
+    <!-- Seller Profile -->
+    <string name="seller_since_format">Сайтта %s бери</string>
+    <string name="report_reason_fraud">Алдамчылык</string>
+    <string name="report_reason_abuse">Сый кетирбеген жүрүм-турум</string>
+    <string name="report_reason_spam">Спам</string>
+    <string name="report_reason_other">Башка</string>
+    <string name="user_report_sent">Арыз жөнөтүлдү. 24 саат ичинде карайбыз.</string>
+
+    <!-- Sales -->
+    <string name="sales_count_format">Сатуулар (%d)</string>
+
+    <!-- Settings -->
+    <string name="settings_language">Тил</string>
+
+    <!-- RejectDialog -->
+    <string name="error_specify_reason">Себебин көрсөтүңүз</string>
+
+    <!-- Create Listing photo count -->
+    <string name="preview_photo_count_format">📷  %d сүрөт</string>
+
+    <!-- Category / Region chips (with emoji for display in filter &amp; map) -->
+    <string name="chip_cat_all">Баары</string>
+    <string name="chip_cat_livestock">🐄 Мал</string>
+    <string name="chip_cat_grain">🌾 Дан</string>
+    <string name="chip_cat_vegetables">🥬 Жашылчалар</string>
+    <string name="chip_cat_fruits">🍎 Жемиштер</string>
+    <string name="chip_cat_dairy">🥛 Сүт азыктары</string>
+    <string name="chip_cat_poultry">🐔 Канаттуулар</string>
+
+    <string name="chip_reg_all">Бардык аймактар</string>
+    <string name="chip_reg_chuy">Чүй</string>
+    <string name="chip_reg_issyk">Ысык-Көл</string>
+    <string name="chip_reg_osh">Ош обл.</string>
+    <string name="chip_reg_jalal">Жалал-Абад</string>
+    <string name="chip_reg_naryn">Нарын</string>
+    <string name="chip_reg_batken">Баткен</string>
+    <string name="chip_reg_talas">Талас</string>
+    <string name="chip_reg_bishkek">Бишкек ш.</string>
+    <string name="chip_reg_osh_city">Ош ш.</string>
+
+    <!-- OnboardingActivity -->
+    <string name="btn_start">Баштоо</string>
+
+    <!-- ReviewDialogHelper -->
+    <string name="anonymous">Аноним</string>
+
+    <!-- Filter expanded -->
+    <string name="filter_subcategory">Ички категория</string>
+    <string name="filter_seller_rating">Сатуучунун рейтинги</string>
+    <string name="filter_rating_any">Каалаган</string>
+    <string name="filter_photo_only">Сүрөттүү гана</string>
+    <string name="filter_photo_only_hint">Жок дегенде бир сүрөт бар</string>
+    <string name="filter_active_count">Чыпкалар: %d</string>
+    <string name="chip_cat_korma">🌿 Жем-чөп</string>
+    <string name="chip_cat_tekhnika">🚜 Техника</string>
+    <string name="chip_cat_uslugi">🔧 Кызматтар</string>
 </resources>

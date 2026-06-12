@@ -10,6 +10,7 @@ import android.util.Base64;
 import android.view.*;
 import android.widget.*;
 import androidx.annotation.*;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.*;
@@ -56,6 +57,7 @@ public class ChatsFragment extends Fragment {
         if (recycler != null) {
             recycler.setLayoutManager(new LinearLayoutManager(requireContext()));
             recycler.setAdapter(adapter);
+            attachSwipeToDelete(recycler);
         }
 
         if (etSearch != null) {
@@ -158,6 +160,7 @@ public class ChatsFragment extends Fragment {
                         if (!isAdded()) return;
                         item.partnerName   = snap.child("name").getValue(String.class);
                         item.partnerRegion = snap.child("region").getValue(String.class);
+                        item.partnerAvatar = snap.child("avatar").getValue(String.class);
                         if (item.listingId != null && !item.listingId.isEmpty()) {
                             mDatabase.child("listings").child(item.listingId)
                                     .addListenerForSingleValueEvent(new ValueEventListener() {
@@ -203,6 +206,46 @@ public class ChatsFragment extends Fragment {
         applySearch(query);
     }
 
+    private void attachSwipeToDelete(RecyclerView rv) {
+        new ItemTouchHelper(new ItemTouchHelper.SimpleCallback(0, ItemTouchHelper.LEFT) {
+            @Override
+            public boolean onMove(@NonNull RecyclerView r, @NonNull RecyclerView.ViewHolder v,
+                                  @NonNull RecyclerView.ViewHolder t) { return false; }
+
+            @Override
+            public void onSwiped(@NonNull RecyclerView.ViewHolder viewHolder, int direction) {
+                int pos = viewHolder.getAdapterPosition();
+                if (pos == RecyclerView.NO_ID || pos >= adapter.items.size()) return;
+                ChatItem item = adapter.items.get(pos);
+                String partnerLabel = item.partnerName != null ? item.partnerName : getString(R.string.unknown);
+                new AlertDialog.Builder(requireContext())
+                        .setTitle(getString(R.string.delete_chat_title))
+                        .setMessage(getString(R.string.delete_chat_message, partnerLabel))
+                        .setPositiveButton(getString(R.string.action_delete), (d, w) -> deleteChat(item, pos))
+                        .setNegativeButton(getString(R.string.action_cancel), (d, w) -> adapter.notifyItemChanged(pos))
+                        .setOnCancelListener(d -> adapter.notifyItemChanged(pos))
+                        .show();
+            }
+        }).attachToRecyclerView(rv);
+    }
+
+    private void deleteChat(ChatItem item, int pos) {
+        mDatabase.child("users").child(myUid).child("chatIds").child(item.chatId).removeValue()
+                .addOnSuccessListener(a -> {
+                    allItems.remove(item);
+                    if (pos < adapter.items.size()) {
+                        adapter.items.remove(pos);
+                        adapter.notifyItemRemoved(pos);
+                    }
+                    showEmpty(adapter.items.isEmpty());
+                })
+                .addOnFailureListener(e -> {
+                    if (!isAdded()) return;
+                    adapter.notifyItemChanged(pos);
+                    Toast.makeText(requireContext(), getString(R.string.error_loading), Toast.LENGTH_SHORT).show();
+                });
+    }
+
     private void showEmpty(boolean show) {
         if (emptyState != null)
             emptyState.setVisibility(show ? View.VISIBLE : View.GONE);
@@ -213,7 +256,7 @@ public class ChatsFragment extends Fragment {
     // ── Модель чата ───────────────────────────────────
     static class ChatItem {
         String chatId, otherUid, partnerName, partnerRegion,
-                lastMessage, listingId, listingTitle, listingPhoto;
+                lastMessage, listingId, listingTitle, listingPhoto, partnerAvatar;
         Long   updatedAt;
         long   unreadCount;
     }
@@ -246,6 +289,24 @@ public class ChatsFragment extends Fragment {
 
             if (item.partnerName != null && !item.partnerName.isEmpty())
                 h.tvAvatar.setText(String.valueOf(item.partnerName.charAt(0)).toUpperCase());
+
+            // Partner avatar photo
+            if (item.partnerAvatar != null && !item.partnerAvatar.isEmpty() && h.ivAvatarImg != null) {
+                try {
+                    String raw = item.partnerAvatar;
+                    String d   = raw.contains(",") ? raw.substring(raw.indexOf(",") + 1) : raw;
+                    byte[] bytes = Base64.decode(d, Base64.DEFAULT);
+                    Glide.with(requireContext()).load(bytes).circleCrop().into(h.ivAvatarImg);
+                    h.ivAvatarImg.setVisibility(View.VISIBLE);
+                    h.tvAvatar.setVisibility(View.GONE);
+                } catch (Exception e) {
+                    h.ivAvatarImg.setVisibility(View.GONE);
+                    h.tvAvatar.setVisibility(View.VISIBLE);
+                }
+            } else {
+                if (h.ivAvatarImg != null) h.ivAvatarImg.setVisibility(View.GONE);
+                h.tvAvatar.setVisibility(View.VISIBLE);
+            }
 
             // Название товара
             if (item.listingTitle != null && !item.listingTitle.isEmpty()) {
@@ -282,9 +343,10 @@ public class ChatsFragment extends Fragment {
 
             h.itemView.setOnClickListener(v -> {
                 Intent i = new Intent(requireContext(), ChatActivity.class);
-                i.putExtra("sellerUid",   item.otherUid);
-                i.putExtra("listingId",   item.listingId   != null ? item.listingId   : "");
+                i.putExtra("sellerUid",    item.otherUid);
+                i.putExtra("listingId",    item.listingId    != null ? item.listingId    : "");
                 i.putExtra("listingTitle", item.listingTitle != null ? item.listingTitle : "");
+                i.putExtra("sellerName",   item.partnerName  != null ? item.partnerName  : "");
                 startActivity(i);
             });
         }
@@ -293,18 +355,19 @@ public class ChatsFragment extends Fragment {
 
         class VH extends RecyclerView.ViewHolder {
             TextView tvName, tvLastMsg, tvTime, tvAvatar, tvListingTitle, tvUnreadBadge;
-            ImageView ivListingPhoto;
+            ImageView ivListingPhoto, ivAvatarImg;
             CardView  cardListingPhoto;
 
             VH(View v) {
                 super(v);
-                tvAvatar        = v.findViewById(R.id.tvChatAvatar);
-                tvName          = v.findViewById(R.id.tvChatName);
-                tvLastMsg       = v.findViewById(R.id.tvLastMessage);
-                tvTime          = v.findViewById(R.id.tvChatTime);
-                tvListingTitle  = v.findViewById(R.id.tvListingTitle);
-                tvUnreadBadge   = v.findViewById(R.id.tvUnreadBadge);
-                ivListingPhoto  = v.findViewById(R.id.ivListingPhoto);
+                tvAvatar         = v.findViewById(R.id.tvChatAvatar);
+                ivAvatarImg      = v.findViewById(R.id.ivChatAvatarImg);
+                tvName           = v.findViewById(R.id.tvChatName);
+                tvLastMsg        = v.findViewById(R.id.tvLastMessage);
+                tvTime           = v.findViewById(R.id.tvChatTime);
+                tvListingTitle   = v.findViewById(R.id.tvListingTitle);
+                tvUnreadBadge    = v.findViewById(R.id.tvUnreadBadge);
+                ivListingPhoto   = v.findViewById(R.id.ivListingPhoto);
                 cardListingPhoto = v.findViewById(R.id.cardListingPhoto);
             }
         }

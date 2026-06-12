@@ -17,12 +17,13 @@ import java.util.Map;
 
 /**
  * Завершение регистрации.
- * Вызывается после успешной OTP-проверки или ввода email.
+ * Вызывается после успешной OTP-проверки, ввода email или Google Sign-In.
  *
  * extras:
- *   authMethod = "phone" / "email"
+ *   authMethod = "phone" / "email" / "google"
  *   phone = +996...  (для phone)
- *   email = ...      (для email)
+ *   email = ...      (для email / google)
+ *   name  = ...      (для google — предзаполнение имени)
  */
 public class CompleteProfileActivity extends com.example.farme.BaseActivity {
 
@@ -66,6 +67,16 @@ public class CompleteProfileActivity extends com.example.farme.BaseActivity {
         setupSpinner();
         setupClickListeners();
         configureForMethod();
+
+        // Предзаполнить имя для Google-пользователей
+        if ("google".equals(authMethod)) {
+            String fullName = getIntent().getStringExtra("name");
+            if (fullName != null && !fullName.isEmpty()) {
+                String[] parts = fullName.trim().split(" ", 2);
+                etFirstName.setText(parts[0]);
+                if (parts.length > 1) etLastName.setText(parts[1]);
+            }
+        }
     }
 
     private void initViews() {
@@ -100,13 +111,14 @@ public class CompleteProfileActivity extends com.example.farme.BaseActivity {
     }
 
     private void configureForMethod() {
-        // Для phone: пользователь уже залогинен (через OTP),
-        //            нужны имя+фамилия+регион+пароль (для будущих логинов)
-        // Для email: пользователь ещё не создан, нужны
-        //            пароль + подтверждение, потом createUserWithEmailAndPassword
-        // Оба варианта показывают пароли — единый UX
-        passwordGroup.setVisibility(View.VISIBLE);
-        confirmPasswordGroup.setVisibility(View.VISIBLE);
+        if ("google".equals(authMethod)) {
+            // Пользователь уже залогинен через Google — пароль не нужен
+            passwordGroup.setVisibility(View.GONE);
+            confirmPasswordGroup.setVisibility(View.GONE);
+        } else {
+            passwordGroup.setVisibility(View.VISIBLE);
+            confirmPasswordGroup.setVisibility(View.VISIBLE);
+        }
     }
 
     // ═══ Validation + сохранение ═════════════════════════
@@ -136,15 +148,17 @@ public class CompleteProfileActivity extends com.example.farme.BaseActivity {
             shake(spinnerRegion);
             return;
         }
-        if (password.length() < 6) {
-            showError(getString(R.string.error_short_password));
-            shake(etPassword);
-            return;
-        }
-        if (!password.equals(confirm)) {
-            showError(getString(R.string.error_passwords_match));
-            shake(etConfirmPassword);
-            return;
+        if (!"google".equals(authMethod)) {
+            if (password.length() < 6) {
+                showError(getString(R.string.error_short_password));
+                shake(etPassword);
+                return;
+            }
+            if (!password.equals(confirm)) {
+                showError(getString(R.string.error_passwords_match));
+                shake(etConfirmPassword);
+                return;
+            }
         }
         if (!cbTerms.isChecked()) {
             showError(getString(R.string.error_accept_terms));
@@ -157,6 +171,8 @@ public class CompleteProfileActivity extends com.example.farme.BaseActivity {
 
         if ("phone".equals(authMethod)) {
             savePhoneUser(firstName, lastName, region, password);
+        } else if ("google".equals(authMethod)) {
+            saveGoogleUser(firstName, lastName, region);
         } else {
             createEmailUser(firstName, lastName, region, password);
         }
@@ -202,6 +218,48 @@ public class CompleteProfileActivity extends com.example.farme.BaseActivity {
         // Но это требует дополнительной логики (linkWithCredential)
         // Для MVP сохраняем пароль в БД (хешировать на проде!)
         data.put("authMethod", "phone");
+
+        mDatabase.child("users").child(uid).setValue(data)
+                .addOnSuccessListener(r -> {
+                    setLoading(false);
+                    Toast.makeText(this, getString(R.string.account_created), Toast.LENGTH_SHORT).show();
+                    navigateToMain();
+                })
+                .addOnFailureListener(e -> {
+                    setLoading(false);
+                    showError(getString(R.string.error_save) + ": " + e.getMessage());
+                });
+    }
+
+    // ─── Google-flow: пользователь уже залогинен ────────────
+    private void saveGoogleUser(String firstName, String lastName, String region) {
+        if (mAuth.getCurrentUser() == null) {
+            setLoading(false);
+            showError(getString(R.string.error_session_lost));
+            return;
+        }
+        String uid = mAuth.getCurrentUser().getUid();
+
+        mAuth.getCurrentUser().updateProfile(
+                new UserProfileChangeRequest.Builder()
+                        .setDisplayName(firstName + " " + lastName)
+                        .build()
+        );
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("uid", uid);
+        data.put("email", email != null ? email : "");
+        data.put("firstName", firstName);
+        data.put("lastName", lastName);
+        data.put("name", firstName + " " + lastName);
+        data.put("region", region);
+        data.put("role", "user");
+        data.put("status", "active");
+        data.put("verifiedPhone", false);
+        data.put("verifiedEmail", true);
+        data.put("authMethod", "google");
+        data.put("rating", 0);
+        data.put("createdAt", System.currentTimeMillis());
 
         mDatabase.child("users").child(uid).setValue(data)
                 .addOnSuccessListener(r -> {

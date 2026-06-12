@@ -28,7 +28,7 @@
                 android:text="✓ Паспорт" android:textSize="9sp"
                 android:textColor="@color/green_primary" android:textStyle="bold"
                 android:gravity="center" android:paddingHorizontal="5dp"
-                android:background="@color/green_surface" android:visibility="gone"/>
+                android:background="@drawable/bg_icon_rounded" android:visibility="gone"/>
         </FrameLayout>
 
         <!-- Информация -->
@@ -82,7 +82,7 @@
             <TextView android:id="@+id/tvCategory"
                 android:layout_width="wrap_content" android:layout_height="wrap_content"
                 android:textSize="10sp" android:textColor="@color/green_primary"
-                android:background="@color/green_surface" android:paddingHorizontal="6dp"
+                android:background="@drawable/bg_icon_rounded" android:paddingHorizontal="6dp"
                 android:paddingVertical="2dp" android:layout_marginTop="4dp"/>
         </LinearLayout>
 

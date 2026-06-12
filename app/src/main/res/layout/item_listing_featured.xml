@@ -55,7 +55,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:paddingHorizontal="8dp"
-                android:background="@color/green_surface"
+                android:background="@drawable/bg_icon_rounded"
                 android:visibility="gone"/>
 
             <!-- Кнопка избранное -->

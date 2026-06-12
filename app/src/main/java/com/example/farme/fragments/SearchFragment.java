@@ -28,14 +28,15 @@ public class SearchFragment extends Fragment {
     private List<Listing>     allListings = new ArrayList<>();
     private DatabaseReference mDatabase;
 
-    private static final String[] CATEGORIES = {
-            "Все категории","Скот","Зерно","Овощи",
-            "Фрукты","Молоко","Птица","Корма","Техника","Услуги"
+    // Database keys (stored in Russian in Firebase — never change these)
+    private static final String[] CATEGORY_KEYS = {
+            "", "Скот", "Зерно", "Овощи",
+            "Фрукты", "Молоко", "Птица", "Корма", "Техника", "Услуги"
     };
-    private static final String[] REGIONS = {
-            "Все регионы","Чуйская область","Иссык-Кульская область",
-            "Ошская область","Джалал-Абадская область","Нарынская область",
-            "Баткенская область","Таласская область","г. Бишкек","г. Ош"
+    private static final String[] REGION_KEYS = {
+            "", "Чуйская область", "Иссык-Кульская область",
+            "Ошская область", "Джалал-Абадская область", "Нарынская область",
+            "Баткенская область", "Таласская область", "г. Бишкек", "г. Ош"
     };
 
     @Nullable @Override
@@ -65,8 +66,9 @@ public class SearchFragment extends Fragment {
 
     private void setupSpinners() {
         if (spinnerCategory != null) {
+            String[] displayCategories = getResources().getStringArray(R.array.search_categories);
             ArrayAdapter<String> a = new ArrayAdapter<>(requireContext(),
-                    android.R.layout.simple_spinner_item, CATEGORIES);
+                    android.R.layout.simple_spinner_item, displayCategories);
             a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerCategory.setAdapter(a);
             spinnerCategory.setOnItemSelectedListener(
@@ -77,8 +79,9 @@ public class SearchFragment extends Fragment {
                     });
         }
         if (spinnerRegion != null) {
+            String[] displayRegions = getResources().getStringArray(R.array.regions);
             ArrayAdapter<String> a = new ArrayAdapter<>(requireContext(),
-                    android.R.layout.simple_spinner_item, REGIONS);
+                    android.R.layout.simple_spinner_item, displayRegions);
             a.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             spinnerRegion.setAdapter(a);
             spinnerRegion.setOnItemSelectedListener(
@@ -142,18 +145,19 @@ public class SearchFragment extends Fragment {
     private void applyFilters() {
         String query = etSearch != null
                 ? etSearch.getText().toString().trim().toLowerCase() : "";
-        String cat = spinnerCategory != null && spinnerCategory.getSelectedItem() != null
-                ? spinnerCategory.getSelectedItem().toString() : "Все категории";
-        String reg = spinnerRegion != null && spinnerRegion.getSelectedItem() != null
-                ? spinnerRegion.getSelectedItem().toString() : "Все регионы";
+        int catPos = spinnerCategory != null ? spinnerCategory.getSelectedItemPosition() : 0;
+        int regPos = spinnerRegion  != null ? spinnerRegion.getSelectedItemPosition()  : 0;
+        // catPos/regPos == 0 means "all"; otherwise map to the Russian DB key
+        String catKey = (catPos > 0 && catPos < CATEGORY_KEYS.length) ? CATEGORY_KEYS[catPos] : "";
+        String regKey = (regPos > 0 && regPos < REGION_KEYS.length)  ? REGION_KEYS[regPos]  : "";
 
         List<Listing> filtered = new ArrayList<>();
         for (Listing l : allListings) {
             boolean mQ = query.isEmpty()
                     || (l.getTitle() != null && l.getTitle().toLowerCase().contains(query))
                     || (l.getDescription() != null && l.getDescription().toLowerCase().contains(query));
-            boolean mC = "Все категории".equals(cat) || cat.equals(l.getCategory());
-            boolean mR = "Все регионы".equals(reg) || reg.equals(l.getRegion());
+            boolean mC = catKey.isEmpty() || catKey.equals(l.getCategory());
+            boolean mR = regKey.isEmpty() || regKey.equals(l.getRegion());
             if (mQ && mC && mR) filtered.add(l);
         }
 
@@ -164,6 +168,6 @@ public class SearchFragment extends Fragment {
         if (emptyState != null) emptyState.setVisibility(empty ? View.VISIBLE : View.GONE);
         if (recycler != null) recycler.setVisibility(empty ? View.GONE : View.VISIBLE);
         if (tvResultCount != null)
-            tvResultCount.setText("Найдено: " + filtered.size());
+            tvResultCount.setText(getString(R.string.search_results_format, filtered.size()));
     }
 }

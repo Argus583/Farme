@@ -1,0 +1,659 @@
+═══════════════════════════════════════════════════════════════════════════
+         ЛИСТИНГ ПРОГРАММНОГО КОДА ПРИЛОЖЕНИЯ «FARME»
+         Мобильное Android-приложение для торговли сельхозпродукцией
+         Язык разработки: Java  |  Платформа: Android (API 26+)
+         База данных: Firebase Realtime Database + Firebase Auth
+═══════════════════════════════════════════════════════════════════════════
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+СОДЕРЖАНИЕ
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+Раздел 1.  Базовые классы приложения
+  1.1  FarmeApp.java
+  1.2  BaseActivity.java
+  1.3  LocaleHelper.java
+  1.4  SplashActivity.java
+  1.5  OnboardingActivity.java
+
+Раздел 2.  Авторизация и регистрация
+  2.1  auth/AuthActivity.java
+  2.2  auth/OtpActivity.java
+  2.3  auth/CompleteProfileActivity.java
+  2.4  PhoneVerificationHelper.java
+
+Раздел 3.  Главный экран и навигация
+  3.1  MainActivity.java
+
+Раздел 4.  Фрагменты основного экрана
+  4.1  fragments/HomeFragment.java
+  4.2  fragments/MapFragment.java
+  4.3  fragments/ChatsFragment.java
+  4.4  fragments/ProfileFragment.java
+  4.5  fragments/FilterBottomSheet.java
+  4.6  fragments/SearchFragment.java
+
+Раздел 5.  Объявления
+  5.1  CreateListingActivity.java
+  5.2  ListingDetailActivity.java
+  5.3  EditListingActivity.java
+  5.4  MyListingsActivity.java
+
+Раздел 6.  Чат и коммуникации
+  6.1  ChatActivity.java
+  6.2  TicketChatActivity.java
+
+Раздел 7.  Профиль и настройки
+  7.1  ProfileActivity.java
+  7.2  EditProfileActivity.java
+  7.3  SettingsActivity.java
+  7.4  SellerProfileActivity.java
+
+Раздел 8.  Прочий функционал
+  8.1  ReviewsActivity.java
+  8.2  SalesActivity.java
+  8.3  FavoritesActivity.java
+  8.4  NotificationsActivity.java
+  8.5  SupportActivity.java
+  8.6  AdminSupportActivity.java
+  8.7  BlocklistActivity.java
+
+Раздел 9.  Адаптеры
+  9.1  adapter/ListingAdapter.java
+  9.2  adapter/MessageAdapter.java
+  9.3  adapter/PhotoPagerAdapter.java
+  9.4  adapter/FeaturedListingAdapter.java
+  9.5  adapter/PhotoAdapter.java
+
+Раздел 10. Модели данных
+  10.1 model/Listing.java
+  10.2 model/User.java
+  10.3 model/Message.java
+
+Раздел 11. Утилиты и сервисы
+  11.1 utils/Validator.java
+  11.2 utils/HistoryManager.java
+  11.3 FarmeFcmService.java
+  11.4 NotificationHelper.java
+
+Раздел 12. Вспомогательные классы
+  12.1 ReviewDialogHelper.java
+  12.2 RejectDialogHelper.java
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║           РАЗДЕЛ 1. БАЗОВЫЕ КЛАССЫ ПРИЛОЖЕНИЯ                            ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+───────────────────────────────────────────────────────────────────────────
+Листинг 1.1 — FarmeApp.java
+Путь: app/src/main/java/com/example/farme/FarmeApp.java
+Назначение: Класс Application — инициализация темы, уведомлений и FCM-токена
+───────────────────────────────────────────────────────────────────────────
+ 1  package com.example.farme;
+ 2
+ 3  import android.app.Application;
+ 4  import android.content.SharedPreferences;
+ 5  import androidx.appcompat.app.AppCompatDelegate;
+ 6  import com.google.firebase.messaging.FirebaseMessaging;
+ 7
+ 8  public class FarmeApp extends Application {
+ 9
+10      @Override
+11      public void onCreate() {
+12          super.onCreate();
+13
+14          // Тёмная / светлая тема
+15          SharedPreferences prefs = getSharedPreferences("farme_settings", MODE_PRIVATE);
+16          boolean dark = prefs.getBoolean("dark_theme", false);
+17          AppCompatDelegate.setDefaultNightMode(
+18                  dark ? AppCompatDelegate.MODE_NIGHT_YES : AppCompatDelegate.MODE_NIGHT_NO);
+19
+20          // Создаём notification-каналы (Android 8+)
+21          NotificationHelper.createChannels(this);
+22
+23          // FCM: обновляем токен если пользователь уже авторизован
+24          FirebaseMessaging.getInstance().getToken()
+25                  .addOnSuccessListener(token -> FarmeFcmService.saveToken(token));
+26      }
+27  }
+
+
+───────────────────────────────────────────────────────────────────────────
+Листинг 1.2 — BaseActivity.java
+Путь: app/src/main/java/com/example/farme/BaseActivity.java
+Назначение: Базовый класс для всех Activity — применяет локаль из настроек
+───────────────────────────────────────────────────────────────────────────
+ 1  package com.example.farme;
+ 2
+ 3  import android.content.Context;
+ 4  import android.content.SharedPreferences;
+ 5  import androidx.appcompat.app.AppCompatActivity;
+ 6
+ 7  public abstract class BaseActivity extends AppCompatActivity {
+ 8
+ 9      @Override
+10      protected void attachBaseContext(Context base) {
+11          SharedPreferences prefs = base.getSharedPreferences(
+12                  "farme_settings", Context.MODE_PRIVATE);
+13          String lang = prefs.getString("language", "ru");
+14          super.attachBaseContext(LocaleHelper.wrap(base, lang));
+15      }
+16  }
+
+
+───────────────────────────────────────────────────────────────────────────
+Листинг 1.3 — LocaleHelper.java
+Путь: app/src/main/java/com/example/farme/LocaleHelper.java
+Назначение: Утилита для смены языка интерфейса (ru / en / ky)
+───────────────────────────────────────────────────────────────────────────
+ 1  package com.example.farme;
+ 2
+ 3  import android.content.Context;
+ 4  import android.content.res.Configuration;
+ 5  import java.util.Locale;
+ 6
+ 7  public final class LocaleHelper {
+ 8
+ 9      private LocaleHelper() {}
+10
+11      public static Context wrap(Context base, String langCode) {
+12          Locale locale = new Locale(langCode);
+13          Locale.setDefault(locale);
+14          Configuration config =
+15                  new Configuration(base.getResources().getConfiguration());
+16          config.setLocale(locale);
+17          return base.createConfigurationContext(config);
+18      }
+19  }
+
+
+───────────────────────────────────────────────────────────────────────────
+Листинг 1.4 — SplashActivity.java
+Путь: app/src/main/java/com/example/farme/SplashActivity.java
+Назначение: Экран загрузки — анимация логотипа, маршрутизация по состоянию
+            пользователя (onboarding → авторизация → главный экран)
+───────────────────────────────────────────────────────────────────────────
+ 1  package com.example.farme;
+ 2
+ 3  import android.content.Intent;
+ 4  import android.content.SharedPreferences;
+ 5  import android.os.Bundle;
+ 6  import android.os.Handler;
+ 7  import android.os.Looper;
+ 8  import android.view.animation.AlphaAnimation;
+ 9  import android.view.View;
+10
+11  import com.example.farme.auth.AuthActivity;
+12  import com.google.firebase.auth.FirebaseAuth;
+13  import com.google.firebase.auth.FirebaseUser;
+14  import com.google.firebase.database.DataSnapshot;
+15  import com.google.firebase.database.DatabaseError;
+16  import com.google.firebase.database.FirebaseDatabase;
+17  import com.google.firebase.database.ValueEventListener;
+18
+19  public class SplashActivity extends BaseActivity {
+20
+21      private static final int SPLASH_DURATION = 2000;
+22
+23      @Override
+24      protected void onCreate(Bundle savedInstanceState) {
+25          super.onCreate(savedInstanceState);
+26          setContentView(R.layout.activity_splash);
+27
+28          View logo    = findViewById(R.id.tvSplashLogo);
+29          View appName = findViewById(R.id.tvSplashAppName);
+30          View tagline = findViewById(R.id.tvSplashTagline);
+31
+32          if (logo != null) {
+33              AlphaAnimation anim = new AlphaAnimation(0f, 1f);
+34              anim.setDuration(800);
+35              logo.startAnimation(anim);
+36          }
+37          if (appName != null) {
+38              AlphaAnimation anim = new AlphaAnimation(0f, 1f);
+39              anim.setDuration(800);
+40              anim.setStartOffset(300);
+41              appName.startAnimation(anim);
+42          }
+43          if (tagline != null) {
+44              AlphaAnimation anim = new AlphaAnimation(0f, 1f);
+45              anim.setDuration(800);
+46              anim.setStartOffset(600);
+47              tagline.startAnimation(anim);
+48          }
+49
+50          new Handler(Looper.getMainLooper()).postDelayed(
+51                  this::navigate, SPLASH_DURATION);
+52      }
+53
+54      private void navigate() {
+55          SharedPreferences prefs =
+56                  getSharedPreferences("farme_prefs", MODE_PRIVATE);
+57          boolean onboardingDone = prefs.getBoolean("onboarding_done", false);
+58
+59          if (!onboardingDone) {
+60              goTo(OnboardingActivity.class);
+61              return;
+62          }
+63
+64          FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+65          if (user == null) {
+66              goTo(AuthActivity.class);
+67              return;
+68          }
+69
+70          FirebaseDatabase.getInstance().getReference()
+71                  .child("users").child(user.getUid())
+72                  .addListenerForSingleValueEvent(new ValueEventListener() {
+73                      @Override
+74                      public void onDataChange(DataSnapshot snapshot) {
+75                          Boolean banned = snapshot.child("banned")
+76                                  .getValue(Boolean.class);
+77                          if (Boolean.TRUE.equals(banned)) {
+78                              FirebaseAuth.getInstance().signOut();
+79                              goTo(AuthActivity.class);
+80                              return;
+81                          }
+82                          goTo(MainActivity.class);
+83                      }
+84                      @Override
+85                      public void onCancelled(DatabaseError error) {
+86                          goTo(MainActivity.class);
+87                      }
+88                  });
+89      }
+90
+91      private void goTo(Class<?> target) {
+92          Intent i = new Intent(this, target);
+93          i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+94                  | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+95          startActivity(i);
+96          overridePendingTransition(
+97                  android.R.anim.fade_in, android.R.anim.fade_out);
+98          finish();
+99      }
+100 }
+
+
+╔═══════════════════════════════════════════════════════════════════════════╗
+║           РАЗДЕЛ 2. АВТОРИЗАЦИЯ И РЕГИСТРАЦИЯ                            ║
+╚═══════════════════════════════════════════════════════════════════════════╝
+
+───────────────────────────────────────────────────────────────────────────
+Листинг 2.1 — AuthActivity.java
+Путь: app/src/main/java/com/example/farme/auth/AuthActivity.java
+Назначение: Главный экран авторизации. Поддерживает два режима (вход /
+            регистрация) и два метода (телефон / email). Телефонная
+            аутентификация перенаправляет на OtpActivity; email-вход
+            выполняется через Firebase Auth напрямую.
+───────────────────────────────────────────────────────────────────────────
+  1  package com.example.farme.auth;
+  2
+  3  import android.content.Intent;
+  4  import android.os.Bundle;
+  5  import android.text.method.PasswordTransformationMethod;
+  6  import android.view.View;
+  7  import android.view.animation.AnimationUtils;
+  8  import android.widget.*;
+  9  import com.google.firebase.auth.FirebaseAuth;
+ 10  import com.google.firebase.database.*;
+ 11  import com.google.firebase.messaging.FirebaseMessaging;
+ 12  import com.example.farme.FarmeFcmService;
+ 13  import com.example.farme.MainActivity;
+ 14  import com.example.farme.PhoneVerificationHelper;
+ 15  import com.example.farme.R;
+ 16
+ 17  public class AuthActivity extends com.example.farme.BaseActivity {
+ 18
+ 19      private TextView tabLogin, tabRegister;
+ 20      private LinearLayout methodPhone, methodEmail;
+ 21      private TextView methodPhoneLabel, methodEmailLabel;
+ 22
+ 23      private LinearLayout loginPhoneGroup, loginEmailGroup,
+ 24              loginPasswordGroup, rememberGroup;
+ 25      private LinearLayout countryCodeBtn;
+ 26      private TextView tvCountryFlag, tvCountryCode;
+ 27
+ 28      private EditText etLoginPhone, etLoginEmail, etLoginPassword;
+ 29      private TextView tvLoginPhoneError, tvLoginEmailError,
+ 30              tvLoginPasswordError, tvFormError, tvFormTitle,
+ 31              tvFormSubtitle, tvPhoneHint;
+ 32      private TextView btnTogglePass, btnForgotPassword;
+ 33      private LinearLayout btnPrimary;
+ 34      private TextView tvBtnPrimary;
+ 35      private ProgressBar pbBtnLoading;
+ 36      private CheckBox cbRemember;
+ 37
+ 38      private String mode   = "login";
+ 39      private String method = "phone";
+ 40      private String selectedCountryCode = "+996";
+ 41      private String selectedCountryFlag = "🇰🇬";
+ 42      private boolean isLoading = false;
+ 43
+ 44      private FirebaseAuth      mAuth;
+ 45      private DatabaseReference mDatabase;
+ 46
+ 47      @Override
+ 48      protected void onCreate(Bundle savedInstanceState) {
+ 49          super.onCreate(savedInstanceState);
+ 50          setContentView(R.layout.activity_auth);
+ 51          mAuth     = FirebaseAuth.getInstance();
+ 52          mDatabase = FirebaseDatabase.getInstance().getReference();
+ 53          initViews();
+ 54          setupClickListeners();
+ 55          updateUI();
+ 56      }
+ 57
+ 58      private void initViews() {
+ 59          tabLogin    = findViewById(R.id.tabLogin);
+ 60          tabRegister = findViewById(R.id.tabRegister);
+ 61          methodPhone = findViewById(R.id.methodPhone);
+ 62          methodEmail = findViewById(R.id.methodEmail);
+ 63          methodPhoneLabel = findViewById(R.id.methodPhoneLabel);
+ 64          methodEmailLabel = findViewById(R.id.methodEmailLabel);
+ 65          loginPhoneGroup    = findViewById(R.id.loginPhoneGroup);
+ 66          loginEmailGroup    = findViewById(R.id.loginEmailGroup);
+ 67          loginPasswordGroup = findViewById(R.id.loginPasswordGroup);
+ 68          rememberGroup      = findViewById(R.id.rememberGroup);
+ 69          countryCodeBtn     = findViewById(R.id.countryCodeBtn);
+ 70          tvCountryFlag      = findViewById(R.id.tvCountryFlag);
+ 71          tvCountryCode      = findViewById(R.id.tvCountryCode);
+ 72          etLoginPhone     = findViewById(R.id.etLoginPhone);
+ 73          etLoginEmail     = findViewById(R.id.etLoginEmail);
+ 74          etLoginPassword  = findViewById(R.id.etLoginPassword);
+ 75          tvLoginPhoneError    = findViewById(R.id.tvLoginPhoneError);
+ 76          tvLoginEmailError    = findViewById(R.id.tvLoginEmailError);
+ 77          tvLoginPasswordError = findViewById(R.id.tvLoginPasswordError);
+ 78          tvFormError    = findViewById(R.id.tvFormError);
+ 79          tvFormTitle    = findViewById(R.id.tvFormTitle);
+ 80          tvFormSubtitle = findViewById(R.id.tvFormSubtitle);
+ 81          tvPhoneHint    = findViewById(R.id.tvPhoneHint);
+ 82          btnTogglePass     = findViewById(R.id.btnTogglePass);
+ 83          btnForgotPassword = findViewById(R.id.btnForgotPassword);
+ 84          btnPrimary        = findViewById(R.id.btnPrimary);
+ 85          tvBtnPrimary      = findViewById(R.id.tvBtnPrimary);
+ 86          pbBtnLoading      = findViewById(R.id.pbBtnLoading);
+ 87          cbRemember        = findViewById(R.id.cbRemember);
+ 88      }
+ 89
+ 90      private void setupClickListeners() {
+ 91          tabLogin.setOnClickListener(v -> setMode("login"));
+ 92          tabRegister.setOnClickListener(v -> setMode("register"));
+ 93          methodPhone.setOnClickListener(v -> setMethod("phone"));
+ 94          methodEmail.setOnClickListener(v -> setMethod("email"));
+ 95          countryCodeBtn.setOnClickListener(v -> showCountryPicker());
+ 96          btnTogglePass.setOnClickListener(v -> togglePasswordVisibility());
+ 97          btnForgotPassword.setOnClickListener(v ->
+ 98                  startActivity(new Intent(this, ForgotPasswordActivity.class)));
+ 99          btnPrimary.setOnClickListener(v -> {
+100              if (!isLoading) handlePrimaryAction();
+101          });
+102      }
+103
+104      private void setMode(String newMode) {
+105          mode = newMode;
+106          if ("login".equals(mode)) {
+107              tabLogin.setBackgroundResource(R.drawable.bg_tab_active);
+108              tabLogin.setTextColor(0xFFFFFFFF);
+109              tabRegister.setBackgroundResource(android.R.color.transparent);
+110              tabRegister.setTextColor(0xFF6B7280);
+111          } else {
+112              tabRegister.setBackgroundResource(R.drawable.bg_tab_active);
+113              tabRegister.setTextColor(0xFFFFFFFF);
+114              tabLogin.setBackgroundResource(android.R.color.transparent);
+115              tabLogin.setTextColor(0xFF6B7280);
+116          }
+117          updateUI();
+118          clearErrors();
+119      }
+120
+121      private void setMethod(String newMethod) {
+122          method = newMethod;
+123          if ("phone".equals(method)) {
+124              methodPhone.setBackgroundResource(R.drawable.bg_method_active);
+125              methodPhoneLabel.setTextColor(0xFF0A1F14);
+126              methodPhoneLabel.setTypeface(null, android.graphics.Typeface.BOLD);
+127              methodEmail.setBackgroundResource(R.drawable.bg_method_inactive);
+128              methodEmailLabel.setTextColor(0xFF6B7280);
+129              methodEmailLabel.setTypeface(null, android.graphics.Typeface.NORMAL);
+130          } else {
+131              methodEmail.setBackgroundResource(R.drawable.bg_method_active);
+132              methodEmailLabel.setTextColor(0xFF0A1F14);
+133              methodEmailLabel.setTypeface(null, android.graphics.Typeface.BOLD);
+134              methodPhone.setBackgroundResource(R.drawable.bg_method_inactive);
+135              methodPhoneLabel.setTextColor(0xFF6B7280);
+136              methodPhoneLabel.setTypeface(null, android.graphics.Typeface.NORMAL);
+137          }
+138          updateUI();
+139          clearErrors();
+140      }
+141
+142      private void updateUI() {
+143          boolean isPhone = "phone".equals(method);
+144          boolean isLogin = "login".equals(mode);
+145          if (isLogin) {
+146              tvFormTitle.setText(getString(R.string.welcome));
+147              tvFormSubtitle.setText(getString(R.string.login_subtitle));
+148              tvBtnPrimary.setText(isPhone
+149                      ? getString(R.string.btn_get_code)
+150                      : getString(R.string.login));
+151          } else {
+152              tvFormTitle.setText(getString(R.string.create_account_title));
+153              tvFormSubtitle.setText(isPhone
+154                      ? getString(R.string.verify_phone_subtitle)
+155                      : getString(R.string.register_email_subtitle));
+156              tvBtnPrimary.setText(isPhone
+157                      ? getString(R.string.btn_get_code)
+158                      : getString(R.string.btn_continue));
+159          }
+160          loginPhoneGroup.setVisibility(isPhone ? View.VISIBLE : View.GONE);
+161          loginEmailGroup.setVisibility(isPhone ? View.GONE : View.VISIBLE);
+162          boolean showPassword = !isPhone && isLogin;
+163          loginPasswordGroup.setVisibility(showPassword ? View.VISIBLE : View.GONE);
+164          rememberGroup.setVisibility(showPassword ? View.VISIBLE : View.GONE);
+165          if (isPhone) {
+166              tvPhoneHint.setVisibility(View.VISIBLE);
+167              tvPhoneHint.setText(getString(R.string.phone_verification_hint));
+168          } else if (!isLogin) {
+169              tvPhoneHint.setVisibility(View.VISIBLE);
+170              tvPhoneHint.setText(getString(R.string.email_verification_hint));
+171          } else {
+172              tvPhoneHint.setVisibility(View.GONE);
+173          }
+174      }
+175
+176      private void handlePrimaryAction() {
+177          clearErrors();
+178          if ("phone".equals(method)) {
+179              handlePhone();
+180          } else {
+181              if ("login".equals(mode)) handleEmailLogin();
+182              else handleEmailRegister();
+183          }
+184      }
+185
+186      private void handlePhone() {
+187          setLoading(true);
+188          PhoneVerificationHelper.getInstance().checkSupport(supported -> {
+189              runOnUiThread(() -> {
+190                  if (supported) startPnvVerification();
+191                  else { setLoading(false); proceedWithManualPhone(); }
+192              });
+193          });
+194      }
+195
+196      private void startPnvVerification() {
+197          PhoneVerificationHelper.getInstance().verify(
+198                  this,
+199                  (phoneNumber, pnvToken) -> {
+200                      setLoading(false);
+201                      Intent i = new Intent(this, OtpActivity.class);
+202                      i.putExtra("phone",    phoneNumber);
+203                      i.putExtra("mode",     mode);
+204                      i.putExtra("pnvToken", pnvToken);
+205                      startActivity(i);
+206                  },
+207                  e -> { setLoading(false); proceedWithManualPhone(); }
+208          );
+209      }
+210
+211      private void proceedWithManualPhone() {
+212          String rawPhone = etLoginPhone.getText().toString().trim();
+213          String digits   = rawPhone.replaceAll("[^0-9]", "");
+214          if (digits.isEmpty()) {
+215              showFieldError(tvLoginPhoneError, etLoginPhone,
+216                      getString(R.string.error_enter_phone));
+217              return;
+218          }
+219          if (digits.length() < 7 || digits.length() > 12) {
+220              showFieldError(tvLoginPhoneError, etLoginPhone,
+221                      getString(R.string.error_invalid_phone_number));
+222              return;
+223          }
+224          String fullPhone = selectedCountryCode + digits;
+225          Intent i = new Intent(this, OtpActivity.class);
+226          i.putExtra("phone", fullPhone);
+227          i.putExtra("mode",  mode);
+228          startActivity(i);
+229      }
+230
+231      private void handleEmailLogin() {
+232          String email = etLoginEmail.getText().toString().trim();
+233          String pass  = etLoginPassword.getText().toString();
+234          if (email.isEmpty()) {
+235              showFieldError(tvLoginEmailError, etLoginEmail,
+236                      getString(R.string.error_enter_email)); return;
+237          }
+238          if (!isValidEmail(email)) {
+239              showFieldError(tvLoginEmailError, etLoginEmail,
+240                      getString(R.string.error_invalid_email)); return;
+241          }
+242          if (pass.length() < 6) {
+243              showFieldError(tvLoginPasswordError, etLoginPassword,
+244                      getString(R.string.error_short_password)); return;
+245          }
+246          setLoading(true);
+247          mAuth.signInWithEmailAndPassword(email, pass)
+248                  .addOnSuccessListener(r -> checkUserAndNavigate())
+249                  .addOnFailureListener(e -> {
+250                      setLoading(false);
+251                      showFormError(getString(R.string.error_wrong_credentials));
+252                  });
+253      }
+254
+255      private void handleEmailRegister() {
+256          String email = etLoginEmail.getText().toString().trim();
+257          if (email.isEmpty()) {
+258              showFieldError(tvLoginEmailError, etLoginEmail,
+259                      getString(R.string.error_enter_email)); return;
+260          }
+261          if (!isValidEmail(email)) {
+262              showFieldError(tvLoginEmailError, etLoginEmail,
+263                      getString(R.string.error_invalid_email)); return;
+264          }
+265          Intent i = new Intent(this, CompleteProfileActivity.class);
+266          i.putExtra("authMethod", "email");
+267          i.putExtra("email", email);
+268          startActivity(i);
+269      }
+270
+271      private void checkUserAndNavigate() {
+272          if (mAuth.getCurrentUser() == null) return;
+273          String uid = mAuth.getCurrentUser().getUid();
+274          mDatabase.child("users").child(uid).get()
+275                  .addOnSuccessListener(snap -> {
+276                      setLoading(false);
+277                      Boolean banned = snap.child("banned").getValue(Boolean.class);
+278                      if (Boolean.TRUE.equals(banned)) {
+279                          mAuth.signOut();
+280                          showFormError(getString(R.string.error_account_banned));
+281                          return;
+282                      }
+283                      FirebaseMessaging.getInstance().getToken()
+284                              .addOnSuccessListener(FarmeFcmService::saveToken);
+285                      Intent i = new Intent(this, MainActivity.class);
+286                      i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+287                              | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+288                      startActivity(i);
+289                      finish();
+290                  })
+291                  .addOnFailureListener(e -> {
+292                      setLoading(false);
+293                      Intent i = new Intent(this, MainActivity.class);
+294                      i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK
+295                              | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+296                      startActivity(i);
+297                      finish();
+298                  });
+299      }
+300
+301      private void togglePasswordVisibility() {
+302          boolean isHidden = etLoginPassword.getTransformationMethod()
+303                  instanceof PasswordTransformationMethod;
+304          etLoginPassword.setTransformationMethod(isHidden
+305                  ? null : new PasswordTransformationMethod());
+306          btnTogglePass.setText(isHidden ? "🙈" : "👁");
+307          etLoginPassword.setSelection(etLoginPassword.getText().length());
+308      }
+309
+310      private boolean isValidEmail(String email) {
+311          return android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches();
+312      }
+313
+314      private void setLoading(boolean loading) {
+315          isLoading = loading;
+316          if (loading) {
+317              pbBtnLoading.setVisibility(View.VISIBLE);
+318              tvBtnPrimary.setText(getString(R.string.loading));
+319              btnPrimary.setAlpha(0.7f);
+320          } else {
+321              pbBtnLoading.setVisibility(View.GONE);
+322              updateUI();
+323              btnPrimary.setAlpha(1f);
+324          }
+325      }
+326
+327      private void showFieldError(TextView ev, View input, String msg) {
+328          ev.setText(msg);
+329          ev.setVisibility(View.VISIBLE);
+330          input.startAnimation(
+331                  AnimationUtils.loadAnimation(this, R.anim.shake));
+332      }
+333
+334      private void showFormError(String msg) {
+335          tvFormError.setText(msg);
+336          tvFormError.setVisibility(View.VISIBLE);
+337          btnPrimary.startAnimation(
+338                  AnimationUtils.loadAnimation(this, R.anim.shake));
+339      }
+340
+341      private void clearErrors() {
+342          tvLoginPhoneError.setVisibility(View.GONE);
+343          tvLoginEmailError.setVisibility(View.GONE);
+344          tvLoginPasswordError.setVisibility(View.GONE);
+345          tvFormError.setVisibility(View.GONE);
+346      }
+347
+348      private void showCountryPicker() {
+349          String[] countries = {
+350              "🇰🇬  Кыргызстан (+996)", "🇰🇿  Казахстан (+7)",
+351              "🇷🇺  Россия (+7)",        "🇺🇿  Узбекистан (+998)",
+352              "🇹🇯  Таджикистан (+992)", "🇹🇲  Туркменистан (+993)",
+353              "🇨🇳  Китай (+86)",        "🇹🇷  Турция (+90)",
+354              "🇺🇸  США (+1)"
+355          };
+356          String[] codes = {"+996","+7","+7","+998","+992","+993","+86","+90","+1"};
+357          String[] flags = {"🇰🇬","🇰🇿","🇷🇺","🇺🇿","🇹🇯","🇹🇲","🇨🇳","🇹🇷","🇺🇸"};
+358          new androidx.appcompat.app.AlertDialog.Builder(this)
+359                  .setTitle(getString(R.string.select_country))
+360                  .setItems(countries, (dialog, which) -> {
+361                      selectedCountryCode = codes[which];
+362                      selectedCountryFlag = flags[which];
+363                      tvCountryCode.setText(selectedCountryCode);
+364                      tvCountryFlag.setText(selectedCountryFlag);
+365                  })
+366                  .show();
+367      }
+368  }

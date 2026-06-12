@@ -85,7 +85,7 @@ public class RejectDialogHelper {
             if (reason.equals("Другая причина")) {
                 reason = etCustomReason.getText().toString().trim();
                 if (reason.isEmpty()) {
-                    etCustomReason.setError("Укажите причину");
+                    etCustomReason.setError(context.getString(R.string.error_specify_reason));
                     return;
                 }
             }

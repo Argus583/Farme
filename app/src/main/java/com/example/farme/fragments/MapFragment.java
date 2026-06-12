@@ -35,7 +35,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     private DatabaseReference mDatabase;
     private final List<Listing> allListings = new ArrayList<>();
     private final List<Marker> allMarkers   = new ArrayList<>();
-    private String activeCategory = "Все";
+    private String activeCategory = "";   // empty = all
 
     // Чипы
     private TextView mapChipAll, mapChipSkot, mapChipZerno,
@@ -193,7 +193,8 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
         TextView[] chips = {mapChipAll, mapChipSkot, mapChipZerno,
                 mapChipOvoshi, mapChipFrukty, mapChipPtitsa};
-        String[]   cats  = {"Все", "Скот", "Зерно", "Овощи", "Фрукты", "Птица"};
+        // "" = all; others are Russian DB keys stored in Firebase
+        String[]   cats  = {"", "Скот", "Зерно", "Овощи", "Фрукты", "Птица"};
 
         for (int i = 0; i < chips.length; i++) {
             final String cat = cats[i];
@@ -220,7 +221,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
     }
 
     private List<Listing> getFiltered() {
-        if ("Все".equals(activeCategory)) return new ArrayList<>(allListings);
+        if (activeCategory.isEmpty()) return new ArrayList<>(allListings);
         List<Listing> result = new ArrayList<>();
         for (Listing l : allListings)
             if (activeCategory.equals(l.getCategory())) result.add(l);
@@ -259,7 +260,7 @@ public class MapFragment extends Fragment implements OnMapReadyCallback {
 
     private void updateNearbyList(List<Listing> listings) {
         if (tvNearbyTitle != null)
-            tvNearbyTitle.setText("Ближайшие · " + listings.size() + " объявлений");
+            tvNearbyTitle.setText(getString(R.string.nearby_count_format, listings.size()));
         nearbyAdapter.setListings(listings);
     }
 

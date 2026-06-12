@@ -1,11 +1,16 @@
 package com.example.farme;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.*;
 import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
@@ -37,6 +42,7 @@ public class MainActivity extends BaseActivity {
         loadFragment(new HomeFragment(), false);
         setActiveTab(0);
         listenUnreadChats();
+        requestNotificationPermission();
     }
 
     private void initNav() {
@@ -175,6 +181,19 @@ public class MainActivity extends BaseActivity {
             badgeChats.setVisibility(View.VISIBLE);
         } else {
             badgeChats.setVisibility(View.GONE);
+        }
+    }
+
+    // ── Разрешение на уведомления (Android 13+) ───────
+    private void requestNotificationPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            if (ContextCompat.checkSelfPermission(this,
+                    Manifest.permission.POST_NOTIFICATIONS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this,
+                        new String[]{Manifest.permission.POST_NOTIFICATIONS},
+                        1001);
+            }
         }
     }
 }

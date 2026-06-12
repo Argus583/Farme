@@ -60,10 +60,10 @@
                     android:layout_height="64dp"
                     android:text="МК"
                     android:textSize="22sp"
-                    android:textColor="#2D6A4F"
+                    android:textColor="#FFFFFF"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:background="#B4DEC0"/>
+                    android:background="@drawable/bg_avatar_green_circle"/>
                 <ImageView
                     android:id="@+id/ivAvatar"
                     android:layout_width="64dp"

@@ -47,6 +47,20 @@
     <string name="cat_equipment">Equipment</string>
     <string name="cat_services">Services</string>
 
+    <!-- Search filter categories (index 0 = all) -->
+    <string-array name="search_categories">
+        <item>All categories</item>
+        <item>Livestock</item>
+        <item>Grain</item>
+        <item>Vegetables</item>
+        <item>Fruits</item>
+        <item>Dairy</item>
+        <item>Poultry</item>
+        <item>Feed</item>
+        <item>Equipment</item>
+        <item>Services</item>
+    </string-array>
+
     <!-- Regions -->
     <string-array name="regions">
         <item>All Regions</item>
@@ -146,6 +160,18 @@
     <string name="btn_change_number">Change number</string>
     <string name="btn_resend_code">Resend code</string>
     <string name="otp_not_received_hint">Didn\'t receive SMS? Check your number or try later</string>
+    <string name="error_enter_code">Enter all 6 digits of the code</string>
+    <string name="error_code_pending">Waiting for SMS, please wait…</string>
+    <string name="error_sms_send">SMS send error. Check the number</string>
+    <string name="error_sms_billing">SMS unavailable. Contact support</string>
+    <string name="error_too_many_requests">Too many requests. Try again later</string>
+    <string name="error_wrong_code">Invalid verification code</string>
+
+    <!-- Push Notifications -->
+    <string name="notif_channel_chat">Messages</string>
+    <string name="notif_channel_chat_desc">New chat message notifications</string>
+    <string name="notif_channel_system">System</string>
+    <string name="notif_channel_system_desc">Listing status, support replies</string>
 
     <!-- Complete Profile -->
     <string name="complete_registration_title">Complete registration</string>
@@ -395,6 +421,9 @@
     <string name="email_address_label">Email address</string>
     <string name="hint_enter_password">Enter password</string>
     <string name="security_badge">🔒 Secured by Firebase Authentication</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="or_divider">or</string>
+    <string name="error_google_sign_in">Failed to sign in with Google</string>
     <string name="otp_resend_prefix">Get new code in </string>
 
     <!-- Listing Detail -->
@@ -530,4 +559,111 @@
     <string name="label_age">Age</string>
     <string name="map_listings_title">Listings Map</string>
     <string name="btn_show_all">All →</string>
+    <string name="delete_chat_title">Delete chat?</string>
+    <string name="delete_chat_message">Chat with %s will be deleted</string>
+
+    <!-- Admin Support (hardcoded strings fixed) -->
+    <string name="open_tickets_count">%d open</string>
+    <string name="empty_answered_tickets">No answered requests</string>
+    <string name="admin_your_reply_label">Your reply:</string>
+    <string name="admin_reply_hint">Write a reply to the user…</string>
+    <string name="btn_close_session">Close session</string>
+    <string name="session_closed">Session closed</string>
+    <string name="general_question">General question</string>
+
+    <!-- Ticket Chat -->
+    <string name="ticket_status_closed">🔒 Session closed</string>
+    <string name="ticket_closed_by_admin">🔒 Session closed by admin</string>
+    <string name="ticket_waiting_hint">⏳ Waiting for support reply\nWe usually reply within 24 hours</string>
+
+    <!-- Support FAQ + Topics -->
+    <string-array name="faq_questions">
+        <item>How do I add a listing?</item>
+        <item>Why is my listing not published?</item>
+        <item>How do I contact a seller?</item>
+        <item>How do I add an animal passport?</item>
+        <item>How do I edit or delete a listing?</item>
+        <item>How do I get account verification?</item>
+        <item>How do I change my region?</item>
+        <item>How do I turn off notifications?</item>
+    </string-array>
+    <string-array name="faq_answers">
+        <item>Tap the «+» button at the bottom of the screen. Fill in the title, category, price and region. Add a photo. After submitting, the listing will be reviewed by a moderator — usually within 24 hours.</item>
+        <item>New listings go through moderator review. If rejected — open «My Listings», the rejection reason will be shown there. Fix it and resubmit.</item>
+        <item>Open the listing card and tap «Message». A chat with the seller will open. If the seller doesn\'t respond, try calling the number in their profile.</item>
+        <item>When creating a listing in the «Livestock» category, an «Animal Passport» section will appear. Fill in breed, age, vaccinations, and veterinary certificate.</item>
+        <item>Go to «My Listings» and open the one you need. Tap the edit button (pencil icon). You can change details or delete the listing.</item>
+        <item>Complete your profile: name, region, photo. Publish several listings. For faster verification, contact us through the form below.</item>
+        <item>Go to Profile → Settings → select your region. This affects how listings appear on the home screen and map.</item>
+        <item>Go to Profile → Settings → Push Notifications section. You can disable each notification type separately.</item>
+    </string-array>
+    <string-array name="support_topics">
+        <item>General question</item>
+        <item>Listings</item>
+        <item>Chats</item>
+        <item>Account</item>
+        <item>Animal passport</item>
+        <item>Other</item>
+    </string-array>
+
+    <!-- Map / Search -->
+    <string name="nearby_count_format">Nearby · %d listings</string>
+    <string name="search_results_format">Found: %d</string>
+
+    <!-- Seller Profile -->
+    <string name="seller_since_format">On site since %s</string>
+    <string name="report_reason_fraud">Fraud</string>
+    <string name="report_reason_abuse">Abusive behavior</string>
+    <string name="report_reason_spam">Spam</string>
+    <string name="report_reason_other">Other</string>
+    <string name="user_report_sent">Report sent. We\'ll review it within 24 hours.</string>
+
+    <!-- Sales -->
+    <string name="sales_count_format">Sales (%d)</string>
+
+    <!-- Settings -->
+    <string name="settings_language">Language</string>
+
+    <!-- RejectDialog -->
+    <string name="error_specify_reason">Specify a reason</string>
+
+    <!-- Create Listing photo count -->
+    <string name="preview_photo_count_format">📷  %d photos</string>
+
+    <!-- Category / Region chips (with emoji for display in filter &amp; map) -->
+    <string name="chip_cat_all">All</string>
+    <string name="chip_cat_livestock">🐄 Livestock</string>
+    <string name="chip_cat_grain">🌾 Grain</string>
+    <string name="chip_cat_vegetables">🥬 Vegetables</string>
+    <string name="chip_cat_fruits">🍎 Fruits</string>
+    <string name="chip_cat_dairy">🥛 Dairy</string>
+    <string name="chip_cat_poultry">🐔 Poultry</string>
+
+    <string name="chip_reg_all">All regions</string>
+    <string name="chip_reg_chuy">Chui</string>
+    <string name="chip_reg_issyk">Issyk-Kul</string>
+    <string name="chip_reg_osh">Osh</string>
+    <string name="chip_reg_jalal">Jalal-Abad</string>
+    <string name="chip_reg_naryn">Naryn</string>
+    <string name="chip_reg_batken">Batken</string>
+    <string name="chip_reg_talas">Talas</string>
+    <string name="chip_reg_bishkek">Bishkek city</string>
+    <string name="chip_reg_osh_city">Osh city</string>
+
+    <!-- OnboardingActivity -->
+    <string name="btn_start">Get started</string>
+
+    <!-- ReviewDialogHelper -->
+    <string name="anonymous">Anonymous</string>
+
+    <!-- Filter expanded -->
+    <string name="filter_subcategory">Subcategory</string>
+    <string name="filter_seller_rating">Seller rating</string>
+    <string name="filter_rating_any">Any</string>
+    <string name="filter_photo_only">With photos only</string>
+    <string name="filter_photo_only_hint">Has at least one photo</string>
+    <string name="filter_active_count">Filters: %d</string>
+    <string name="chip_cat_korma">🌿 Feed</string>
+    <string name="chip_cat_tekhnika">🚜 Equipment</string>
+    <string name="chip_cat_uslugi">🔧 Services</string>
 </resources>

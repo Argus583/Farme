@@ -1,17 +1,20 @@
 package com.example.farme;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Base64;
 import android.view.View;
 import android.widget.*;
 import androidx.annotation.*;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.*;
+import com.bumptech.glide.Glide;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.*;
 import com.google.firebase.database.ServerValue;
@@ -23,10 +26,15 @@ import java.util.*;
 public class ChatActivity extends BaseActivity {
 
     private TextView     tvChatName, tvChatSubtitle, tvChatAvatar;
+    private ImageView    ivChatAvatarImg;
     private TextView     btnBackChat;
     private RecyclerView recyclerMessages;
     private EditText     etMessage;
     private LinearLayout btnSend;
+    private LinearLayout listingCard;
+    private View         listingCardDivider;
+    private ImageView    ivListingThumb;
+    private TextView     tvListingCardTitle, tvListingCardPrice;
 
     private String chatId, myUid, sellerUid,
             listingId, listingTitle, sellerPhone = "";
@@ -48,6 +56,7 @@ public class ChatActivity extends BaseActivity {
         sellerUid    = getIntent().getStringExtra("sellerUid");
         listingId    = getIntent().getStringExtra("listingId");
         listingTitle = getIntent().getStringExtra("listingTitle");
+        String sellerNameHint = getIntent().getStringExtra("sellerName");
 
         if (sellerUid == null) { finish(); return; }
 
@@ -62,7 +71,16 @@ public class ChatActivity extends BaseActivity {
         }
 
         initViews();
+
+        // Show name immediately from intent so header is never empty
+        if (sellerNameHint != null && !sellerNameHint.isEmpty()) {
+            if (tvChatName   != null) tvChatName.setText(sellerNameHint);
+            if (tvChatAvatar != null) tvChatAvatar.setText(
+                    String.valueOf(sellerNameHint.charAt(0)).toUpperCase());
+        }
+
         loadSellerInfo();
+        loadListingCard();
         setupChat();
         listenMessages();
         checkBlockStatus();
@@ -72,10 +90,17 @@ public class ChatActivity extends BaseActivity {
         tvChatName     = findViewById(R.id.tvChatName);
         tvChatSubtitle = findViewById(R.id.tvChatSubtitle);
         tvChatAvatar   = findViewById(R.id.tvChatAvatar);
+        ivChatAvatarImg = findViewById(R.id.ivChatAvatarImg);
         btnBackChat    = findViewById(R.id.btnBackChat);
         recyclerMessages = findViewById(R.id.recyclerMessages);
         etMessage      = findViewById(R.id.etMessage);
         btnSend        = findViewById(R.id.btnSend);
+
+        listingCard        = findViewById(R.id.listingCard);
+        listingCardDivider = findViewById(R.id.listingCardDivider);
+        ivListingThumb     = findViewById(R.id.ivListingThumb);
+        tvListingCardTitle = findViewById(R.id.tvListingCardTitle);
+        tvListingCardPrice = findViewById(R.id.tvListingCardPrice);
 
         if (btnBackChat != null)
             btnBackChat.setOnClickListener(v -> finish());
@@ -101,13 +126,88 @@ public class ChatActivity extends BaseActivity {
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override public void onDataChange(@NonNull DataSnapshot s) {
                         String name  = s.child("name").getValue(String.class);
-                        String phone = s.child("phone").getValue(String.class);
+                        if (name == null || name.isEmpty()) {
+                            String first = s.child("firstName").getValue(String.class);
+                            String last  = s.child("lastName").getValue(String.class);
+                            if (first != null && !first.isEmpty())
+                                name = first + (last != null && !last.isEmpty() ? " " + last : "");
+                        }
+                        String phone  = s.child("phone").getValue(String.class);
+                        String avatar = s.child("avatar").getValue(String.class);
                         if (phone != null) sellerPhone = phone;
-                        if (name != null) {
+                        if (name != null && !name.isEmpty()) {
                             if (tvChatName != null) tvChatName.setText(name);
                             if (tvChatAvatar != null)
                                 tvChatAvatar.setText(
                                         String.valueOf(name.charAt(0)).toUpperCase());
+                        }
+                        if (avatar != null && !avatar.isEmpty() && ivChatAvatarImg != null) {
+                            try {
+                                String data = avatar.contains(",")
+                                        ? avatar.substring(avatar.indexOf(",") + 1) : avatar;
+                                byte[] bytes = Base64.decode(data, Base64.DEFAULT);
+                                Glide.with(ChatActivity.this)
+                                        .load(bytes).circleCrop().into(ivChatAvatarImg);
+                                ivChatAvatarImg.setVisibility(View.VISIBLE);
+                                if (tvChatAvatar != null) tvChatAvatar.setVisibility(View.GONE);
+                            } catch (Exception ignored) {}
+                        }
+                    }
+                    @Override public void onCancelled(@NonNull DatabaseError e) {}
+                });
+    }
+
+    private void loadListingCard() {
+        if (listingId == null || listingId.isEmpty()) return;
+
+        // Показываем карточку сразу с title из интента, не ждём Firebase
+        if (listingCard != null) {
+            listingCard.setVisibility(View.VISIBLE);
+            if (listingCardDivider != null) listingCardDivider.setVisibility(View.VISIBLE);
+            if (tvListingCardTitle != null && listingTitle != null && !listingTitle.isEmpty())
+                tvListingCardTitle.setText(listingTitle);
+            listingCard.setOnClickListener(v -> {
+                Intent i = new Intent(ChatActivity.this, ListingDetailActivity.class);
+                i.putExtra("listingId", listingId);
+                startActivity(i);
+            });
+        }
+
+        // Догружаем цену и фото из Firebase
+        mDatabase.child("listings").child(listingId)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override public void onDataChange(@NonNull DataSnapshot snap) {
+                        if (listingCard == null) return;
+
+                        // Название (уточняем если было пусто)
+                        String title = snap.child("title").getValue(String.class);
+                        if (title != null && tvListingCardTitle != null)
+                            tvListingCardTitle.setText(title);
+
+                        // Цена
+                        Double price = snap.child("price").getValue(Double.class);
+                        if (price != null && tvListingCardPrice != null) {
+                            long p = price.longValue();
+                            tvListingCardPrice.setText(
+                                    String.format(Locale.getDefault(), "%,d сом", p)
+                                            .replace(',', ' '));
+                        }
+
+                        // Фото (base64)
+                        if (ivListingThumb != null) {
+                            DataSnapshot photosSnap = snap.child("photos");
+                            for (DataSnapshot ph : photosSnap.getChildren()) {
+                                String raw = ph.getValue(String.class);
+                                if (raw == null) break;
+                                try {
+                                    String data = raw.contains(",")
+                                            ? raw.substring(raw.indexOf(",") + 1) : raw;
+                                    byte[] bytes = Base64.decode(data, Base64.DEFAULT);
+                                    Bitmap bmp = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+                                    if (bmp != null) ivListingThumb.setImageBitmap(bmp);
+                                } catch (Exception ignored) {}
+                                break;
+                            }
                         }
                     }
                     @Override public void onCancelled(@NonNull DatabaseError e) {}
@@ -187,6 +287,7 @@ public class ChatActivity extends BaseActivity {
         upd.put("updatedAt",             System.currentTimeMillis());
         upd.put("unread/" + sellerUid,   ServerValue.increment(1));
         mDatabase.child("chats").child(chatId).updateChildren(upd);
+        // Push отправляется автоматически через Firebase Cloud Function (functions/index.js)
     }
 
     private void attachSwipeToDelete() {

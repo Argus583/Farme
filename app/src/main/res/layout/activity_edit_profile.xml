@@ -32,7 +32,7 @@
                     android:layout_width="80dp" android:layout_height="80dp"
                     android:text="А" android:textSize="30sp" android:textColor="#FFFFFF"
                     android:textStyle="bold" android:gravity="center"
-                    android:background="@color/green_primary"/>
+                    android:background="@drawable/bg_avatar_green_circle"/>
                 <ImageView android:id="@+id/ivAvatar"
                     android:layout_width="80dp" android:layout_height="80dp"
                     android:scaleType="centerCrop" android:visibility="gone"/>

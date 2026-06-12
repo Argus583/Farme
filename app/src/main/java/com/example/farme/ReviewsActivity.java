@@ -108,7 +108,7 @@ public class ReviewsActivity extends BaseActivity {
         @Override public void onBindViewHolder(@NonNull VH h, int pos) {
             ReviewItem r = items.get(pos);
             if (h.tvAuthor != null)
-                h.tvAuthor.setText(r.authorName != null ? r.authorName : "Аноним");
+                h.tvAuthor.setText(r.authorName != null ? r.authorName : getString(R.string.anonymous));
             if (h.tvText != null)
                 h.tvText.setText(r.text != null ? r.text : "");
             if (h.tvRating != null)
